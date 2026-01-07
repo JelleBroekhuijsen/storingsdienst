@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1EF8771B-ED8A-4BFB-8007-735BF02D832F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storingsdienst", "Storingsdienst", "{E55D418F-2E4F-41BA-8FB9-1A093A5CEF6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storingsdienst", "src\Storingsdienst\Storingsdienst\Storingsdienst.csproj", "{2B021DC3-E247-4AB9-9CCB-ED6FC5CBF04F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storingsdienst.Client", "src\Storingsdienst\Storingsdienst.Client\Storingsdienst.Client.csproj", "{68B462BC-7ED7-4429-8BFC-B3E6A88643D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EB118E07-F9D3-4C7A-8336-E6D89FC35662}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storingsdienst.Client.Tests", "tests\Storingsdienst.Client.Tests\Storingsdienst.Client.Tests.csproj", "{32CE255E-7ED0-4B6E-82D5-E720D1395F2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B021DC3-E247-4AB9-9CCB-ED6FC5CBF04F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B021DC3-E247-4AB9-9CCB-ED6FC5CBF04F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B021DC3-E247-4AB9-9CCB-ED6FC5CBF04F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B021DC3-E247-4AB9-9CCB-ED6FC5CBF04F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68B462BC-7ED7-4429-8BFC-B3E6A88643D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B462BC-7ED7-4429-8BFC-B3E6A88643D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B462BC-7ED7-4429-8BFC-B3E6A88643D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B462BC-7ED7-4429-8BFC-B3E6A88643D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32CE255E-7ED0-4B6E-82D5-E720D1395F2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32CE255E-7ED0-4B6E-82D5-E720D1395F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32CE255E-7ED0-4B6E-82D5-E720D1395F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32CE255E-7ED0-4B6E-82D5-E720D1395F2F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E55D418F-2E4F-41BA-8FB9-1A093A5CEF6E} = {1EF8771B-ED8A-4BFB-8007-735BF02D832F}
+		{2B021DC3-E247-4AB9-9CCB-ED6FC5CBF04F} = {E55D418F-2E4F-41BA-8FB9-1A093A5CEF6E}
+		{68B462BC-7ED7-4429-8BFC-B3E6A88643D9} = {E55D418F-2E4F-41BA-8FB9-1A093A5CEF6E}
+		{32CE255E-7ED0-4B6E-82D5-E720D1395F2F} = {EB118E07-F9D3-4C7A-8336-E6D89FC35662}
+	EndGlobalSection
+EndGlobal

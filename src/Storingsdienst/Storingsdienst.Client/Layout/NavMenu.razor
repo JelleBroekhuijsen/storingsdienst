@@ -1,0 +1,43 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">
+            <i class="bi bi-calendar-check"></i> Meeting Days Tracker
+        </a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <i class="bi bi-house-door"></i> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <a class="nav-link" href="docs/power-automate-guide.md" target="_blank">
+                <i class="bi bi-book"></i> Power Automate Guide
+            </a>
+        </div>
+
+        <AuthorizeView>
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="authentication/logout">
+                        <i class="bi bi-box-arrow-right"></i> Sign Out
+                    </NavLink>
+                </div>
+            </Authorized>
+            <NotAuthorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="authentication/login">
+                        <i class="bi bi-box-arrow-in-right"></i> Sign In
+                    </NavLink>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+    </nav>
+</div>
+

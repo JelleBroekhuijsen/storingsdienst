@@ -1,0 +1,86 @@
+@page "/authentication/{action}"
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+<PageTitle>Authentication</PageTitle>
+
+<RemoteAuthenticatorView Action="@Action">
+    <LoggingIn>
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <div class="text-center">
+                <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">Signing in...</span>
+                </div>
+                <h4>Signing in with Microsoft...</h4>
+                <p class="text-muted">Please wait while we authenticate you.</p>
+            </div>
+        </div>
+    </LoggingIn>
+    <CompletingLoggingIn>
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <div class="text-center">
+                <div class="spinner-border text-success mb-3" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">Completing sign in...</span>
+                </div>
+                <h4>Completing sign in...</h4>
+                <p class="text-muted">Almost there!</p>
+            </div>
+        </div>
+    </CompletingLoggingIn>
+    <LogOut>
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <div class="text-center">
+                <div class="spinner-border text-warning mb-3" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">Signing out...</span>
+                </div>
+                <h4>Signing out...</h4>
+                <p class="text-muted">Please wait...</p>
+            </div>
+        </div>
+    </LogOut>
+    <CompletingLogOut>
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <div class="text-center">
+                <div class="spinner-border text-info mb-3" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">Completing sign out...</span>
+                </div>
+                <h4>Completing sign out...</h4>
+                <p class="text-muted">Almost there!</p>
+            </div>
+        </div>
+    </CompletingLogOut>
+    <LogInFailed>
+        <div class="container mt-5">
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> Authentication Failed</h4>
+                <p>We couldn't sign you in. This could be due to:</p>
+                <ul>
+                    <li>Invalid or expired credentials</li>
+                    <li>Missing required permissions (User.Read, Calendars.Read)</li>
+                    <li>Azure AD app registration configuration issues</li>
+                </ul>
+                <hr>
+                <p class="mb-0">
+                    <a href="/" class="btn btn-primary">Return to Home</a>
+                    <a href="authentication/login" class="btn btn-outline-primary ms-2">Try Again</a>
+                </p>
+            </div>
+        </div>
+    </LogInFailed>
+    <LogOutFailed>
+        <div class="container mt-5">
+            <div class="alert alert-warning" role="alert">
+                <h4 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> Sign Out Failed</h4>
+                <p>We couldn't complete the sign out process.</p>
+                <hr>
+                <p class="mb-0">
+                    <a href="/" class="btn btn-primary">Return to Home</a>
+                </p>
+            </div>
+        </div>
+    </LogOutFailed>
+</RemoteAuthenticatorView>
+
+@code {
+    [Parameter]
+    public string? Action { get; set; }
+}

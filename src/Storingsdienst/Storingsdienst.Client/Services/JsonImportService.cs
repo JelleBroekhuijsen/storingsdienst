@@ -1,0 +1,91 @@
+using System.Text.Json;
+using Storingsdienst.Client.Models;
+
+namespace Storingsdienst.Client.Services;
+
+public class JsonImportService
+{
+    public async Task<List<CalendarEventDto>> ParseJsonFileAsync(
+        string jsonContent,
+        string subjectFilter,
+        DateTime startDate,
+        DateTime endDate)
+    {
+        if (string.IsNullOrWhiteSpace(jsonContent))
+        {
+            throw new ArgumentException("JSON content cannot be empty", nameof(jsonContent));
+        }
+
+        // Parse JSON with case-insensitive property matching
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
+        PowerAutomateExport? export;
+        try
+        {
+            export = JsonSerializer.Deserialize<PowerAutomateExport>(jsonContent, options);
+        }
+        catch (JsonException ex)
+        {
+            throw new InvalidOperationException($"Invalid JSON format: {ex.Message}", ex);
+        }
+
+        if (export == null || export.Events == null)
+        {
+            throw new InvalidOperationException("JSON missing required 'events' field");
+        }
+
+        // Map to CalendarEventDto and apply filters
+        var results = new List<CalendarEventDto>();
+
+        foreach (var evt in export.Events)
+        {
+            // Validate required fields
+            if (evt.Start == null || evt.End == null || string.IsNullOrEmpty(evt.Start.DateTime) || string.IsNullOrEmpty(evt.End.DateTime))
+            {
+                continue; // Skip events with missing date/time info
+            }
+
+            // Subject filter (case-insensitive contains)
+            if (!string.IsNullOrWhiteSpace(subjectFilter) &&
+                !evt.Subject.Contains(subjectFilter, StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            // Parse dates
+            DateTime startDateTime;
+            DateTime endDateTime;
+
+            try
+            {
+                startDateTime = DateTime.Parse(evt.Start.DateTime);
+                endDateTime = DateTime.Parse(evt.End.DateTime);
+            }
+            catch (FormatException)
+            {
+                continue; // Skip events with invalid date format
+            }
+
+            // Date range filter
+            if (startDateTime.Date > endDate.Date || endDateTime.Date < startDate.Date)
+            {
+                continue;
+            }
+
+            // Create DTO
+            results.Add(new CalendarEventDto
+            {
+                Id = Guid.NewGuid().ToString(), // Generate ID for imported events
+                Subject = evt.Subject,
+                StartDateTime = startDateTime,
+                EndDateTime = endDateTime,
+                IsAllDay = evt.IsAllDay
+            });
+        }
+
+        return await Task.FromResult(results);
+    }
+}
