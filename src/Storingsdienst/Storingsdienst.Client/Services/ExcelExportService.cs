@@ -27,9 +27,10 @@ public class ExcelExportService : IExcelExportService
         worksheet.Cell(headerRow, 4).Value = "Weekdays";
         worksheet.Cell(headerRow, 5).Value = "Weekends";
         worksheet.Cell(headerRow, 6).Value = "Holidays";
+        worksheet.Cell(headerRow, 7).Value = "Holiday Details";
 
         // Style headers
-        var headerRange = worksheet.Range(headerRow, 1, headerRow, 6);
+        var headerRange = worksheet.Range(headerRow, 1, headerRow, 7);
         headerRange.Style.Font.Bold = true;
         headerRange.Style.Fill.BackgroundColor = XLColor.LightGray;
         headerRange.Style.Border.BottomBorder = XLBorderStyleValues.Thick;
@@ -44,6 +45,9 @@ public class ExcelExportService : IExcelExportService
             worksheet.Cell(currentRow, 4).Value = data.WeekdayCount;
             worksheet.Cell(currentRow, 5).Value = data.WeekendCount;
             worksheet.Cell(currentRow, 6).Value = data.HolidayCount;
+            worksheet.Cell(currentRow, 7).Value = data.HolidayNames.Any() 
+                ? string.Join(", ", data.HolidayNames) 
+                : "-";
             currentRow++;
         }
 
