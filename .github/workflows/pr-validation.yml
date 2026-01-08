@@ -1,0 +1,51 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths-ignore:
+      - '**.md'
+      - '.github/workflows/infrastructure.yml'
+      - 'infra/**'
+      - 'docs/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    uses: ./.github/workflows/build-and-test.yml
+    with:
+      solution-path: 'storingsdienst.sln'
+      configuration: 'Release'
+      coverage-threshold: 71
+      artifact-retention-days: 30
+
+  pr-comment:
+    name: Post PR Status Comment
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: always()
+
+    steps:
+      - name: Create PR comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## PR Validation Results
+
+            **Build Status**: ${{ needs.build-and-test.result == 'success' && '✅ Passed' || '❌ Failed' }}
+            **Code Coverage**: ${{ needs.build-and-test.outputs.coverage-percentage }}% (threshold: 71%)
+            **Coverage Status**: ${{ needs.build-and-test.outputs.coverage-percentage >= 71 && '✅ Meets threshold' || '⚠️ Below threshold' }}
+
+            ### Artifacts
+            - 📊 [Test Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            - 📈 [Coverage Report](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+            ---
+            *Workflow run: [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})*

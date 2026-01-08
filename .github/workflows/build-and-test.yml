@@ -1,0 +1,133 @@
+name: Build and Test
+
+on:
+  workflow_call:
+    inputs:
+      solution-path:
+        required: false
+        type: string
+        default: 'storingsdienst.sln'
+      configuration:
+        required: false
+        type: string
+        default: 'Release'
+      coverage-threshold:
+        required: false
+        type: number
+        default: 71
+      artifact-retention-days:
+        required: false
+        type: number
+        default: 30
+    outputs:
+      test-passed:
+        description: 'Whether tests passed'
+        value: ${{ jobs.build-and-test.outputs.test-passed }}
+      coverage-percentage:
+        description: 'Code coverage percentage'
+        value: ${{ jobs.build-and-test.outputs.coverage-percentage }}
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: windows-latest
+    outputs:
+      test-passed: ${{ steps.test.outcome == 'success' }}
+      coverage-percentage: ${{ steps.coverage-summary.outputs.coverage }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ inputs.solution-path }}
+
+      - name: Run unit tests with code coverage
+        id: test
+        run: |
+          dotnet test ${{ inputs.solution-path }} `
+            --configuration ${{ inputs.configuration }} `
+            --no-restore `
+            --logger trx `
+            --results-directory ./TestResults `
+            /p:CollectCoverage=true `
+            /p:CoverletOutputFormat=cobertura `
+            /p:CoverletOutput=./TestResults/ `
+            /p:Threshold=${{ inputs.coverage-threshold }} `
+            /p:ThresholdType=line
+
+      - name: Generate code coverage report
+        if: always()
+        run: |
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          reportgenerator `
+            -reports:./TestResults/coverage.cobertura.xml `
+            -targetdir:./TestResults/CoverageReport `
+            -reporttypes:"Html;MarkdownSummary;Cobertura"
+
+      - name: Extract coverage percentage
+        id: coverage-summary
+        if: always()
+        shell: pwsh
+        run: |
+          $summaryPath = "./TestResults/CoverageReport/Summary.md"
+          if (Test-Path $summaryPath) {
+            $content = Get-Content $summaryPath -Raw
+            if ($content -match 'Line coverage: (\d+\.?\d*)%') {
+              $coverage = $Matches[1]
+              echo "coverage=$coverage" >> $Env:GITHUB_OUTPUT
+              echo "Coverage: $coverage%"
+            } else {
+              echo "coverage=0" >> $Env:GITHUB_OUTPUT
+              echo "Coverage: Unable to parse"
+            }
+          } else {
+            echo "coverage=0" >> $Env:GITHUB_OUTPUT
+            echo "Coverage report not found"
+          }
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: ./TestResults/*.trx
+          retention-days: ${{ inputs.artifact-retention-days }}
+
+      - name: Upload code coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report
+          path: ./TestResults/CoverageReport
+          retention-days: ${{ inputs.artifact-retention-days }}
+
+      - name: Display test and coverage summary
+        if: always()
+        shell: pwsh
+        run: |
+          echo "### Test Results and Code Coverage :test_tube:" >> $Env:GITHUB_STEP_SUMMARY
+          echo "" >> $Env:GITHUB_STEP_SUMMARY
+
+          $summaryPath = "./TestResults/CoverageReport/Summary.md"
+          if (Test-Path $summaryPath) {
+            Get-Content $summaryPath >> $Env:GITHUB_STEP_SUMMARY
+          } else {
+            echo ":warning: Coverage report not found" >> $Env:GITHUB_STEP_SUMMARY
+          }
+
+          echo "" >> $Env:GITHUB_STEP_SUMMARY
+          echo "### Artifacts" >> $Env:GITHUB_STEP_SUMMARY
+          echo "- Test results and code coverage reports are available in the workflow artifacts" >> $Env:GITHUB_STEP_SUMMARY
+          echo "" >> $Env:GITHUB_STEP_SUMMARY
+
+      - name: Build solution
+        run: dotnet build ${{ inputs.solution-path }} --configuration ${{ inputs.configuration }} --no-restore
