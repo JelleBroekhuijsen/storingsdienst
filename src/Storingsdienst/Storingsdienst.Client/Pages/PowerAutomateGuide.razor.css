@@ -1,11 +1,14 @@
 /* Power Automate Guide Styles */
 
 .guide-header {
-    background: linear-gradient(135deg, #1b6ec2 0%, #0d47a1 100%);
+    background: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
     color: white;
     padding: 2rem 0;
     margin-bottom: 2rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .guide-header h1 {
@@ -25,6 +28,7 @@
 
 .guide-progress .progress-bar {
     background-color: #28a745;
+    transition: width 0.5s ease-in-out;
 }
 
 /* Timeline Styles */

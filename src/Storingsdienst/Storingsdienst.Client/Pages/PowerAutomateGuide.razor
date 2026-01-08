@@ -1,4 +1,5 @@
 @page "/guide/power-automate"
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Power Automate Setup Guide</PageTitle>
 
@@ -9,7 +10,7 @@
         </h1>
         <p class="lead mb-4">Export your M365 Calendar Meetings to JSON in 8 simple steps</p>
         <div class="progress guide-progress">
-            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8">
                 <span id="progress-text">0 of 8 steps completed</span>
             </div>
         </div>
@@ -486,5 +487,12 @@
 </div>
 
 @code {
-    // Progress tracking could be added here if needed
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Initialize progress tracking after the page has rendered
+            await JSRuntime.InvokeVoidAsync("initializeProgressTracking");
+        }
+    }
 }
