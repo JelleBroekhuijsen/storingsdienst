@@ -38,11 +38,11 @@ window.downloadFileFromStream = async (fileName, base64Data) => {
  * Tracks checkbox completion and updates the progress bar accordingly
  */
 window.initializeProgressTracking = () => {
-    // Total number of steps
-    const totalSteps = 8;
-    
     // Get all completion checkboxes
     const checkboxes = document.querySelectorAll('.completion-checkbox');
+    
+    // Total number of steps (dynamically determined)
+    const totalSteps = checkboxes.length;
     
     // Function to update progress bar
     const updateProgress = () => {
@@ -70,13 +70,16 @@ window.initializeProgressTracking = () => {
         if (savedProgress) {
             try {
                 const completedIds = JSON.parse(savedProgress);
-                completedIds.forEach(id => {
-                    const checkbox = document.getElementById(id);
-                    if (checkbox) {
-                        checkbox.checked = true;
-                    }
-                });
-                updateProgress();
+                // Validate that completedIds is an array
+                if (Array.isArray(completedIds)) {
+                    completedIds.forEach(id => {
+                        const checkbox = document.getElementById(id);
+                        if (checkbox) {
+                            checkbox.checked = true;
+                        }
+                    });
+                    updateProgress();
+                }
             } catch (e) {
                 console.error('Failed to restore progress:', e);
             }
