@@ -8,6 +8,8 @@ public class MonthlyBreakdown
     public int TotalMeetingDays { get; set; }
     public int WeekdayCount { get; set; }
     public int WeekendCount { get; set; }
+    public int SaturdayCount { get; set; }
+    public int SundayCount { get; set; }
     public int HolidayCount { get; set; }
     public List<string> HolidayNames { get; set; } = new List<string>();
 }

@@ -51,6 +51,8 @@ public class MeetingAnalysisService : IMeetingAnalysisService
         {
             var weekdayCount = 0;
             var weekendCount = 0;
+            var saturdayCount = 0;
+            var sundayCount = 0;
             var holidayCount = 0;
             var holidayNames = new List<string>();
 
@@ -70,6 +72,15 @@ public class MeetingAnalysisService : IMeetingAnalysisService
                         break;
                     case DayCategory.Weekend:
                         weekendCount++;
+                        // Also track Saturday vs Sunday separately
+                        if (day.DayOfWeek == DayOfWeek.Saturday)
+                        {
+                            saturdayCount++;
+                        }
+                        else if (day.DayOfWeek == DayOfWeek.Sunday)
+                        {
+                            sundayCount++;
+                        }
                         break;
                     case DayCategory.Weekday:
                         weekdayCount++;
@@ -87,6 +98,8 @@ public class MeetingAnalysisService : IMeetingAnalysisService
                 TotalMeetingDays = days.Count,
                 WeekdayCount = weekdayCount,
                 WeekendCount = weekendCount,
+                SaturdayCount = saturdayCount,
+                SundayCount = sundayCount,
                 HolidayCount = holidayCount,
                 HolidayNames = holidayNames
             });
