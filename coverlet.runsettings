@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <Format>cobertura</Format>
+          <Exclude>[*.Tests]*,[*]*.Program,[*]*._Imports</Exclude>
+          <ExcludeByFile>
+            **/Pages/**/*.razor.cs,
+            **/Pages/**/*.razor,
+            **/Layout/**/*.razor.cs,
+            **/Layout/**/*.razor,
+            **/Components/**/*.razor.cs,
+            **/Components/**/*.razor,
+            **/Routes.razor.cs,
+            **/Routes.razor,
+            **/_Imports.razor.cs,
+            **/_Imports.razor,
+            **/App.razor.cs,
+            **/App.razor,
+            **/Program.cs
+          </ExcludeByFile>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

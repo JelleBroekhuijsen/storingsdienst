@@ -184,14 +184,59 @@ Integrates with Microsoft Graph API:
 - Testing Graph API mode with real M365 account
 
 📋 **Planned**:
-- Unit tests for all services
 - Integration tests
-- Azure deployment configuration
-- CI/CD pipeline (GitHub Actions)
 - Performance optimization
 - Accessibility improvements
 
 ## Testing
+
+### Unit Tests ✅
+
+The project includes comprehensive unit tests with **80%+ code coverage** target:
+
+#### Test Coverage
+- **HolidayService**: 11 test methods, 70+ test cases covering Dutch holidays, Easter algorithm, and caching
+- **MeetingAnalysisService**: 17 test methods covering event analysis, day categorization, and multi-day events
+- **ExcelExportService**: 15 test methods covering Excel generation, formatting, and edge cases
+- **JsonImportService**: 20 test methods covering JSON parsing, filtering, validation, and error handling
+
+#### Running Tests Locally
+
+**Quick Start (Recommended)**:
+```powershell
+# Run tests with coverage report
+.\run-tests-with-coverage.ps1
+
+# Open HTML report automatically
+.\run-tests-with-coverage.ps1 -OpenReport
+
+# Custom coverage threshold
+.\run-tests-with-coverage.ps1 -CoverageThreshold 85
+```
+
+**Using dotnet CLI**:
+```bash
+# Run tests only
+dotnet test
+
+# Run tests with coverage
+dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Threshold=80
+```
+
+**Using Visual Studio**:
+1. Open Test Explorer (Test → Test Explorer)
+2. Click "Run All Tests"
+3. For coverage: Analyze → Code Coverage → All Tests
+
+#### CI/CD Integration
+
+Tests run automatically on every push to `main`:
+- ✅ All tests must pass
+- ✅ Minimum 80% line coverage required
+- ✅ Coverage report published as artifact
+- ✅ Test results displayed in workflow summary
+
+For detailed testing documentation, see [tests/README.md](tests/README.md).
 
 ### Manual Testing (JSON Import Mode)
 
@@ -201,13 +246,6 @@ Integrates with Microsoft Graph API:
 4. Upload the file and enter "Project Standup" as the filter
 5. Verify the monthly breakdown shows correct categorization
 6. Test Excel export functionality
-
-### Unit Tests
-
-Run unit tests (when implemented):
-```bash
-dotnet test
-```
 
 ## Deployment
 
