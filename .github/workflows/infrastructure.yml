@@ -1,0 +1,63 @@
+name: Deploy Infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "deploy" to confirm infrastructure deployment'
+        required: true
+        default: ''
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy-infrastructure:
+    name: Deploy Azure Infrastructure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate confirmation
+        if: github.event.inputs.confirm != 'deploy'
+        run: |
+          echo "::error::Deployment not confirmed. Please type 'deploy' to proceed."
+          exit 1
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Bicep template
+        uses: azure/arm-deploy@v2
+        id: deploy
+        with:
+          scope: subscription
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          region: westeurope
+          template: ./infra/main.bicep
+          parameters: ./infra/parameters/prod.bicepparam
+          failOnStdErr: false
+
+      - name: Display deployment outputs
+        run: |
+          echo "### Deployment Complete! :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Resource Group:** ${{ steps.deploy.outputs.resourceGroupName }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Web App Name:** ${{ steps.deploy.outputs.webAppName }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Web App URL:** ${{ steps.deploy.outputs.webAppUrl }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps:" >> $GITHUB_STEP_SUMMARY
+          echo "1. Go to [Azure Portal](https://portal.azure.com)" >> $GITHUB_STEP_SUMMARY
+          echo "2. Navigate to **${{ steps.deploy.outputs.webAppName }}**" >> $GITHUB_STEP_SUMMARY
+          echo "3. Go to **Deployment Center** → **Manage publish profile** → **Download publish profile**" >> $GITHUB_STEP_SUMMARY
+          echo "4. Add the publish profile content as a GitHub Secret named \`AZURE_WEBAPP_PUBLISH_PROFILE\`" >> $GITHUB_STEP_SUMMARY
+          echo "5. Run the **Deploy Application** workflow to deploy your application" >> $GITHUB_STEP_SUMMARY
+
+      - name: Azure Logout
+        if: always()
+        run: az logout

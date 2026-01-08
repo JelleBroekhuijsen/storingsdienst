@@ -1,0 +1,72 @@
+name: Deploy Application
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - '.github/workflows/infrastructure.yml'
+      - 'infra/**'
+      - 'docs/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy to Azure
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore storingsdienst.sln
+
+      - name: Configure Azure AD Client ID
+        shell: pwsh
+        run: |
+          $configPath = "src/Storingsdienst/Storingsdienst.Client/wwwroot/appsettings.json"
+          Write-Host "Reading configuration from: $configPath"
+
+          $config = Get-Content $configPath -Raw | ConvertFrom-Json
+
+          Write-Host "Current ClientId: $($config.AzureAd.ClientId)"
+          $config.AzureAd.ClientId = "${{ secrets.AZURE_CLIENT_ID }}"
+          Write-Host "Updated ClientId to: $($config.AzureAd.ClientId)"
+
+          $config | ConvertTo-Json -Depth 10 | Set-Content $configPath
+          Write-Host "Configuration updated successfully"
+
+      - name: Build solution
+        run: dotnet build storingsdienst.sln --configuration Release --no-restore
+
+      - name: Publish Server project
+        run: dotnet publish src/Storingsdienst/Storingsdienst/Storingsdienst.csproj --configuration Release --output ./publish --no-build
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'app-storingsdienst-prod'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ./publish
+
+      - name: Display deployment summary
+        run: |
+          echo "### Deployment Complete! :rocket:" >> $Env:GITHUB_STEP_SUMMARY
+          echo "" >> $Env:GITHUB_STEP_SUMMARY
+          echo "**Application URL:** https://app-storingsdienst-prod.azurewebsites.net" >> $Env:GITHUB_STEP_SUMMARY
+          echo "" >> $Env:GITHUB_STEP_SUMMARY
+          echo "The application has been deployed successfully." >> $Env:GITHUB_STEP_SUMMARY
+          echo "" >> $Env:GITHUB_STEP_SUMMARY
+          echo "### Verification Steps:" >> $Env:GITHUB_STEP_SUMMARY
+          echo "1. Visit the application URL above" >> $Env:GITHUB_STEP_SUMMARY
+          echo "2. Test the JSON import functionality" >> $Env:GITHUB_STEP_SUMMARY
+          echo "3. Test the Microsoft 365 sign-in (multi-tenant)" >> $Env:GITHUB_STEP_SUMMARY

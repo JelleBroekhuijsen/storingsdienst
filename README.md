@@ -211,17 +211,63 @@ dotnet test
 
 ## Deployment
 
-The application is designed to be deployed to Azure Web App.
+![Deployment Status](https://github.com/<your-username>/storingsdienst/actions/workflows/deploy.yml/badge.svg)
 
-### Deployment Steps (Planned)
+The application is deployed to Azure Web App with a fully automated CI/CD pipeline using GitHub Actions and Bicep.
 
-1. Create Azure Web App (Windows, .NET 8)
-2. Configure Azure AD app registration for production
-3. Update appsettings.json with production values
-4. Set up GitHub Actions workflow for CI/CD
-5. Deploy via GitHub Actions or Visual Studio
+### Live Application
+**Production URL**: [https://app-storingsdienst-prod.azurewebsites.net](https://app-storingsdienst-prod.azurewebsites.net)
 
-Detailed deployment instructions will be added in a future update.
+### Deployment Architecture
+
+```
+GitHub Repository (main branch)
+    ↓
+GitHub Actions Workflow
+    ↓
+    ├─ Build .NET 8 Application
+    ├─ Inject Azure AD Client ID
+    ├─ Publish WebAssembly + Server
+    └─ Deploy to Azure Web App
+        ↓
+Azure App Service (West Europe)
+    ├─ App Service Plan (B1 SKU, Windows)
+    ├─ Web App (app-storingsdienst-prod)
+    └─ Application Insights (Monitoring)
+```
+
+### Infrastructure as Code
+The entire Azure infrastructure is defined using Bicep templates:
+- **Location**: `infra/main.bicep`
+- **Environment**: Production (West Europe)
+- **Cost**: ~€15-18/month
+
+### Automated CI/CD Pipeline
+
+#### Continuous Deployment
+Every push to the `main` branch automatically triggers deployment:
+```bash
+git commit -m "Your changes"
+git push origin main
+# Application deploys automatically within 4-6 minutes
+```
+
+#### Manual Deployment
+Go to **Actions** → **Deploy Application** → **Run workflow**
+
+### Deployment Documentation
+For complete deployment setup and configuration:
+- **[Deployment Guide](docs/DEPLOYMENT.md)** - Complete setup instructions
+- **[Infrastructure README](infra/README.md)** - Bicep templates and Azure resources
+
+### Key Features
+- ✅ Fully automated CI/CD with GitHub Actions
+- ✅ Infrastructure as Code using Bicep
+- ✅ Separate deployment and application identities
+- ✅ Multi-tenant Azure AD authentication
+- ✅ Application Insights monitoring
+- ✅ HTTPS enforced
+- ✅ Automatic rollback support
 
 ## Contributing
 
