@@ -14,9 +14,19 @@ permissions:
   contents: read
 
 jobs:
-  build-and-deploy:
-    name: Build and Deploy to Azure
+  build-and-test:
+    name: Build and Test
+    uses: ./.github/workflows/build-and-test.yml
+    with:
+      solution-path: 'storingsdienst.sln'
+      configuration: 'Release'
+      coverage-threshold: 71
+      artifact-retention-days: 30
+
+  deploy:
+    name: Deploy to Azure
     runs-on: windows-latest
+    needs: build-and-test
 
     steps:
       - name: Checkout code
@@ -29,62 +39,6 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore storingsdienst.sln
-
-      - name: Run unit tests with code coverage
-        run: |
-          dotnet test storingsdienst.sln `
-            --configuration Release `
-            --no-restore `
-            --logger trx `
-            --results-directory ./TestResults `
-            /p:CollectCoverage=true `
-            /p:CoverletOutputFormat=cobertura `
-            /p:CoverletOutput=./TestResults/coverage.cobertura.xml `
-            /p:Threshold=71 `
-            /p:ThresholdType=line
-
-      - name: Generate code coverage report
-        if: always()
-        run: |
-          dotnet tool install -g dotnet-reportgenerator-globaltool
-          reportgenerator `
-            -reports:./TestResults/**/coverage.cobertura.xml `
-            -targetdir:./TestResults/CoverageReport `
-            -reporttypes:"Html;MarkdownSummary;Cobertura"
-
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: ./TestResults/*.trx
-
-      - name: Upload code coverage report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: code-coverage-report
-          path: ./TestResults/CoverageReport
-
-      - name: Display test and coverage summary
-        if: always()
-        shell: pwsh
-        run: |
-          echo "### Test Results and Code Coverage :test_tube:" >> $Env:GITHUB_STEP_SUMMARY
-          echo "" >> $Env:GITHUB_STEP_SUMMARY
-
-          # Display coverage summary if exists
-          $summaryPath = "./TestResults/CoverageReport/Summary.md"
-          if (Test-Path $summaryPath) {
-            Get-Content $summaryPath >> $Env:GITHUB_STEP_SUMMARY
-          } else {
-            echo ":warning: Coverage report not found" >> $Env:GITHUB_STEP_SUMMARY
-          }
-
-          echo "" >> $Env:GITHUB_STEP_SUMMARY
-          echo "### Artifacts" >> $Env:GITHUB_STEP_SUMMARY
-          echo "- Test results and code coverage reports are available in the workflow artifacts" >> $Env:GITHUB_STEP_SUMMARY
-          echo "" >> $Env:GITHUB_STEP_SUMMARY
 
       - name: Configure Azure AD Client ID
         shell: pwsh
