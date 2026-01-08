@@ -167,7 +167,8 @@
                                 <th>Year</th>
                                 <th class="text-end">Total Days</th>
                                 <th class="text-end">Weekdays</th>
-                                <th class="text-end">Weekends</th>
+                                <th class="text-end">Saturdays</th>
+                                <th class="text-end">Sundays</th>
                                 <th class="text-end">Holidays</th>
                                 <th>Holiday Details</th>
                             </tr>
@@ -180,7 +181,8 @@
                                     <td>@month.Year</td>
                                     <td class="text-end"><strong>@month.TotalMeetingDays</strong></td>
                                     <td class="text-end">@month.WeekdayCount</td>
-                                    <td class="text-end">@month.WeekendCount</td>
+                                    <td class="text-end">@month.SaturdayCount</td>
+                                    <td class="text-end">@month.SundayCount</td>
                                     <td class="text-end">@month.HolidayCount</td>
                                     <td>
                                         @if (month.HolidayNames.Any())
@@ -200,7 +202,8 @@
                                 <th colspan="2">Total</th>
                                 <th class="text-end">@_monthlyResults.Sum(m => m.TotalMeetingDays)</th>
                                 <th class="text-end">@_monthlyResults.Sum(m => m.WeekdayCount)</th>
-                                <th class="text-end">@_monthlyResults.Sum(m => m.WeekendCount)</th>
+                                <th class="text-end">@_monthlyResults.Sum(m => m.SaturdayCount)</th>
+                                <th class="text-end">@_monthlyResults.Sum(m => m.SundayCount)</th>
                                 <th class="text-end">@_monthlyResults.Sum(m => m.HolidayCount)</th>
                                 <th></th>
                             </tr>
@@ -214,6 +217,30 @@
                         Showing results for meetings with subject containing "<strong>@_searchSubject</strong>"
                     </small>
                 </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Verify Paystub Data</h5>
+                <button class="btn btn-primary btn-sm" @onclick="AddVerificationComponent">
+                    <i class="bi bi-plus-circle"></i> Add Another Month
+                </button>
+            </div>
+            <div class="card-body">
+                <p class="text-muted mb-3">
+                    <i class="bi bi-info-circle"></i> Verify that your paystub data matches the calendar data. 
+                    You can add multiple verification cards to check different months simultaneously.
+                </p>
+
+                @foreach (var verificationId in _verificationComponentIds)
+                {
+                    <PaystubVerification 
+                        MonthlyResults="_monthlyResults" 
+                        Id="@verificationId"
+                        AllowRemove="@(_verificationComponentIds.Count > 1)"
+                        OnRemoveClicked="@(() => RemoveVerificationComponent(verificationId))" />
+                }
             </div>
         </div>
     }
@@ -235,6 +262,7 @@
     private DateTime _startDate = DateTime.Now.AddYears(-1);
     private bool _fileSelected = false;
     private string? _jsonContent;
+    private List<string> _verificationComponentIds = new List<string> { Guid.NewGuid().ToString() };
 
     private void SelectMode(DataSourceMode mode)
     {
@@ -243,7 +271,21 @@
         _searchSubject = string.Empty;
         _fileSelected = false;
         _jsonContent = null;
+        _verificationComponentIds = new List<string> { Guid.NewGuid().ToString() };
         ClearMessages();
+    }
+
+    private void AddVerificationComponent()
+    {
+        _verificationComponentIds.Add(Guid.NewGuid().ToString());
+    }
+
+    private void RemoveVerificationComponent(string id)
+    {
+        if (_verificationComponentIds.Count > 1)
+        {
+            _verificationComponentIds.Remove(id);
+        }
     }
 
     private void ClearError() => _errorMessage = null;

@@ -49,6 +49,8 @@ public class ExcelExportServiceTests
                 TotalMeetingDays = 10,
                 WeekdayCount = 8,
                 WeekendCount = 1,
+                SaturdayCount = 1,
+                SundayCount = 0,
                 HolidayCount = 1
             }
         };
@@ -70,8 +72,9 @@ public class ExcelExportServiceTests
         worksheet.Cell(4, 2).Value.ToString().Should().Be("Year");
         worksheet.Cell(4, 3).Value.ToString().Should().Be("Total Days");
         worksheet.Cell(4, 4).Value.ToString().Should().Be("Weekdays");
-        worksheet.Cell(4, 5).Value.ToString().Should().Be("Weekends");
-        worksheet.Cell(4, 6).Value.ToString().Should().Be("Holidays");
+        worksheet.Cell(4, 5).Value.ToString().Should().Be("Saturdays");
+        worksheet.Cell(4, 6).Value.ToString().Should().Be("Sundays");
+        worksheet.Cell(4, 7).Value.ToString().Should().Be("Holidays");
 
         // Check data row
         worksheet.Cell(5, 1).Value.ToString().Should().Be("January");
@@ -79,7 +82,8 @@ public class ExcelExportServiceTests
         worksheet.Cell(5, 3).GetValue<int>().Should().Be(10);
         worksheet.Cell(5, 4).GetValue<int>().Should().Be(8);
         worksheet.Cell(5, 5).GetValue<int>().Should().Be(1);
-        worksheet.Cell(5, 6).GetValue<int>().Should().Be(1);
+        worksheet.Cell(5, 6).GetValue<int>().Should().Be(0);
+        worksheet.Cell(5, 7).GetValue<int>().Should().Be(1);
     }
 
     [Fact]
@@ -96,6 +100,8 @@ public class ExcelExportServiceTests
                 TotalMeetingDays = 10,
                 WeekdayCount = 8,
                 WeekendCount = 1,
+                SaturdayCount = 1,
+                SundayCount = 0,
                 HolidayCount = 1
             },
             new MonthlyBreakdown
@@ -106,6 +112,8 @@ public class ExcelExportServiceTests
                 TotalMeetingDays = 8,
                 WeekdayCount = 7,
                 WeekendCount = 0,
+                SaturdayCount = 0,
+                SundayCount = 0,
                 HolidayCount = 1
             }
         };

@@ -1,0 +1,224 @@
+@using Storingsdienst.Client.Models
+
+<div class="card verification-card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h6 class="mb-0">
+            <i class="bi bi-calendar-check"></i> Verify Paystub Data
+        </h6>
+        @if (AllowRemove)
+        {
+            <button type="button" class="btn btn-sm btn-outline-danger" @onclick="OnRemove">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        }
+    </div>
+    <div class="card-body">
+        @if (MonthlyResults != null && MonthlyResults.Any())
+        {
+            <div class="row g-3">
+                <!-- Month Selection -->
+                <div class="col-12">
+                    <label for="monthSelect-@Id" class="form-label">Select Month to Verify</label>
+                    <select id="monthSelect-@Id" class="form-select" @bind="SelectedMonthKey">
+                        <option value="">-- Select a month --</option>
+                        @foreach (var month in MonthlyResults)
+                        {
+                            var key = $"{month.Year}-{month.Month:D2}";
+                            <option value="@key">@month.MonthName @month.Year</option>
+                        }
+                    </select>
+                </div>
+
+                @if (!string.IsNullOrEmpty(SelectedMonthKey) && SelectedMonth != null)
+                {
+                    <!-- Calculated Days from Calendar -->
+                    <div class="col-12">
+                        <div class="alert alert-info mb-0">
+                            <strong>Calendar Data for @SelectedMonth.MonthName @SelectedMonth.Year:</strong>
+                            <ul class="mb-0 mt-2">
+                                <li>Weekdays: <strong>@SelectedMonth.WeekdayCount</strong></li>
+                                <li>Saturdays: <strong>@SelectedMonth.SaturdayCount</strong></li>
+                                <li>Sundays: <strong>@SelectedMonth.SundayCount</strong></li>
+                                <li>Holidays: <strong>@SelectedMonth.HolidayCount</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Paystub Input Fields -->
+                    <div class="col-12">
+                        <h6 class="border-top pt-3">Enter Paystub Data:</h6>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="weekdaysInput-@Id" class="form-label">Weekdays Paid</label>
+                        <input type="number" id="weekdaysInput-@Id" class="form-control" 
+                               @bind="PaystubWeekdays" min="0" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="saturdaysInput-@Id" class="form-label">Saturdays Paid</label>
+                        <input type="number" id="saturdaysInput-@Id" class="form-control" 
+                               @bind="PaystubSaturdays" min="0" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="sundaysInput-@Id" class="form-label">Sundays Paid</label>
+                        <input type="number" id="sundaysInput-@Id" class="form-control" 
+                               @bind="PaystubSundays" min="0" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="holidaysInput-@Id" class="form-label">Holidays Paid</label>
+                        <input type="number" id="holidaysInput-@Id" class="form-control" 
+                               @bind="PaystubHolidays" min="0" />
+                    </div>
+
+                    <!-- Verify Button -->
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary w-100" @onclick="VerifyData">
+                            <i class="bi bi-check-circle"></i> Verify Data
+                        </button>
+                    </div>
+
+                    <!-- Verification Results -->
+                    @if (IsVerified)
+                    {
+                        <div class="col-12">
+                            <div class="alert @(AllMatch ? "alert-success" : "alert-warning") mb-0">
+                                @if (AllMatch)
+                                {
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-check-circle-fill fs-4 me-2"></i>
+                                        <div>
+                                            <strong>✓ All data matches!</strong>
+                                            <p class="mb-0 mt-1">Your paystub data matches the calendar entries.</p>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <i class="bi bi-exclamation-triangle-fill fs-4 me-2"></i>
+                                            <strong>⚠ Discrepancies found:</strong>
+                                        </div>
+                                        <ul class="mb-0">
+                                            @if (WeekdaysMatch)
+                                            {
+                                                <li class="text-success">✓ Weekdays match (@SelectedMonth.WeekdayCount)</li>
+                                            }
+                                            else
+                                            {
+                                                <li class="text-danger">✗ Weekdays: Calendar shows @SelectedMonth.WeekdayCount, Paystub shows @PaystubWeekdays (Difference: @Math.Abs(SelectedMonth.WeekdayCount - PaystubWeekdays))</li>
+                                            }
+
+                                            @if (SaturdaysMatch)
+                                            {
+                                                <li class="text-success">✓ Saturdays match (@SelectedMonth.SaturdayCount)</li>
+                                            }
+                                            else
+                                            {
+                                                <li class="text-danger">✗ Saturdays: Calendar shows @SelectedMonth.SaturdayCount, Paystub shows @PaystubSaturdays (Difference: @Math.Abs(SelectedMonth.SaturdayCount - PaystubSaturdays))</li>
+                                            }
+
+                                            @if (SundaysMatch)
+                                            {
+                                                <li class="text-success">✓ Sundays match (@SelectedMonth.SundayCount)</li>
+                                            }
+                                            else
+                                            {
+                                                <li class="text-danger">✗ Sundays: Calendar shows @SelectedMonth.SundayCount, Paystub shows @PaystubSundays (Difference: @Math.Abs(SelectedMonth.SundayCount - PaystubSundays))</li>
+                                            }
+
+                                            @if (HolidaysMatch)
+                                            {
+                                                <li class="text-success">✓ Holidays match (@SelectedMonth.HolidayCount)</li>
+                                            }
+                                            else
+                                            {
+                                                <li class="text-danger">✗ Holidays: Calendar shows @SelectedMonth.HolidayCount, Paystub shows @PaystubHolidays (Difference: @Math.Abs(SelectedMonth.HolidayCount - PaystubHolidays))</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        }
+        else
+        {
+            <p class="text-muted mb-0">No calendar data available. Please process a file first.</p>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public List<MonthlyBreakdown>? MonthlyResults { get; set; }
+
+    [Parameter]
+    public EventCallback OnRemoveClicked { get; set; }
+
+    [Parameter]
+    public bool AllowRemove { get; set; } = false;
+
+    [Parameter]
+    public string Id { get; set; } = Guid.NewGuid().ToString();
+
+    private string SelectedMonthKey { get; set; } = string.Empty;
+    private MonthlyBreakdown? SelectedMonth { get; set; }
+
+    private int PaystubWeekdays { get; set; }
+    private int PaystubSaturdays { get; set; }
+    private int PaystubSundays { get; set; }
+    private int PaystubHolidays { get; set; }
+
+    private bool IsVerified { get; set; }
+    private bool AllMatch { get; set; }
+    private bool WeekdaysMatch { get; set; }
+    private bool SaturdaysMatch { get; set; }
+    private bool SundaysMatch { get; set; }
+    private bool HolidaysMatch { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        UpdateSelectedMonth();
+    }
+
+    private void UpdateSelectedMonth()
+    {
+        if (string.IsNullOrEmpty(SelectedMonthKey) || MonthlyResults == null)
+        {
+            SelectedMonth = null;
+            IsVerified = false;
+            return;
+        }
+
+        var parts = SelectedMonthKey.Split('-');
+        if (parts.Length == 2 && int.TryParse(parts[0], out var year) && int.TryParse(parts[1], out var month))
+        {
+            SelectedMonth = MonthlyResults.FirstOrDefault(m => m.Year == year && m.Month == month);
+            IsVerified = false;
+        }
+    }
+
+    private void VerifyData()
+    {
+        if (SelectedMonth == null) return;
+
+        WeekdaysMatch = SelectedMonth.WeekdayCount == PaystubWeekdays;
+        SaturdaysMatch = SelectedMonth.SaturdayCount == PaystubSaturdays;
+        SundaysMatch = SelectedMonth.SundayCount == PaystubSundays;
+        HolidaysMatch = SelectedMonth.HolidayCount == PaystubHolidays;
+
+        AllMatch = WeekdaysMatch && SaturdaysMatch && SundaysMatch && HolidaysMatch;
+        IsVerified = true;
+    }
+
+    private async Task OnRemove()
+    {
+        await OnRemoveClicked.InvokeAsync();
+    }
+}
