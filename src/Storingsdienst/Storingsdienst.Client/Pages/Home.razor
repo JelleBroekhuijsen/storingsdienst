@@ -169,6 +169,7 @@
                                 <th class="text-end">Weekdays</th>
                                 <th class="text-end">Weekends</th>
                                 <th class="text-end">Holidays</th>
+                                <th>Holiday Details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -181,6 +182,16 @@
                                     <td class="text-end">@month.WeekdayCount</td>
                                     <td class="text-end">@month.WeekendCount</td>
                                     <td class="text-end">@month.HolidayCount</td>
+                                    <td>
+                                        @if (month.HolidayNames.Any())
+                                        {
+                                            <span>@string.Join(", ", month.HolidayNames)</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">-</span>
+                                        }
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -191,6 +202,7 @@
                                 <th class="text-end">@_monthlyResults.Sum(m => m.WeekdayCount)</th>
                                 <th class="text-end">@_monthlyResults.Sum(m => m.WeekendCount)</th>
                                 <th class="text-end">@_monthlyResults.Sum(m => m.HolidayCount)</th>
+                                <th></th>
                             </tr>
                         </tfoot>
                     </table>

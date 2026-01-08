@@ -52,6 +52,7 @@ public class MeetingAnalysisService : IMeetingAnalysisService
             var weekdayCount = 0;
             var weekendCount = 0;
             var holidayCount = 0;
+            var holidayNames = new List<string>();
 
             foreach (var day in days)
             {
@@ -61,6 +62,11 @@ public class MeetingAnalysisService : IMeetingAnalysisService
                 {
                     case DayCategory.Holiday:
                         holidayCount++;
+                        var holidayName = _holidayService.GetHolidayName(day);
+                        if (holidayName != null)
+                        {
+                            holidayNames.Add(holidayName);
+                        }
                         break;
                     case DayCategory.Weekend:
                         weekendCount++;
@@ -81,7 +87,8 @@ public class MeetingAnalysisService : IMeetingAnalysisService
                 TotalMeetingDays = days.Count,
                 WeekdayCount = weekdayCount,
                 WeekendCount = weekendCount,
-                HolidayCount = holidayCount
+                HolidayCount = holidayCount,
+                HolidayNames = holidayNames
             });
         }
 

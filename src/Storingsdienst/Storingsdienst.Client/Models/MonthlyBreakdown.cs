@@ -9,4 +9,5 @@ public class MonthlyBreakdown
     public int WeekdayCount { get; set; }
     public int WeekendCount { get; set; }
     public int HolidayCount { get; set; }
+    public List<string> HolidayNames { get; set; } = new List<string>();
 }

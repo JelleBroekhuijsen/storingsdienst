@@ -206,4 +206,73 @@ public class HolidayServiceTests
         // Assert
         result.Should().BeFalse($"{date:yyyy-MM-dd} should not be a holiday (day after a holiday)");
     }
+
+    [Theory]
+    [InlineData(2024, 1, 1, "Nieuwjaarsdag")]
+    [InlineData(2024, 4, 27, "Koningsdag")]
+    [InlineData(2024, 5, 5, "Bevrijdingsdag")]
+    [InlineData(2024, 12, 25, "Eerste Kerstdag")]
+    [InlineData(2024, 12, 26, "Tweede Kerstdag")]
+    public void GetHolidayName_FixedHolidays_ReturnsCorrectName(int year, int month, int day, string expectedName)
+    {
+        // Arrange
+        var date = new DateOnly(year, month, day);
+
+        // Act
+        var result = _sut.GetHolidayName(date);
+
+        // Assert
+        result.Should().Be(expectedName);
+    }
+
+    [Theory]
+    [InlineData(2024, 3, 29, "Goede Vrijdag")]  // Good Friday 2024
+    [InlineData(2024, 3, 31, "Eerste Paasdag")]  // Easter Sunday 2024
+    [InlineData(2024, 4, 1, "Tweede Paasdag")]   // Easter Monday 2024
+    [InlineData(2024, 5, 9, "Hemelvaartsdag")]   // Ascension Day 2024
+    [InlineData(2024, 5, 19, "Eerste Pinksterdag")]  // Whit Sunday 2024
+    [InlineData(2024, 5, 20, "Tweede Pinksterdag")]  // Whit Monday 2024
+    public void GetHolidayName_EasterRelatedHolidays_ReturnsCorrectName(int year, int month, int day, string expectedName)
+    {
+        // Arrange
+        var date = new DateOnly(year, month, day);
+
+        // Act
+        var result = _sut.GetHolidayName(date);
+
+        // Assert
+        result.Should().Be(expectedName);
+    }
+
+    [Theory]
+    [InlineData(2024, 1, 2)]
+    [InlineData(2024, 6, 15)]
+    [InlineData(2024, 10, 31)]
+    public void GetHolidayName_NonHoliday_ReturnsNull(int year, int month, int day)
+    {
+        // Arrange
+        var date = new DateOnly(year, month, day);
+
+        // Act
+        var result = _sut.GetHolidayName(date);
+
+        // Assert
+        result.Should().BeNull($"{date:yyyy-MM-dd} should not be a holiday");
+    }
+
+    [Fact]
+    public void GetHolidayName_CachesNamesForYear()
+    {
+        // Arrange
+        var date1 = new DateOnly(2024, 1, 1);
+        var date2 = new DateOnly(2024, 12, 25);
+
+        // Act
+        var result1 = _sut.GetHolidayName(date1);
+        var result2 = _sut.GetHolidayName(date2);
+
+        // Assert
+        result1.Should().Be("Nieuwjaarsdag");
+        result2.Should().Be("Eerste Kerstdag");
+    }
 }

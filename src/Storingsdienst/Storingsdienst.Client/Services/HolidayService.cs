@@ -3,6 +3,7 @@ namespace Storingsdienst.Client.Services;
 public class HolidayService : IHolidayService
 {
     private readonly Dictionary<int, HashSet<DateOnly>> _holidayCache = new();
+    private readonly Dictionary<int, Dictionary<DateOnly, string>> _holidayNamesCache = new();
 
     public bool IsDutchHoliday(DateOnly date)
     {
@@ -18,30 +19,52 @@ public class HolidayService : IHolidayService
         return holidays.Contains(date);
     }
 
+    public string? GetHolidayName(DateOnly date)
+    {
+        // Ensure holidays are cached for this year
+        if (!_holidayNamesCache.TryGetValue(date.Year, out var holidayNames))
+        {
+            // This will populate both caches
+            GetDutchHolidays(date.Year);
+            holidayNames = _holidayNamesCache[date.Year];
+        }
+
+        return holidayNames.TryGetValue(date, out var name) ? name : null;
+    }
+
     private HashSet<DateOnly> GetDutchHolidays(int year)
     {
-        var holidays = new HashSet<DateOnly>
-        {
-            // Fixed holidays
-            new DateOnly(year, 1, 1),   // Nieuwjaarsdag (New Year's Day)
-            new DateOnly(year, 4, 27),  // Koningsdag (King's Day)
-            new DateOnly(year, 12, 25), // Eerste Kerstdag (Christmas Day)
-            new DateOnly(year, 12, 26)  // Tweede Kerstdag (Boxing Day)
-        };
+        var holidays = new HashSet<DateOnly>();
+        var holidayNames = new Dictionary<DateOnly, string>();
+
+        // Fixed holidays
+        AddHoliday(new DateOnly(year, 1, 1), "Nieuwjaarsdag", holidays, holidayNames);
+        AddHoliday(new DateOnly(year, 4, 27), "Koningsdag", holidays, holidayNames);
+        AddHoliday(new DateOnly(year, 12, 25), "Eerste Kerstdag", holidays, holidayNames);
+        AddHoliday(new DateOnly(year, 12, 26), "Tweede Kerstdag", holidays, holidayNames);
 
         // Calculate Easter and related holidays (using simplified algorithm)
         var easter = CalculateEaster(year);
-        holidays.Add(easter.AddDays(-2));  // Goede Vrijdag (Good Friday)
-        holidays.Add(easter);              // Pasen (Easter Sunday)
-        holidays.Add(easter.AddDays(1));   // Paasmaandag (Easter Monday)
-        holidays.Add(easter.AddDays(39));  // Hemelvaart (Ascension Day)
-        holidays.Add(easter.AddDays(49));  // Pinksteren (Whit Sunday)
-        holidays.Add(easter.AddDays(50));  // Pinkstermaandag (Whit Monday)
+        AddHoliday(easter.AddDays(-2), "Goede Vrijdag", holidays, holidayNames);
+        AddHoliday(easter, "Eerste Paasdag", holidays, holidayNames);
+        AddHoliday(easter.AddDays(1), "Tweede Paasdag", holidays, holidayNames);
+        AddHoliday(easter.AddDays(39), "Hemelvaartsdag", holidays, holidayNames);
+        AddHoliday(easter.AddDays(49), "Eerste Pinksterdag", holidays, holidayNames);
+        AddHoliday(easter.AddDays(50), "Tweede Pinksterdag", holidays, holidayNames);
 
         // Bevrijdingsdag (Liberation Day) - May 5, every 5 years or always celebrated
-        holidays.Add(new DateOnly(year, 5, 5));
+        AddHoliday(new DateOnly(year, 5, 5), "Bevrijdingsdag", holidays, holidayNames);
+
+        // Cache the names
+        _holidayNamesCache[year] = holidayNames;
 
         return holidays;
+    }
+
+    private void AddHoliday(DateOnly date, string name, HashSet<DateOnly> holidays, Dictionary<DateOnly, string> holidayNames)
+    {
+        holidays.Add(date);
+        holidayNames[date] = name;
     }
 
     private DateOnly CalculateEaster(int year)

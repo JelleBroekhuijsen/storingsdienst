@@ -475,4 +475,124 @@ public class MeetingAnalysisServiceTests
         result[0].WeekdayCount.Should().Be(1);
         result[0].WeekendCount.Should().Be(1);
     }
+
+    [Fact]
+    public void AnalyzeMeetings_WithHolidays_CollectsHolidayNames()
+    {
+        // Arrange
+        var newYearsDay = new DateOnly(2024, 1, 1);
+        var christmas = new DateOnly(2024, 12, 25);
+        
+        var events = new List<CalendarEventDto>
+        {
+            new CalendarEventDto
+            {
+                Id = "1",
+                Subject = "New Year Meeting",
+                StartDateTime = new DateTime(2024, 1, 1, 10, 0, 0),
+                EndDateTime = new DateTime(2024, 1, 1, 11, 0, 0),
+                IsAllDay = false
+            },
+            new CalendarEventDto
+            {
+                Id = "2",
+                Subject = "Christmas Meeting",
+                StartDateTime = new DateTime(2024, 12, 25, 10, 0, 0),
+                EndDateTime = new DateTime(2024, 12, 25, 11, 0, 0),
+                IsAllDay = false
+            }
+        };
+
+        _holidayServiceMock.Setup(x => x.IsDutchHoliday(newYearsDay)).Returns(true);
+        _holidayServiceMock.Setup(x => x.IsDutchHoliday(christmas)).Returns(true);
+        _holidayServiceMock.Setup(x => x.GetHolidayName(newYearsDay)).Returns("Nieuwjaarsdag");
+        _holidayServiceMock.Setup(x => x.GetHolidayName(christmas)).Returns("Eerste Kerstdag");
+
+        // Act
+        var result = _sut.AnalyzeMeetings(events);
+
+        // Assert
+        result.Should().HaveCount(2);
+        
+        var januaryBreakdown = result.First(r => r.Month == 1);
+        januaryBreakdown.HolidayCount.Should().Be(1);
+        januaryBreakdown.HolidayNames.Should().ContainSingle();
+        januaryBreakdown.HolidayNames.Should().Contain("Nieuwjaarsdag");
+        
+        var decemberBreakdown = result.First(r => r.Month == 12);
+        decemberBreakdown.HolidayCount.Should().Be(1);
+        decemberBreakdown.HolidayNames.Should().ContainSingle();
+        decemberBreakdown.HolidayNames.Should().Contain("Eerste Kerstdag");
+    }
+
+    [Fact]
+    public void AnalyzeMeetings_WithMultipleHolidaysInMonth_CollectsAllNames()
+    {
+        // Arrange
+        var christmas = new DateOnly(2024, 12, 25);
+        var boxingDay = new DateOnly(2024, 12, 26);
+        
+        var events = new List<CalendarEventDto>
+        {
+            new CalendarEventDto
+            {
+                Id = "1",
+                Subject = "Christmas Meeting",
+                StartDateTime = new DateTime(2024, 12, 25, 10, 0, 0),
+                EndDateTime = new DateTime(2024, 12, 25, 11, 0, 0),
+                IsAllDay = false
+            },
+            new CalendarEventDto
+            {
+                Id = "2",
+                Subject = "Boxing Day Meeting",
+                StartDateTime = new DateTime(2024, 12, 26, 10, 0, 0),
+                EndDateTime = new DateTime(2024, 12, 26, 11, 0, 0),
+                IsAllDay = false
+            }
+        };
+
+        _holidayServiceMock.Setup(x => x.IsDutchHoliday(christmas)).Returns(true);
+        _holidayServiceMock.Setup(x => x.IsDutchHoliday(boxingDay)).Returns(true);
+        _holidayServiceMock.Setup(x => x.GetHolidayName(christmas)).Returns("Eerste Kerstdag");
+        _holidayServiceMock.Setup(x => x.GetHolidayName(boxingDay)).Returns("Tweede Kerstdag");
+
+        // Act
+        var result = _sut.AnalyzeMeetings(events);
+
+        // Assert
+        result.Should().HaveCount(1);
+        result[0].Month.Should().Be(12);
+        result[0].HolidayCount.Should().Be(2);
+        result[0].HolidayNames.Should().HaveCount(2);
+        result[0].HolidayNames.Should().Contain("Eerste Kerstdag");
+        result[0].HolidayNames.Should().Contain("Tweede Kerstdag");
+    }
+
+    [Fact]
+    public void AnalyzeMeetings_WithNoHolidays_HasEmptyHolidayNamesList()
+    {
+        // Arrange
+        var events = new List<CalendarEventDto>
+        {
+            new CalendarEventDto
+            {
+                Id = "1",
+                Subject = "Regular Meeting",
+                StartDateTime = new DateTime(2024, 6, 15, 10, 0, 0), // Saturday
+                EndDateTime = new DateTime(2024, 6, 15, 11, 0, 0),
+                IsAllDay = false
+            }
+        };
+
+        _holidayServiceMock.Setup(x => x.IsDutchHoliday(It.IsAny<DateOnly>())).Returns(false);
+
+        // Act
+        var result = _sut.AnalyzeMeetings(events);
+
+        // Assert
+        result.Should().HaveCount(1);
+        result[0].HolidayCount.Should().Be(0);
+        result[0].HolidayNames.Should().BeEmpty();
+    }
 }
