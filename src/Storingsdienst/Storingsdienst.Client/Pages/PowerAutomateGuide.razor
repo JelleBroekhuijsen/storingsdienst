@@ -1,0 +1,490 @@
+@page "/guide/power-automate"
+
+<PageTitle>Power Automate Setup Guide</PageTitle>
+
+<div class="guide-header">
+    <div class="container">
+        <h1 class="mb-3">
+            <i class="bi bi-microsoft"></i> Power Automate Setup Guide
+        </h1>
+        <p class="lead mb-4">Export your M365 Calendar Meetings to JSON in 8 simple steps</p>
+        <div class="progress guide-progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8">
+                <span id="progress-text">0 of 8 steps completed</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container pb-5">
+    <div class="timeline">
+        <!-- Step 1: Create New Power Automate Flow -->
+        <div class="timeline-step setup">
+            <div class="timeline-badge">1</div>
+            <div class="card step-card">
+                <div class="card-header">
+                    <h3 class="step-title">
+                        <i class="bi bi-plus-circle step-icon"></i>
+                        Create New Power Automate Flow
+                        <span class="step-category">Setup</span>
+                    </h3>
+                    <div class="time-estimate mt-2">
+                        <i class="bi bi-clock"></i> Estimated time: 2 minutes
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="substep">Go to <a href="https://make.powerautomate.com" target="_blank">make.powerautomate.com</a></div>
+                        <div class="substep">Click <strong>"Create"</strong> → <strong>"Instant cloud flow"</strong></div>
+                        <div class="substep">Enter name: <code>"Export Calendar Meetings to JSON"</code></div>
+                        <div class="substep">Select trigger: <strong>"Manually trigger a flow"</strong></div>
+                        <div class="substep">Click <strong>"Create"</strong></div>
+                    </div>
+
+                    <div class="screenshot-placeholder">
+                        <i class="bi bi-camera"></i>
+                        <p class="mb-0"><strong>Screenshot: Power Automate Create Flow Screen</strong></p>
+                        <small>Shows the Create menu with Instant cloud flow option highlighted</small>
+                    </div>
+
+                    <div class="alert alert-info mt-3">
+                        <i class="bi bi-info-circle"></i> <strong>Tip:</strong> Make sure you're signed in with your Microsoft 365 work account before starting.
+                    </div>
+
+                    <div class="form-check mt-3">
+                        <input class="form-check-input completion-checkbox" type="checkbox" id="step1Complete">
+                        <label class="form-check-label" for="step1Complete">
+                            <strong>Mark as complete</strong>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Add Input Parameters -->
+        <div class="timeline-step setup">
+            <div class="timeline-badge">2</div>
+            <div class="card step-card">
+                <div class="card-header">
+                    <h3 class="step-title">
+                        <i class="bi bi-gear step-icon"></i>
+                        Add Input Parameters
+                        <span class="step-category">Setup</span>
+                    </h3>
+                    <div class="time-estimate mt-2">
+                        <i class="bi bi-clock"></i> Estimated time: 1 minute
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="substep">In the manual trigger, click <strong>"Add an input"</strong></div>
+                        <div class="substep">Select <strong>"Text"</strong></div>
+                        <div class="substep">Input name: <code>"Subject Filter"</code></div>
+                        <div class="substep">Mark as <strong>Required</strong></div>
+                    </div>
+
+                    <div class="screenshot-placeholder">
+                        <i class="bi bi-camera"></i>
+                        <p class="mb-0"><strong>Screenshot: Manual Trigger Configuration</strong></p>
+                        <small>Shows the "Add an input" interface with Text input type selected</small>
+                    </div>
+
+                    <div class="form-check mt-3">
+                        <input class="form-check-input completion-checkbox" type="checkbox" id="step2Complete">
+                        <label class="form-check-label" for="step2Complete">
+                            <strong>Mark as complete</strong>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: List Calendar Events -->
+        <div class="timeline-step configure">
+            <div class="timeline-badge">3</div>
+            <div class="card step-card">
+                <div class="card-header">
+                    <h3 class="step-title">
+                        <i class="bi bi-calendar-event step-icon"></i>
+                        List Calendar Events
+                        <span class="step-category">Configure</span>
+                    </h3>
+                    <div class="time-estimate mt-2">
+                        <i class="bi bi-clock"></i> Estimated time: 2 minutes
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="substep">Click <strong>"+ New step"</strong></div>
+                        <div class="substep">Search for <strong>"Office 365 Outlook"</strong></div>
+                        <div class="substep">Choose action: <strong>"Get calendar view of events (V3)"</strong></div>
+                    </div>
+
+                    <h6 class="mt-3 mb-2">Configure Parameters:</h6>
+                    <div class="code-block">
+                        <div><strong>Calendar id:</strong> <code>Calendar</code></div>
+                        <div><strong>Start Time:</strong> <code>addDays(utcNow(), -365)</code></div>
+                        <div><strong>End Time:</strong> <code>utcNow()</code></div>
+                        <div><strong>Time Zone:</strong> <code>UTC</code></div>
+                        <div><strong>Top Count:</strong> <code>1000</code></div>
+                    </div>
+
+                    <div class="screenshot-placeholder mt-3">
+                        <i class="bi bi-camera"></i>
+                        <p class="mb-0"><strong>Screenshot: Calendar View Configuration</strong></p>
+                        <small>Shows the Office 365 Outlook action with all parameters filled in</small>
+                    </div>
+
+                    <div class="form-check mt-3">
+                        <input class="form-check-input completion-checkbox" type="checkbox" id="step3Complete">
+                        <label class="form-check-label" for="step3Complete">
+                            <strong>Mark as complete</strong>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Filter Events by Subject -->
+        <div class="timeline-step configure">
+            <div class="timeline-badge">4</div>
+            <div class="card step-card">
+                <div class="card-header">
+                    <h3 class="step-title">
+                        <i class="bi bi-filter step-icon"></i>
+                        Filter Events by Subject
+                        <span class="step-category">Configure</span>
+                    </h3>
+                    <div class="time-estimate mt-2">
+                        <i class="bi bi-clock"></i> Estimated time: 1 minute
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="substep">Click <strong>"+ New step"</strong></div>
+                        <div class="substep">Search for and select <strong>"Data Operation"</strong></div>
+                        <div class="substep">Choose <strong>"Filter array"</strong></div>
+                        <div class="substep"><strong>From:</strong> Click in the field and select "value" from the dynamic content (from previous step)</div>
+                    </div>
+
+                    <h6 class="mt-3 mb-2">Configure Condition:</h6>
+                    <div class="code-block">
+                        <p class="mb-2">Click <strong>"Edit in advanced mode"</strong> and paste:</p>
+                        <pre class="mb-0"><code>@@contains(item()?['subject'], triggerBody()['text'])</code></pre>
+                    </div>
+
+                    <div class="screenshot-placeholder mt-3">
+                        <i class="bi bi-camera"></i>
+                        <p class="mb-0"><strong>Screenshot: Filter Array Configuration</strong></p>
+                        <small>Shows the Filter array action with advanced mode formula</small>
+                    </div>
+
+                    <div class="form-check mt-3">
+                        <input class="form-check-input completion-checkbox" type="checkbox" id="step4Complete">
+                        <label class="form-check-label" for="step4Complete">
+                            <strong>Mark as complete</strong>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Transform to Required JSON Format -->
+        <div class="timeline-step configure">
+            <div class="timeline-badge">5</div>
+            <div class="card step-card">
+                <div class="card-header">
+                    <h3 class="step-title">
+                        <i class="bi bi-arrow-left-right step-icon"></i>
+                        Transform to Required JSON Format
+                        <span class="step-category">Configure</span>
+                    </h3>
+                    <div class="time-estimate mt-2">
+                        <i class="bi bi-clock"></i> Estimated time: 3 minutes
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="substep">Click <strong>"+ New step"</strong></div>
+                        <div class="substep">Select <strong>"Data Operation"</strong> → <strong>"Select"</strong></div>
+                        <div class="substep"><strong>From:</strong> Output from Filter array action</div>
+                        <div class="substep">Click <strong>"Map"</strong> and add these fields:</div>
+                    </div>
+
+                    <h6 class="mt-3 mb-2">Field Mappings:</h6>
+                    <div class="code-block">
+                        <div class="mb-3">
+                            <strong>subject:</strong> <code>item()?['subject']</code>
+                        </div>
+                        <div class="mb-3">
+                            <strong>start:</strong> Click "Switch to input entire array" and enter:
+                            <pre class="mt-2"><code>{
+  "dateTime": "@@{item()?['start']?['dateTime']}",
+  "timeZone": "@@{item()?['start']?['timeZone']}"
+}</code></pre>
+                        </div>
+                        <div class="mb-3">
+                            <strong>end:</strong> Click "Switch to input entire array" and enter:
+                            <pre class="mt-2"><code>{
+  "dateTime": "@@{item()?['end']?['dateTime']}",
+  "timeZone": "@@{item()?['end']?['timeZone']}"
+}</code></pre>
+                        </div>
+                        <div>
+                            <strong>isAllDay:</strong> <code>item()?['isAllDay']</code>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-placeholder mt-3">
+                        <i class="bi bi-camera"></i>
+                        <p class="mb-0"><strong>Screenshot: Select Action Configuration</strong></p>
+                        <small>Shows the Select action with field mappings configured</small>
+                    </div>
+
+                    <div class="form-check mt-3">
+                        <input class="form-check-input completion-checkbox" type="checkbox" id="step5Complete">
+                        <label class="form-check-label" for="step5Complete">
+                            <strong>Mark as complete</strong>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6: Create JSON Wrapper -->
+        <div class="timeline-step configure">
+            <div class="timeline-badge">6</div>
+            <div class="card step-card">
+                <div class="card-header">
+                    <h3 class="step-title">
+                        <i class="bi bi-file-code step-icon"></i>
+                        Create JSON Wrapper
+                        <span class="step-category">Configure</span>
+                    </h3>
+                    <div class="time-estimate mt-2">
+                        <i class="bi bi-clock"></i> Estimated time: 1 minute
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="substep">Click <strong>"+ New step"</strong></div>
+                        <div class="substep">Select <strong>"Data Operation"</strong> → <strong>"Compose"</strong></div>
+                        <div class="substep">In the <strong>Inputs</strong> field, switch to code view and paste:</div>
+                    </div>
+
+                    <div class="code-block">
+                        <pre class="mb-0"><code>{
+  "events": @@{body('Select')},
+  "exportDate": "@@{utcNow()}",
+  "subjectFilter": "@@{triggerBody()['text']}"
+}</code></pre>
+                    </div>
+
+                    <div class="screenshot-placeholder mt-3">
+                        <i class="bi bi-camera"></i>
+                        <p class="mb-0"><strong>Screenshot: Compose Action</strong></p>
+                        <small>Shows the Compose action with JSON wrapper code</small>
+                    </div>
+
+                    <div class="form-check mt-3">
+                        <input class="form-check-input completion-checkbox" type="checkbox" id="step6Complete">
+                        <label class="form-check-label" for="step6Complete">
+                            <strong>Mark as complete</strong>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 7: Save to OneDrive -->
+        <div class="timeline-step test">
+            <div class="timeline-badge">7</div>
+            <div class="card step-card">
+                <div class="card-header">
+                    <h3 class="step-title">
+                        <i class="bi bi-cloud-upload step-icon"></i>
+                        Save to OneDrive
+                        <span class="step-category">Output</span>
+                    </h3>
+                    <div class="time-estimate mt-2">
+                        <i class="bi bi-clock"></i> Estimated time: 2 minutes
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="substep">Click <strong>"+ New step"</strong></div>
+                        <div class="substep">Search for and select <strong>"OneDrive for Business"</strong></div>
+                        <div class="substep">Choose <strong>"Create file"</strong></div>
+                    </div>
+
+                    <h6 class="mt-3 mb-2">Configure File Settings:</h6>
+                    <div class="code-block">
+                        <div><strong>Folder Path:</strong> <code>/Documents/CalendarExports</code></div>
+                        <div><strong>File Name:</strong> <code>calendar_export_@@{formatDateTime(utcNow(), 'yyyyMMdd_HHmmss')}.json</code></div>
+                        <div><strong>File Content:</strong> Select "Outputs" from the Compose step</div>
+                    </div>
+
+                    <div class="alert alert-warning mt-3">
+                        <i class="bi bi-exclamation-triangle"></i> <strong>Note:</strong> Create the folder <code>/Documents/CalendarExports</code> in OneDrive before running the flow.
+                    </div>
+
+                    <div class="screenshot-placeholder mt-3">
+                        <i class="bi bi-camera"></i>
+                        <p class="mb-0"><strong>Screenshot: OneDrive Create File</strong></p>
+                        <small>Shows the OneDrive action with folder path and file name configured</small>
+                    </div>
+
+                    <div class="alert alert-info mt-3">
+                        <i class="bi bi-info-circle"></i> <strong>Alternative:</strong> You can use <strong>SharePoint</strong> instead of OneDrive by selecting "SharePoint" → "Create file" and choosing your site.
+                    </div>
+
+                    <div class="form-check mt-3">
+                        <input class="form-check-input completion-checkbox" type="checkbox" id="step7Complete">
+                        <label class="form-check-label" for="step7Complete">
+                            <strong>Mark as complete</strong>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 8: Test & Export Your Flow -->
+        <div class="timeline-step test">
+            <div class="timeline-badge">8</div>
+            <div class="card step-card">
+                <div class="card-header">
+                    <h3 class="step-title">
+                        <i class="bi bi-check-circle step-icon"></i>
+                        Test & Export Your Flow
+                        <span class="step-category">Test</span>
+                    </h3>
+                    <div class="time-estimate mt-2">
+                        <i class="bi bi-clock"></i> Estimated time: 2 minutes
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h6 class="mb-3">Running Your Flow:</h6>
+                    <div class="mb-3">
+                        <div class="substep">Go to <a href="https://make.powerautomate.com" target="_blank">make.powerautomate.com</a></div>
+                        <div class="substep">Click on <strong>"My flows"</strong></div>
+                        <div class="substep">Find your flow and click <strong>"Run"</strong></div>
+                        <div class="substep">Enter the meeting subject you want to filter (e.g., "Project Standup")</div>
+                        <div class="substep">Click <strong>"Run flow"</strong></div>
+                        <div class="substep">Go to OneDrive → Documents → CalendarExports</div>
+                        <div class="substep">Download the latest JSON file</div>
+                        <div class="substep">Upload it to the Storingsdienst web application</div>
+                    </div>
+
+                    <div class="screenshot-placeholder">
+                        <i class="bi bi-camera"></i>
+                        <p class="mb-0"><strong>Screenshot: Flow Run Screen</strong></p>
+                        <small>Shows the My flows page with the Run button highlighted</small>
+                    </div>
+
+                    <h6 class="mt-4 mb-3">Expected JSON Output Format:</h6>
+                    <div class="code-block">
+                        <pre class="mb-0"><code>{
+  "events": [
+    {
+      "subject": "Project Standup",
+      "start": {
+        "dateTime": "2024-01-15T09:00:00",
+        "timeZone": "UTC"
+      },
+      "end": {
+        "dateTime": "2024-01-15T09:30:00",
+        "timeZone": "UTC"
+      },
+      "isAllDay": false
+    }
+  ],
+  "exportDate": "2025-01-15T14:30:00Z",
+  "subjectFilter": "Project Standup"
+}</code></pre>
+                    </div>
+
+                    <div class="alert alert-success mt-4">
+                        <h6 class="alert-heading"><i class="bi bi-check-circle"></i> Congratulations!</h6>
+                        <p class="mb-0">Your Power Automate flow is now complete. You can run it anytime to export your calendar meetings to JSON format.</p>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <a href="/" class="btn btn-primary btn-lg">
+                            <i class="bi bi-house"></i> Return to Home & Upload Your JSON
+                        </a>
+                    </div>
+
+                    <div class="form-check mt-3">
+                        <input class="form-check-input completion-checkbox" type="checkbox" id="step8Complete">
+                        <label class="form-check-label" for="step8Complete">
+                            <strong>Mark as complete</strong>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Troubleshooting Section -->
+    <div class="mt-5">
+        <div class="card">
+            <div class="card-header bg-warning">
+                <h4 class="mb-0"><i class="bi bi-wrench"></i> Troubleshooting</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6><i class="bi bi-x-circle text-danger"></i> Flow fails with "Unauthorized"</h6>
+                        <ul>
+                            <li>Ensure you've authorized the Office 365 Outlook and OneDrive connections</li>
+                            <li>Go to Connections and re-authenticate if needed</li>
+                        </ul>
+
+                        <h6 class="mt-3"><i class="bi bi-x-circle text-danger"></i> No events in the output</h6>
+                        <ul>
+                            <li>Check that your subject filter matches actual meeting titles (case-sensitive!)</li>
+                            <li>Verify meetings exist in the past year</li>
+                            <li>Try a partial match (e.g., "Standup" instead of "Project Standup Meeting")</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6><i class="bi bi-x-circle text-danger"></i> JSON file not found in OneDrive</h6>
+                        <ul>
+                            <li>Ensure the <code>/Documents/CalendarExports</code> folder exists</li>
+                            <li>Check the flow run history for errors</li>
+                            <li>Verify OneDrive connection is authorized</li>
+                        </ul>
+
+                        <h6 class="mt-3"><i class="bi bi-x-circle text-danger"></i> Invalid JSON error in the app</h6>
+                        <ul>
+                            <li>Download and open the JSON file in a text editor</li>
+                            <li>Verify it matches the expected format above</li>
+                            <li>Check for any error messages in the file</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security & Privacy Section -->
+    <div class="mt-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="bi bi-shield-check"></i> Security & Privacy</h4>
+            </div>
+            <div class="card-body">
+                <ul class="mb-0">
+                    <li>The flow runs entirely within your Microsoft 365 tenant</li>
+                    <li>No data is sent to external services</li>
+                    <li>JSON files are stored in your personal OneDrive</li>
+                    <li>You can delete JSON files after importing them to the app</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    // Progress tracking could be added here if needed
+}
