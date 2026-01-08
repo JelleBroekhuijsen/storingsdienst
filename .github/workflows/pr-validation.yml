@@ -39,7 +39,7 @@ jobs:
           body: |
             ## PR Validation Results
 
-            **Build Status**: ${{ needs.build-and-test.outputs.test-passed == 'true' && '✅ Passed' || '❌ Failed' }}
+            **Build Status**: ${{ needs.build-and-test.result == 'success' && '✅ Passed' || '❌ Failed' }}
             **Code Coverage**: ${{ needs.build-and-test.outputs.coverage-percentage }}% (threshold: 71%)
             **Coverage Status**: ${{ needs.build-and-test.outputs.coverage-percentage >= 71 && '✅ Meets threshold' || '⚠️ Below threshold' }}
 
