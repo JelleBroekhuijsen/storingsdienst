@@ -22,8 +22,14 @@ public class MeetingAnalysisService : IMeetingAnalysisService
             var currentDay = evt.StartDateTime.Date;
             var endDay = evt.EndDateTime.Date;
 
+            // Microsoft Graph API uses exclusive end dates for all-day events
+            // (end time is midnight of the day after the event ends)
+            // For regular events, the end time is inclusive (same or later day with specific time)
+            // We detect all-day events by checking if EndDateTime is at exactly midnight
+            bool isExclusiveEndDate = evt.EndDateTime.TimeOfDay == TimeSpan.Zero && evt.EndDateTime > evt.StartDateTime;
+
             // Iterate through each day of the event
-            while (currentDay <= endDay)
+            while (currentDay < endDay || (!isExclusiveEndDate && currentDay == endDay))
             {
                 var dateOnly = DateOnly.FromDateTime(currentDay);
                 var key = (dateOnly.Year, dateOnly.Month);

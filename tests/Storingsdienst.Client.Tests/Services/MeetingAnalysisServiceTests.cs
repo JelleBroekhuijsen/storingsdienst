@@ -401,6 +401,36 @@ public class MeetingAnalysisServiceTests
     }
 
     [Fact]
+    public void AnalyzeMeetings_AllDayEventWithExclusiveEndDate_CountsCorrectDays()
+    {
+        // Arrange - Graph API returns all-day events with exclusive end dates
+        // A 6-day event from Monday (March 10) to Saturday (March 15) 
+        // will have end date of Sunday (March 16) at 00:00:00
+        var events = new List<CalendarEventDto>
+        {
+            new CalendarEventDto
+            {
+                Id = "1",
+                Subject = "Storingsdienst",
+                StartDateTime = new DateTime(2025, 3, 10, 0, 0, 0), // Monday
+                EndDateTime = new DateTime(2025, 3, 16, 0, 0, 0),   // Sunday 00:00 (exclusive)
+                IsAllDay = true
+            }
+        };
+
+        _holidayServiceMock.Setup(x => x.IsDutchHoliday(It.IsAny<DateOnly>())).Returns(false);
+
+        // Act
+        var result = _sut.AnalyzeMeetings(events);
+
+        // Assert
+        result.Should().HaveCount(1);
+        result[0].TotalMeetingDays.Should().Be(6, "Monday through Saturday = 6 days");
+        result[0].WeekdayCount.Should().Be(5, "Monday through Friday");
+        result[0].WeekendCount.Should().Be(1, "Saturday only");
+    }
+
+    [Fact]
     public void AnalyzeMeetings_ComplexScenario_HandlesCorrectly()
     {
         // Arrange
