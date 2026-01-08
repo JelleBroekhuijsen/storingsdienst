@@ -26,6 +26,8 @@ For organizations that cannot add Azure AD app registrations, you can create a P
 3. **Input name**: "Subject Filter"
 4. Mark as **Required**
 
+![Step 2: Get calendar view of events](https://github.com/user-attachments/assets/bc64c5d6-4522-4f1f-962e-e9a4208e2d55)
+
 ### Step 3: List Calendar Events
 
 1. Click **"+ New step"**
@@ -38,6 +40,8 @@ For organizations that cannot add Azure AD app registrations, you can create a P
    - **Time Zone**: `UTC`
    - **Top Count**: `1000`
 
+![Step 3: Filter array](https://github.com/user-attachments/assets/e50562af-8b5c-4aaa-8b9b-e9579cd79202)
+
 ### Step 4: Filter Events by Subject
 
 1. Click **"+ New step"**
@@ -47,6 +51,8 @@ For organizations that cannot add Azure AD app registrations, you can create a P
 5. Configure condition:
    - Click **"Edit in advanced mode"**
    - Paste: `@contains(item()?['subject'], triggerBody()['text'])`
+
+![Step 4: Select](https://github.com/user-attachments/assets/a3c1ff9d-4af0-494d-bc9d-08be9d9e9785)
 
 ### Step 5: Transform to Required JSON Format
 
@@ -71,6 +77,8 @@ For organizations that cannot add Azure AD app registrations, you can create a P
      ```
    - **isAllDay**: `item()?['isAllDay']`
 
+![Step 5: Compose](https://github.com/user-attachments/assets/6494b0ba-3b8e-4e66-a309-31fd72b37d4c)
+
 ### Step 6: Create JSON Wrapper
 
 1. Click **"+ New step"**
@@ -93,6 +101,8 @@ For organizations that cannot add Azure AD app registrations, you can create a P
    - **Folder Path**: `/Documents/CalendarExports` (create this folder in OneDrive first)
    - **File Name**: `calendar_export_@{formatDateTime(utcNow(), 'yyyyMMdd_HHmmss')}.json`
    - **File Content**: Select "Outputs" from the Compose step
+
+![Step 7: Create file](https://github.com/user-attachments/assets/a56dfefa-41ec-422e-a415-762145b0b0e3)
 
 ### Step 8 (Optional): Send Email Notification
 
