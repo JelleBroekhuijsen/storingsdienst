@@ -47,7 +47,7 @@ window.initializeProgressTracking = () => {
     // Function to update progress bar
     const updateProgress = () => {
         const completedSteps = document.querySelectorAll('.completion-checkbox:checked').length;
-        const percentage = (completedSteps / totalSteps) * 100;
+        const percentage = totalSteps > 0 ? (completedSteps / totalSteps) * 100 : 0;
         
         const progressBar = document.querySelector('.guide-progress .progress-bar');
         const progressText = document.querySelector('#progress-text');
