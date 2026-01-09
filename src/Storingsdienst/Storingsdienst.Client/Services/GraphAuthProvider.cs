@@ -48,7 +48,7 @@ public class GraphAuthProvider : IAuthenticationProvider
             // Token acquisition failed - throw exception to trigger redirect to login
             // The calling code should catch AccessTokenNotAvailableException and call ex.Redirect()
             throw new AccessTokenNotAvailableException(
-                new NavigationManager(),
+                new PlaceholderNavigationManager(),
                 tokenResult,
                 _scopes);
         }
@@ -59,9 +59,9 @@ public class GraphAuthProvider : IAuthenticationProvider
 /// Minimal NavigationManager implementation for AccessTokenNotAvailableException.
 /// The actual redirect is handled by the calling code when it catches the exception.
 /// </summary>
-internal class NavigationManager : Microsoft.AspNetCore.Components.NavigationManager
+internal class PlaceholderNavigationManager : Microsoft.AspNetCore.Components.NavigationManager
 {
-    public NavigationManager()
+    public PlaceholderNavigationManager()
     {
         // Initialize with placeholder values - the actual navigation is handled elsewhere
         Initialize("https://localhost/", "https://localhost/");
