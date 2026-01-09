@@ -81,7 +81,7 @@ jobs:
           $summaryPath = "./TestResults/CoverageReport/Summary.md"
           if (Test-Path $summaryPath) {
             $content = Get-Content $summaryPath -Raw
-            if ($content -match 'Line coverage: (\d+\.?\d*)%') {
+            if ($content -match '\*\*Line coverage:\*\*\s*\|\s*(\d+\.?\d*)%') {
               $coverage = $Matches[1]
               echo "coverage=$coverage" >> $Env:GITHUB_OUTPUT
               echo "Coverage: $coverage%"
