@@ -66,7 +66,9 @@ storingsdienst/
    - Add redirect URI: `https://localhost:7xxx/authentication/login-callback`
    - Add API permissions: `User.Read`, `Calendars.Read`
    - Copy the Application (client) ID
-   - Update `src/Storingsdienst.Client/wwwroot/appsettings.json` with your Client ID
+   - Configure your Client ID (see [Configuration Guide](docs/CONFIGURATION.md) for details):
+     - **Option 1** (Recommended): Create `appsettings.Development.json` with your Client ID
+     - **Option 2**: Update `appsettings.json` locally (don't commit this change)
 
 4. Run the application:
    ```bash
@@ -139,7 +141,17 @@ Integrates with Microsoft Graph API:
 
 ## Configuration
 
-### appsettings.json (Client)
+### Environment-Based Configuration
+
+The application uses environment-based configuration to keep sensitive values out of version control:
+
+- **`appsettings.json`**: Base configuration with placeholders (committed to Git)
+- **`appsettings.Development.json`**: Local development overrides (not committed)
+- **GitHub Secrets**: Production values injected during deployment
+
+**For detailed setup instructions**, see [Configuration Guide](docs/CONFIGURATION.md).
+
+### appsettings.json (Base Configuration)
 
 ```json
 {
