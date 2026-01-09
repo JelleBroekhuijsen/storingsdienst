@@ -47,8 +47,17 @@ public class MeetingAnalysisService : IMeetingAnalysisService
         // Generate monthly breakdown
         var results = new List<MonthlyBreakdown>();
 
-        foreach (var ((year, month), days) in meetingDaysByMonth.OrderByDescending(x => x.Key.Year).ThenByDescending(x => x.Key.Month))
+        // Sort months by year and month descending
+        var sortedMonths = meetingDaysByMonth
+            .OrderByDescending(x => x.Key.Year)
+            .ThenByDescending(x => x.Key.Month);
+
+        foreach (var monthEntry in sortedMonths)
         {
+            var year = monthEntry.Key.Year;
+            var month = monthEntry.Key.Month;
+            var days = monthEntry.Value;
+
             var weekdayCount = 0;
             var weekendCount = 0;
             var saturdayCount = 0;
