@@ -39,8 +39,14 @@ public class GraphService : ICalendarDataService
                 });
 
             // Manual pagination to avoid PageIterator reflection issues in Blazor WASM
-            while (calendarView != null)
+            // Safety limit to prevent infinite loops (max 100 pages = 100,000 events with Top=1000)
+            const int maxPages = 100;
+            int pageCount = 0;
+            
+            while (calendarView != null && pageCount < maxPages)
             {
+                pageCount++;
+                
                 if (calendarView.Value != null)
                 {
                     // Map events to our DTO
