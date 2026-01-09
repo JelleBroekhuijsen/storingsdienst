@@ -347,7 +347,9 @@ public class MeetingAnalysisServiceTests
 
         // Assert
         result[0].MonthName.Should().NotBeNullOrEmpty();
-        result[0].MonthName.Should().Contain("March", "month name should be March");
+        // Use the expected month name from current culture (locale-independent test)
+        var expectedMonthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(3);
+        result[0].MonthName.Should().Be(expectedMonthName, "month name should match the current culture's March");
     }
 
     [Fact]
