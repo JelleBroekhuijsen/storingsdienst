@@ -4,7 +4,7 @@
 
 .DESCRIPTION
     This script:
-    1. Finds and kills any processes using port 5266
+    1. Finds and kills any processes using ports 5265 and 5266
     2. Rebuilds the solution
     3. Starts the app
 
@@ -29,39 +29,25 @@ Write-Host "=== Storingsdienst App Restart Script ===" -ForegroundColor Cyan
 Write-Host ""
 
 # Step 1: Kill any existing instances
-Write-Host "Step 1: Checking for running instances on port 5266..." -ForegroundColor Yellow
+Write-Host "Step 1: Checking for running instances on ports 5265 and 5266..." -ForegroundColor Yellow
 
-$foundProcesses = $false
-
-# Try Get-NetTCPConnection first (Windows PowerShell / Windows with module)
-if (Get-Command Get-NetTCPConnection -ErrorAction SilentlyContinue) {
-    $connections = Get-NetTCPConnection -LocalPort 5266 -ErrorAction SilentlyContinue
-    if ($connections) {
-        $pids = $connections | Select-Object -ExpandProperty OwningProcess -Unique
-        foreach ($processid in $pids) {
-            if ($processid -gt 0) {
-                $process = Get-Process -Id $processid -ErrorAction SilentlyContinue
-                if ($process) {
-                    Write-Host "  Killing process: $($process.ProcessName) (PID: $processid)" -ForegroundColor Red
-                    Stop-Process -Id $processid -Force -ErrorAction SilentlyContinue
-                    $foundProcesses = $true
-                }
-            }
-        }
-    }
-}
-# Fallback: Use netstat (works on Windows with PowerShell Core)
-elseif ($IsWindows -or $env:OS -eq "Windows_NT") {
-    $netstatOutput = netstat -ano 2>$null | Select-String ":5266\s"
-    if ($netstatOutput) {
-        foreach ($line in $netstatOutput) {
-            # Extract PID from the last column
-            if ($line -match '\s+(\d+)\s*$') {
-                $processid = [int]$Matches[1]
+function Stop-ProcessesOnPort {
+    param (
+        [int]$Port
+    )
+    
+    $foundProcesses = $false
+    
+    # Try Get-NetTCPConnection first (Windows PowerShell / Windows with module)
+    if (Get-Command Get-NetTCPConnection -ErrorAction SilentlyContinue) {
+        $connections = Get-NetTCPConnection -LocalPort $Port -ErrorAction SilentlyContinue
+        if ($connections) {
+            $pids = $connections | Select-Object -ExpandProperty OwningProcess -Unique
+            foreach ($processid in $pids) {
                 if ($processid -gt 0) {
                     $process = Get-Process -Id $processid -ErrorAction SilentlyContinue
                     if ($process) {
-                        Write-Host "  Killing process: $($process.ProcessName) (PID: $processid)" -ForegroundColor Red
+                        Write-Host "  Killing process on port ${Port}: $($process.ProcessName) (PID: $processid)" -ForegroundColor Red
                         Stop-Process -Id $processid -Force -ErrorAction SilentlyContinue
                         $foundProcesses = $true
                     }
@@ -69,24 +55,51 @@ elseif ($IsWindows -or $env:OS -eq "Windows_NT") {
             }
         }
     }
-}
-# Fallback for Linux/macOS: Use lsof
-else {
-    $lsofOutput = lsof -i :5266 2>$null | Select-String -NotMatch "^COMMAND"
-    if ($lsofOutput) {
-        foreach ($line in $lsofOutput) {
-            # lsof output: COMMAND PID USER ...
-            if ($line -match '^\S+\s+(\d+)') {
-                $processid = [int]$Matches[1]
-                if ($processid -gt 0) {
-                    Write-Host "  Killing process with PID: $processid" -ForegroundColor Red
-                    Stop-Process -Id $processid -Force -ErrorAction SilentlyContinue
-                    $foundProcesses = $true
+    # Fallback: Use netstat (works on Windows with PowerShell Core)
+    elseif ($IsWindows -or $env:OS -eq "Windows_NT") {
+        $netstatOutput = netstat -ano 2>$null | Select-String ":${Port}\s"
+        if ($netstatOutput) {
+            foreach ($line in $netstatOutput) {
+                # Extract PID from the last column
+                if ($line -match '\s+(\d+)\s*$') {
+                    $processid = [int]$Matches[1]
+                    if ($processid -gt 0) {
+                        $process = Get-Process -Id $processid -ErrorAction SilentlyContinue
+                        if ($process) {
+                            Write-Host "  Killing process on port ${Port}: $($process.ProcessName) (PID: $processid)" -ForegroundColor Red
+                            Stop-Process -Id $processid -Force -ErrorAction SilentlyContinue
+                            $foundProcesses = $true
+                        }
+                    }
                 }
             }
         }
     }
+    # Fallback for Linux/macOS: Use lsof
+    else {
+        $lsofOutput = lsof -i :${Port} 2>$null | Select-String -NotMatch "^COMMAND"
+        if ($lsofOutput) {
+            foreach ($line in $lsofOutput) {
+                # lsof output: COMMAND PID USER ...
+                if ($line -match '^\S+\s+(\d+)') {
+                    $processid = [int]$Matches[1]
+                    if ($processid -gt 0) {
+                        Write-Host "  Killing process on port ${Port} with PID: $processid" -ForegroundColor Red
+                        Stop-Process -Id $processid -Force -ErrorAction SilentlyContinue
+                        $foundProcesses = $true
+                    }
+                }
+            }
+        }
+    }
+    
+    return $foundProcesses
 }
+
+# Check both HTTP (5265) and HTTPS (5266) ports
+$foundProcesses = $false
+$foundProcesses = (Stop-ProcessesOnPort -Port 5265) -or $foundProcesses
+$foundProcesses = (Stop-ProcessesOnPort -Port 5266) -or $foundProcesses
 
 if ($foundProcesses) {
     # Wait for processes to fully terminate
@@ -132,7 +145,7 @@ Write-Host ""
 Write-Host "Step 3: Starting the app..." -ForegroundColor Yellow
 Push-Location $ProjectPath
 try {
-    Write-Host "  Starting on http://localhost:5266" -ForegroundColor Cyan
+    Write-Host "  Starting on http://localhost:5265 and https://localhost:5266" -ForegroundColor Cyan
     Write-Host "  Press Ctrl+C to stop the app" -ForegroundColor Gray
     Write-Host ""
 
