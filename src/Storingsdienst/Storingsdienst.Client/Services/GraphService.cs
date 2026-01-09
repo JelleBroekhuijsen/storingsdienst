@@ -23,7 +23,7 @@ public class GraphService : ICalendarDataService
         try
         {
             // Use calendar view to get events in date range
-            var calendarView = await _graphClient.Me.CalendarView
+            EventCollectionResponse? calendarView = await _graphClient.Me.CalendarView
                 .GetAsync(requestConfiguration =>
                 {
                     requestConfiguration.QueryParameters.StartDateTime = startDate.ToString("yyyy-MM-ddTHH:mm:ss");
@@ -38,51 +38,51 @@ public class GraphService : ICalendarDataService
                     }
                 });
 
-            if (calendarView?.Value == null)
+            // Manual pagination to avoid PageIterator reflection issues in Blazor WASM
+            // Safety limit to prevent infinite loops (max 100 pages = 100,000 events with Top=1000)
+            const int maxPages = 100;
+            int pageCount = 0;
+            
+            while (calendarView != null && pageCount < maxPages)
             {
-                return results;
-            }
-
-            // Map to our DTO
-            foreach (var evt in calendarView.Value)
-            {
-                if (evt.Start == null || evt.End == null)
+                pageCount++;
+                
+                if (calendarView.Value != null)
                 {
-                    continue;
+                    // Map events to our DTO
+                    foreach (var evt in calendarView.Value)
+                    {
+                        if (evt.Start == null || evt.End == null)
+                        {
+                            continue;
+                        }
+
+                        results.Add(new CalendarEventDto
+                        {
+                            Id = evt.Id ?? string.Empty,
+                            Subject = evt.Subject ?? string.Empty,
+                            StartDateTime = DateTime.Parse(evt.Start.DateTime),
+                            EndDateTime = DateTime.Parse(evt.End.DateTime),
+                            IsAllDay = evt.IsAllDay ?? false
+                        });
+                    }
                 }
 
-                results.Add(new CalendarEventDto
+                // Check if there are more pages
+                if (!string.IsNullOrEmpty(calendarView.OdataNextLink))
                 {
-                    Id = evt.Id ?? string.Empty,
-                    Subject = evt.Subject ?? string.Empty,
-                    StartDateTime = DateTime.Parse(evt.Start.DateTime),
-                    EndDateTime = DateTime.Parse(evt.End.DateTime),
-                    IsAllDay = evt.IsAllDay ?? false
-                });
+                    // Fetch next page using the nextLink
+                    var nextPageRequest = new Microsoft.Graph.Me.CalendarView.CalendarViewRequestBuilder(
+                        calendarView.OdataNextLink, 
+                        _graphClient.RequestAdapter);
+                    calendarView = await nextPageRequest.GetAsync();
+                }
+                else
+                {
+                    // No more pages
+                    calendarView = null;
+                }
             }
-
-            // Handle pagination if needed
-            var pageIterator = PageIterator<Event, EventCollectionResponse>
-                .CreatePageIterator(
-                    _graphClient,
-                    calendarView,
-                    (evt) =>
-                    {
-                        if (evt.Start != null && evt.End != null)
-                        {
-                            results.Add(new CalendarEventDto
-                            {
-                                Id = evt.Id ?? string.Empty,
-                                Subject = evt.Subject ?? string.Empty,
-                                StartDateTime = DateTime.Parse(evt.Start.DateTime),
-                                EndDateTime = DateTime.Parse(evt.End.DateTime),
-                                IsAllDay = evt.IsAllDay ?? false
-                            });
-                        }
-                        return true; // Continue iteration
-                    });
-
-            await pageIterator.IterateAsync();
         }
         catch (ServiceException ex) when (ex.ResponseStatusCode == 429)
         {
