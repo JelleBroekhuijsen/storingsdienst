@@ -7,7 +7,15 @@
       "Bash(dotnet add package:*)",
       "Bash(dotnet add:*)",
       "Bash(dotnet build:*)",
-      "Bash(dotnet run:*)"
+      "Bash(dotnet run:*)",
+      "Bash(find:*)",
+      "Bash(powershell -ExecutionPolicy Bypass -File:*)",
+      "Bash(cat:*)",
+      "Bash(timeout:*)",
+      "Bash(curl:*)",
+      "Bash(powershell -Command \"Start-Sleep -Seconds 8\")",
+      "Bash(powershell -Command:*)",
+      "Bash(dotnet restore:*)"
     ]
   }
 }

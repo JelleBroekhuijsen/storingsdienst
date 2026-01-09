@@ -1,16 +1,18 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Authentication.WebAssembly.Msal;
+using Microsoft.Graph;
+using Microsoft.Kiota.Http.HttpClientLibrary;
 using Storingsdienst.Client.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-// Register services
+// Register business logic services
 builder.Services.AddScoped<IHolidayService, HolidayService>();
 builder.Services.AddScoped<IMeetingAnalysisService, MeetingAnalysisService>();
 builder.Services.AddScoped<IExcelExportService, ExcelExportService>();
 builder.Services.AddScoped<JsonImportService>();
 
-// MSAL Authentication (for Graph API mode) - will be configured when UI is ready
+// MSAL Authentication (multi-tenant, any Azure AD organization)
 builder.Services.AddMsalAuthentication(options =>
 {
     builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
@@ -18,6 +20,28 @@ builder.Services.AddMsalAuthentication(options =>
     options.ProviderOptions.DefaultAccessTokenScopes.Add("Calendars.Read");
 });
 
-// GraphService will be registered when we set up the full authentication flow
+// Register Graph API authentication provider
+builder.Services.AddScoped<GraphAuthProvider>();
+
+// Configure HttpClient for Graph API (Blazor WASM-compatible)
+builder.Services.AddHttpClient("GraphClient", client =>
+{
+    client.BaseAddress = new Uri("https://graph.microsoft.com/v1.0");
+});
+
+// Register GraphServiceClient with our auth provider and WASM-compatible HttpClient
+builder.Services.AddScoped(sp =>
+{
+    var authProvider = sp.GetRequiredService<GraphAuthProvider>();
+    var httpClientFactory = sp.GetRequiredService<IHttpClientFactory>();
+    var httpClient = httpClientFactory.CreateClient("GraphClient");
+
+    // Create a KiotaClientFactory adapter for the HttpClient
+    var requestAdapter = new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
+    return new GraphServiceClient(requestAdapter);
+});
+
+// Register GraphService as the ICalendarDataService implementation for Graph API mode
+builder.Services.AddScoped<ICalendarDataService, GraphService>();
 
 await builder.Build().RunAsync();

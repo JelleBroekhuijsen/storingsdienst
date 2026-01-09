@@ -1,7 +1,9 @@
 @page "/"
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject IMeetingAnalysisService MeetingAnalysisService
 @inject IExcelExportService ExcelExportService
 @inject JsonImportService JsonImportService
+@inject ICalendarDataService CalendarDataService
 @inject IJSRuntime JSRuntime
 
 <PageTitle>Meeting Days Tracker</PageTitle>
@@ -63,8 +65,8 @@
             </div>
             <div class="card-body">
                 <div class="alert alert-info">
-                    <i class="bi bi-info-circle"></i> This mode requires authentication with your Microsoft 365 account and an Azure AD app registration.
-                    <br><strong>Note:</strong> Full Graph API integration is in progress. For now, please use JSON Import mode.
+                    <i class="bi bi-info-circle"></i> This mode requires authentication with your Microsoft 365 account.
+                    Users from any organization can sign in and consent to read their calendar.
                 </div>
 
                 <AuthorizeView>
@@ -253,7 +255,7 @@
         JsonImport
     }
 
-    private DataSourceMode _selectedMode = DataSourceMode.JsonImport; // Default to JSON import since Graph API not fully implemented
+    private DataSourceMode _selectedMode = DataSourceMode.GraphApi;
     private string _searchSubject = string.Empty;
     private List<MonthlyBreakdown>? _monthlyResults;
     private bool _isLoading = false;
@@ -386,8 +388,41 @@
 
         try
         {
-            // TODO: Implement Graph API integration when GraphService is fully configured
-            _errorMessage = "Graph API integration is not yet complete. Please use JSON Import mode for now.";
+            // Call Graph API to fetch calendar events
+            var events = await CalendarDataService.GetMeetingsBySubjectAsync(
+                _searchSubject,
+                _startDate,
+                DateTime.Now);
+
+            if (!events.Any())
+            {
+                _errorMessage = $"No events found matching subject '{_searchSubject}' in your calendar.";
+                return;
+            }
+
+            // Analyze the meetings
+            _monthlyResults = MeetingAnalysisService.AnalyzeMeetings(events);
+
+            if (!_monthlyResults.Any())
+            {
+                _errorMessage = "No meeting days found after analysis.";
+                return;
+            }
+
+            _successMessage = $"Successfully found {events.Count} events across {_monthlyResults.Sum(m => m.TotalMeetingDays)} unique days.";
+        }
+        catch (AccessTokenNotAvailableException ex)
+        {
+            // Token expired or not available - redirect to login
+            ex.Redirect();
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            _errorMessage = ex.Message;
+        }
+        catch (InvalidOperationException ex)
+        {
+            _errorMessage = ex.Message;
         }
         catch (Exception ex)
         {
