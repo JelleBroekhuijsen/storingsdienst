@@ -266,7 +266,11 @@ For detailed testing documentation, see [tests/README.md](tests/README.md).
 The application is deployed to Azure Web App with a fully automated CI/CD pipeline using GitHub Actions and Bicep.
 
 ### Live Application
-**Production URL**: [https://app-storingsdienst-prod.azurewebsites.net](https://app-storingsdienst-prod.azurewebsites.net)
+**Production URLs**: 
+- **Custom Domain**: [https://storingsdienst.jll.io](https://storingsdienst.jll.io)
+- **Azure Default**: [https://app-storingsdienst-prod.azurewebsites.net](https://app-storingsdienst-prod.azurewebsites.net)
+
+For custom domain setup instructions, see [Custom Domain Configuration Guide](docs/CUSTOM_DOMAIN.md).
 
 ### Deployment Architecture
 
@@ -308,6 +312,8 @@ Go to **Actions** → **Deploy Application** → **Run workflow**
 ### Deployment Documentation
 For complete deployment setup and configuration:
 - **[Deployment Guide](docs/DEPLOYMENT.md)** - Complete setup instructions
+- **[Custom Domain Guide](docs/CUSTOM_DOMAIN.md)** - Custom domain configuration
+- **[Configuration Guide](docs/CONFIGURATION.md)** - Azure AD and app settings
 - **[Infrastructure README](infra/README.md)** - Bicep templates and Azure resources
 
 ### Key Features

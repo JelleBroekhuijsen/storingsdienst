@@ -28,6 +28,8 @@ After deployment, the application will be accessible at:
 https://app-storingsdienst-prod.azurewebsites.net
 ```
 
+**Custom Domain**: `https://storingsdienst.jll.io` (see [Custom Domain Configuration Guide](./CUSTOM_DOMAIN.md))
+
 ## Prerequisites
 
 Before starting, ensure you have:
@@ -134,11 +136,16 @@ You already have a multi-tenant App Registration. Verify these settings:
    ```
    https://app-storingsdienst-prod.azurewebsites.net/authentication/login-callback
    ```
-7. Keep your local development URI:
+7. If using custom domain, also add:
+   ```
+   https://storingsdienst.jll.io/authentication/login-callback
+   ```
+   (See [Custom Domain Configuration Guide](./CUSTOM_DOMAIN.md) for custom domain setup)
+8. Keep your local development URI:
    ```
    https://localhost:5266/authentication/login-callback
    ```
-8. Save changes
+9. Save changes
 
 #### 2.2 API Permissions
 Verify these delegated permissions are granted:
@@ -405,6 +412,14 @@ az role assignment create \
 }
 ```
 
+### Custom Domain Issues
+
+For issues related to the custom domain `storingsdienst.jll.io`, see the dedicated [Custom Domain Configuration Guide](./CUSTOM_DOMAIN.md) which includes:
+- DNS configuration troubleshooting
+- SSL certificate issues
+- Domain validation problems
+- Authentication redirect URI mismatches
+
 ## Rollback
 
 If a deployment introduces issues, you can rollback:
@@ -437,7 +452,7 @@ git push origin main
 
 **Downgrade to Free tier** (for testing):
 - Change SKU to `F1` in `infra/parameters/prod.bicepparam`
-- Limitations: No Always On, no custom domains, shared resources
+- Limitations: No Always On, no custom domains, no managed certificates, shared resources
 
 ### Increasing Capacity
 **Scale up** (more powerful instances):
