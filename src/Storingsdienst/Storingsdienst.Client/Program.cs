@@ -2,9 +2,13 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Authentication.WebAssembly.Msal;
 using Microsoft.Graph;
 using Microsoft.Kiota.Http.HttpClientLibrary;
+using MudBlazor.Services;
 using Storingsdienst.Client.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+// Register MudBlazor services
+builder.Services.AddMudServices();
 
 // Register business logic services
 builder.Services.AddScoped<IHolidayService, HolidayService>();
