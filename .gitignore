@@ -484,3 +484,4 @@ $RECYCLE.BIN/
 *.swp
 FINAL-TEST-RESULTS.md
 .claude/settings.local.json
+nul

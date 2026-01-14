@@ -15,7 +15,13 @@
       "Bash(curl:*)",
       "Bash(powershell -Command \"Start-Sleep -Seconds 8\")",
       "Bash(powershell -Command:*)",
-      "Bash(dotnet restore:*)"
+      "Bash(dotnet restore:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_take_screenshot"
+    ],
+    "additionalDirectories": [
+      "c:\\Repos\\jll.io Consultancy\\storingsdienst"
     ]
   }
 }
