@@ -45,7 +45,9 @@
 <div id="blazor-error-ui">
     An unhandled error has occurred.
     <a href="" class="reload">Reload</a>
-    <a class="dismiss">X</a>
+    <a class="dismiss" aria-label="Dismiss error">
+        <MudIcon Icon="@Icons.Material.Filled.Close" />
+    </a>
 </div>
 
 @code {
