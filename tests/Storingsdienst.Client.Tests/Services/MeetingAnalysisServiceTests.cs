@@ -112,6 +112,8 @@ public class MeetingAnalysisServiceTests
         result.Should().HaveCount(1);
         result[0].TotalMeetingDays.Should().Be(2);
         result[0].WeekendCount.Should().Be(2);
+        result[0].SaturdayCount.Should().Be(1, "January 6");
+        result[0].SundayCount.Should().Be(1, "January 7");
         result[0].WeekdayCount.Should().Be(0);
     }
 
@@ -240,6 +242,8 @@ public class MeetingAnalysisServiceTests
         result[0].TotalMeetingDays.Should().Be(4, "Jan 5, 6, 7, 8");
         result[0].WeekdayCount.Should().Be(2, "Friday and Monday");
         result[0].WeekendCount.Should().Be(2, "Saturday and Sunday");
+        result[0].SaturdayCount.Should().Be(1, "January 6");
+        result[0].SundayCount.Should().Be(1, "January 7");
     }
 
     [Fact]
@@ -343,7 +347,9 @@ public class MeetingAnalysisServiceTests
 
         // Assert
         result[0].MonthName.Should().NotBeNullOrEmpty();
-        result[0].MonthName.Should().Contain("March", "month name should be March");
+        // Use the expected month name from current culture (locale-independent test)
+        var expectedMonthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(3);
+        result[0].MonthName.Should().Be(expectedMonthName, "month name should match the current culture's March");
     }
 
     [Fact]
@@ -428,6 +434,8 @@ public class MeetingAnalysisServiceTests
         result[0].TotalMeetingDays.Should().Be(6, "Monday through Saturday = 6 days");
         result[0].WeekdayCount.Should().Be(5, "Monday through Friday");
         result[0].WeekendCount.Should().Be(1, "Saturday only");
+        result[0].SaturdayCount.Should().Be(1, "March 15");
+        result[0].SundayCount.Should().Be(0, "Sunday is exclusive");
     }
 
     [Fact]

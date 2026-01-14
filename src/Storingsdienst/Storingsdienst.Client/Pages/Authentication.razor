@@ -5,78 +5,85 @@
 
 <RemoteAuthenticatorView Action="@Action">
     <LoggingIn>
-        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-            <div class="text-center">
-                <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
-                    <span class="visually-hidden">Signing in...</span>
-                </div>
-                <h4>Signing in with Microsoft...</h4>
-                <p class="text-muted">Please wait while we authenticate you.</p>
-            </div>
-        </div>
+        <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center justify-center" Style="height: 100vh;">
+            <MudStack AlignItems="AlignItems.Center" Spacing="3">
+                <MudProgressCircular Color="Color.Primary" Size="Size.Large" Indeterminate="true" />
+                <MudText Typo="Typo.h5">Signing in with Microsoft...</MudText>
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">Please wait while we authenticate you.</MudText>
+            </MudStack>
+        </MudContainer>
     </LoggingIn>
     <CompletingLoggingIn>
-        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-            <div class="text-center">
-                <div class="spinner-border text-success mb-3" role="status" style="width: 3rem; height: 3rem;">
-                    <span class="visually-hidden">Completing sign in...</span>
-                </div>
-                <h4>Completing sign in...</h4>
-                <p class="text-muted">Almost there!</p>
-            </div>
-        </div>
+        <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center justify-center" Style="height: 100vh;">
+            <MudStack AlignItems="AlignItems.Center" Spacing="3">
+                <MudProgressCircular Color="Color.Success" Size="Size.Large" Indeterminate="true" />
+                <MudText Typo="Typo.h5">Completing sign in...</MudText>
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">Almost there!</MudText>
+            </MudStack>
+        </MudContainer>
     </CompletingLoggingIn>
     <LogOut>
-        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-            <div class="text-center">
-                <div class="spinner-border text-warning mb-3" role="status" style="width: 3rem; height: 3rem;">
-                    <span class="visually-hidden">Signing out...</span>
-                </div>
-                <h4>Signing out...</h4>
-                <p class="text-muted">Please wait...</p>
-            </div>
-        </div>
+        <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center justify-center" Style="height: 100vh;">
+            <MudStack AlignItems="AlignItems.Center" Spacing="3">
+                <MudProgressCircular Color="Color.Warning" Size="Size.Large" Indeterminate="true" />
+                <MudText Typo="Typo.h5">Signing out...</MudText>
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">Please wait...</MudText>
+            </MudStack>
+        </MudContainer>
     </LogOut>
     <CompletingLogOut>
-        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-            <div class="text-center">
-                <div class="spinner-border text-info mb-3" role="status" style="width: 3rem; height: 3rem;">
-                    <span class="visually-hidden">Completing sign out...</span>
-                </div>
-                <h4>Completing sign out...</h4>
-                <p class="text-muted">Almost there!</p>
-            </div>
-        </div>
+        <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center justify-center" Style="height: 100vh;">
+            <MudStack AlignItems="AlignItems.Center" Spacing="3">
+                <MudProgressCircular Color="Color.Info" Size="Size.Large" Indeterminate="true" />
+                <MudText Typo="Typo.h5">Completing sign out...</MudText>
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">Almost there!</MudText>
+            </MudStack>
+        </MudContainer>
     </CompletingLogOut>
     <LogInFailed>
-        <div class="container mt-5">
-            <div class="alert alert-danger" role="alert">
-                <h4 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> Authentication Failed</h4>
-                <p>We couldn't sign you in. This could be due to:</p>
-                <ul>
-                    <li>Invalid or expired credentials</li>
-                    <li>Missing required permissions (User.Read, Calendars.Read)</li>
-                    <li>Azure AD app registration configuration issues</li>
-                </ul>
-                <hr>
-                <p class="mb-0">
-                    <a href="/" class="btn btn-primary">Return to Home</a>
-                    <a href="authentication/login" class="btn btn-outline-primary ms-2">Try Again</a>
-                </p>
-            </div>
-        </div>
+        <MudContainer MaxWidth="MaxWidth.Small" Class="mt-5">
+            <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Class="mb-4">
+                <MudStack Spacing="2">
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Warning" Class="mr-2" />
+                        Authentication Failed
+                    </MudText>
+                    <MudText Typo="Typo.body2">We couldn't sign you in. This could be due to:</MudText>
+                    <MudList T="string" Dense="true">
+                        <MudListItem>Invalid or expired credentials</MudListItem>
+                        <MudListItem>Missing required permissions (User.Read, Calendars.Read)</MudListItem>
+                        <MudListItem>Azure AD app registration configuration issues</MudListItem>
+                    </MudList>
+                </MudStack>
+            </MudAlert>
+            <MudStack Row="true" Spacing="2">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/"
+                           StartIcon="@Icons.Material.Filled.Home">
+                    Return to Home
+                </MudButton>
+                <MudButton Variant="Variant.Outlined" Color="Color.Primary" Href="authentication/login"
+                           StartIcon="@Icons.Material.Filled.Refresh">
+                    Try Again
+                </MudButton>
+            </MudStack>
+        </MudContainer>
     </LogInFailed>
     <LogOutFailed>
-        <div class="container mt-5">
-            <div class="alert alert-warning" role="alert">
-                <h4 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> Sign Out Failed</h4>
-                <p>We couldn't complete the sign out process.</p>
-                <hr>
-                <p class="mb-0">
-                    <a href="/" class="btn btn-primary">Return to Home</a>
-                </p>
-            </div>
-        </div>
+        <MudContainer MaxWidth="MaxWidth.Small" Class="mt-5">
+            <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Class="mb-4">
+                <MudStack Spacing="2">
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Warning" Class="mr-2" />
+                        Sign Out Failed
+                    </MudText>
+                    <MudText Typo="Typo.body2">We couldn't complete the sign out process.</MudText>
+                </MudStack>
+            </MudAlert>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/"
+                       StartIcon="@Icons.Material.Filled.Home">
+                Return to Home
+            </MudButton>
+        </MudContainer>
     </LogOutFailed>
 </RemoteAuthenticatorView>
 
