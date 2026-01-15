@@ -204,6 +204,13 @@
 
     protected override void OnParametersSet()
     {
+        // Auto-select the first month if none is selected and data is available
+        if (string.IsNullOrEmpty(SelectedMonthKey) && MonthlyResults != null && MonthlyResults.Any())
+        {
+            var firstMonth = MonthlyResults.First();
+            SelectedMonthKey = $"{firstMonth.Year}-{firstMonth.Month:D2}";
+        }
+        
         UpdateSelectedMonth();
     }
 
