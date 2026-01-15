@@ -594,4 +594,308 @@ public class JsonImportServiceTests
         result[0].Id.Should().NotBeNullOrEmpty();
         result[1].Id.Should().NotBeNullOrEmpty();
     }
+
+    [Fact]
+    public async Task GetRecurringSubjectsAsync_EmptyContent_ReturnsEmptyList()
+    {
+        // Arrange
+        var jsonContent = "";
+
+        // Act
+        var result = await _sut.GetRecurringSubjectsAsync(jsonContent);
+
+        // Assert
+        result.Should().BeEmpty();
+    }
+
+    [Fact]
+    public async Task GetRecurringSubjectsAsync_NullContent_ReturnsEmptyList()
+    {
+        // Arrange
+        string jsonContent = null!;
+
+        // Act
+        var result = await _sut.GetRecurringSubjectsAsync(jsonContent);
+
+        // Assert
+        result.Should().BeEmpty();
+    }
+
+    [Fact]
+    public async Task GetRecurringSubjectsAsync_InvalidJson_ReturnsEmptyList()
+    {
+        // Arrange
+        var jsonContent = "This is not valid JSON";
+
+        // Act
+        var result = await _sut.GetRecurringSubjectsAsync(jsonContent);
+
+        // Assert
+        result.Should().BeEmpty();
+    }
+
+    [Fact]
+    public async Task GetRecurringSubjectsAsync_NoRecurringSubjects_ReturnsEmptyList()
+    {
+        // Arrange
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""Meeting 1"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-15T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-15T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""Meeting 2"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-16T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-16T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                }
+            ]
+        }";
+
+        // Act
+        var result = await _sut.GetRecurringSubjectsAsync(jsonContent);
+
+        // Assert
+        result.Should().BeEmpty();
+    }
+
+    [Fact]
+    public async Task GetRecurringSubjectsAsync_OneRecurringSubject_ReturnsThatSubject()
+    {
+        // Arrange
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""Daily Standup"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-15T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-15T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""Daily Standup"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-16T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-16T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""Unique Meeting"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-17T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-17T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                }
+            ]
+        }";
+
+        // Act
+        var result = await _sut.GetRecurringSubjectsAsync(jsonContent);
+
+        // Assert
+        result.Should().HaveCount(1);
+        result[0].Should().Be("Daily Standup");
+    }
+
+    [Fact]
+    public async Task GetRecurringSubjectsAsync_MultipleRecurringSubjects_ReturnsAllSortedAlphabetically()
+    {
+        // Arrange
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""Weekly Review"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-15T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-15T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""Daily Standup"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-16T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-16T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""Weekly Review"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-22T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-22T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""Daily Standup"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-17T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-17T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                }
+            ]
+        }";
+
+        // Act
+        var result = await _sut.GetRecurringSubjectsAsync(jsonContent);
+
+        // Assert
+        result.Should().HaveCount(2);
+        result[0].Should().Be("Daily Standup");
+        result[1].Should().Be("Weekly Review");
+    }
+
+    [Fact]
+    public async Task GetRecurringSubjectsAsync_CaseInsensitiveGrouping_GroupsCorrectly()
+    {
+        // Arrange
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""Daily Standup"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-15T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-15T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""DAILY STANDUP"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-16T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-16T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""daily standup"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-17T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-17T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                }
+            ]
+        }";
+
+        // Act
+        var result = await _sut.GetRecurringSubjectsAsync(jsonContent);
+
+        // Assert
+        result.Should().HaveCount(1);
+        // The result preserves the casing of the first occurrence
+        result[0].Should().BeOneOf("Daily Standup", "DAILY STANDUP", "daily standup");
+    }
+
+    [Fact]
+    public async Task GetRecurringSubjectsAsync_IgnoresEmptySubjects()
+    {
+        // Arrange
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": """",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-15T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-15T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": """",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-16T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-16T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""Valid Meeting"",
+                    ""start"": {
+                        ""dateTime"": ""2024-01-17T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2024-01-17T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                }
+            ]
+        }";
+
+        // Act
+        var result = await _sut.GetRecurringSubjectsAsync(jsonContent);
+
+        // Assert
+        result.Should().BeEmpty();
+    }
 }

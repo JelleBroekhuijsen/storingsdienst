@@ -117,11 +117,26 @@
 
             @if (_fileSelected)
             {
-                <MudTextField T="string" @bind-Value="_searchSubject" Label="Meeting Subject Filter"
-                              Placeholder="Enter meeting title to filter..."
-                              Variant="Variant.Outlined" Class="mb-3"
-                              Disabled="_isLoading"
-                              HelperText="Only events containing this text will be included" />
+                @if (_recurringSubjects != null && _recurringSubjects.Any())
+                {
+                    <MudSelect T="string" @bind-Value="_searchSubject" Label="Select Recurring Meeting Subject"
+                               Variant="Variant.Outlined" Class="mb-3"
+                               Disabled="_isLoading"
+                               HelperText="Choose from recurring meetings found in the file">
+                        @foreach (var subject in _recurringSubjects)
+                        {
+                            <MudSelectItem Value="@subject">@subject</MudSelectItem>
+                        }
+                    </MudSelect>
+                }
+                else
+                {
+                    <MudTextField T="string" @bind-Value="_searchSubject" Label="Meeting Subject Filter"
+                                  Placeholder="Enter meeting title to filter..."
+                                  Variant="Variant.Outlined" Class="mb-3"
+                                  Disabled="_isLoading"
+                                  HelperText="Only events containing this text will be included" />
+                }
 
                 <MudButton Variant="Variant.Filled" Color="Color.Primary"
                            OnClick="ProcessJsonFileAsync"
@@ -245,6 +260,7 @@
     private DateTime _startDate = DateTime.Now.AddYears(-1);
     private bool _fileSelected = false;
     private string? _jsonContent;
+    private List<string>? _recurringSubjects;
     private List<string> _verificationComponentIds = new List<string> { Guid.NewGuid().ToString() };
 
     private void AddVerificationComponent()
@@ -264,6 +280,8 @@
     {
         _fileSelected = false;
         _jsonContent = null;
+        _recurringSubjects = null;
+        _searchSubject = string.Empty;
 
         if (file == null)
         {
@@ -287,8 +305,20 @@
             using var stream = file.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024);
             using var reader = new System.IO.StreamReader(stream);
             _jsonContent = await reader.ReadToEndAsync();
+            
+            // Detect recurring subjects
+            _recurringSubjects = await JsonImportService.GetRecurringSubjectsAsync(_jsonContent);
+            
             _fileSelected = true;
-            Snackbar.Add($"File '{file.Name}' loaded successfully. Enter a subject filter and click Process.", Severity.Success);
+            
+            if (_recurringSubjects != null && _recurringSubjects.Any())
+            {
+                Snackbar.Add($"File '{file.Name}' loaded successfully. Found {_recurringSubjects.Count} recurring meeting subject(s). Select one and click Process.", Severity.Success);
+            }
+            else
+            {
+                Snackbar.Add($"File '{file.Name}' loaded successfully. Enter a subject filter and click Process.", Severity.Success);
+            }
         }
         catch (Exception ex)
         {
