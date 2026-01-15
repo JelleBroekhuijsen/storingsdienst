@@ -86,7 +86,7 @@ public class JsonImportService
             });
         }
 
-        return await Task.FromResult(results);
+        return results;
     }
 
     public async Task<List<string>> GetRecurringSubjectsAsync(string jsonContent)
@@ -126,6 +126,6 @@ public class JsonImportService
             .OrderBy(subject => subject, StringComparer.OrdinalIgnoreCase)
             .ToList();
 
-        return await Task.FromResult(subjectCounts);
+        return subjectCounts;
     }
 }
