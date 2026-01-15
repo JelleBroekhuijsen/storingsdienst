@@ -72,7 +72,9 @@ jobs:
         run: |
           echo "### Deployment Complete! :rocket:" >> $Env:GITHUB_STEP_SUMMARY
           echo "" >> $Env:GITHUB_STEP_SUMMARY
-          echo "**Application URL:** https://app-storingsdienst-prod.azurewebsites.net" >> $Env:GITHUB_STEP_SUMMARY
+          echo "**Application URLs:**" >> $Env:GITHUB_STEP_SUMMARY
+          echo "- Custom Domain: https://storingsdienst.jll.io" >> $Env:GITHUB_STEP_SUMMARY
+          echo "- Azure Default: https://app-storingsdienst-prod.azurewebsites.net" >> $Env:GITHUB_STEP_SUMMARY
           echo "" >> $Env:GITHUB_STEP_SUMMARY
           echo "The application has been deployed successfully." >> $Env:GITHUB_STEP_SUMMARY
           echo "" >> $Env:GITHUB_STEP_SUMMARY

@@ -49,14 +49,17 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Resource Group:** ${{ steps.deploy.outputs.resourceGroupName }}" >> $GITHUB_STEP_SUMMARY
           echo "**Web App Name:** ${{ steps.deploy.outputs.webAppName }}" >> $GITHUB_STEP_SUMMARY
-          echo "**Web App URL:** ${{ steps.deploy.outputs.webAppUrl }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Web App URLs:**" >> $GITHUB_STEP_SUMMARY
+          echo "- Default: ${{ steps.deploy.outputs.webAppUrl }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Custom Domain: https://storingsdienst.jll.io (requires DNS setup)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Next Steps:" >> $GITHUB_STEP_SUMMARY
-          echo "1. Go to [Azure Portal](https://portal.azure.com)" >> $GITHUB_STEP_SUMMARY
-          echo "2. Navigate to **${{ steps.deploy.outputs.webAppName }}**" >> $GITHUB_STEP_SUMMARY
-          echo "3. Go to **Deployment Center** → **Manage publish profile** → **Download publish profile**" >> $GITHUB_STEP_SUMMARY
-          echo "4. Add the publish profile content as a GitHub Secret named \`AZURE_WEBAPP_PUBLISH_PROFILE\`" >> $GITHUB_STEP_SUMMARY
-          echo "5. Run the **Deploy Application** workflow to deploy your application" >> $GITHUB_STEP_SUMMARY
+          echo "1. **Configure Custom Domain** - See [docs/CUSTOM_DOMAIN.md](./docs/CUSTOM_DOMAIN.md)" >> $GITHUB_STEP_SUMMARY
+          echo "2. Go to [Azure Portal](https://portal.azure.com)" >> $GITHUB_STEP_SUMMARY
+          echo "3. Navigate to **${{ steps.deploy.outputs.webAppName }}**" >> $GITHUB_STEP_SUMMARY
+          echo "4. Go to **Deployment Center** → **Manage publish profile** → **Download publish profile**" >> $GITHUB_STEP_SUMMARY
+          echo "5. Add the publish profile content as a GitHub Secret named \`AZURE_WEBAPP_PUBLISH_PROFILE\`" >> $GITHUB_STEP_SUMMARY
+          echo "6. Run the **Deploy Application** workflow to deploy your application" >> $GITHUB_STEP_SUMMARY
 
       - name: Azure Logout
         if: always()

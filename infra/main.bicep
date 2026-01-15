@@ -35,6 +35,9 @@ param tags object = {
   ManagedBy: 'Bicep'
 }
 
+@description('Custom domain hostname (optional, e.g., storingsdienst.jll.io)')
+param customDomain string = ''
+
 // Variables
 var resourceGroupName = 'rg-${appName}-${environment}'
 var appServicePlanName = 'asp-${appName}-${environment}'
@@ -92,6 +95,7 @@ module webApp 'modules/webApp.bicep' = {
     appInsightsInstrumentationKey: appInsights.outputs.instrumentationKey
     appInsightsConnectionString: appInsights.outputs.connectionString
     tags: tags
+    customDomain: customDomain
   }
 }
 
@@ -121,3 +125,9 @@ output appInsightsInstrumentationKey string = appInsights.outputs.instrumentatio
 
 @description('Application Insights Connection String')
 output appInsightsConnectionString string = appInsights.outputs.connectionString
+
+@description('Custom domain hostname (if configured)')
+output customDomain string = webApp.outputs.customDomain
+
+@description('Custom domain URL (if configured)')
+output customDomainUrl string = webApp.outputs.customDomainUrl

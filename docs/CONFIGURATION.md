@@ -162,6 +162,9 @@ During local development with `dotnet run`, the environment is automatically set
 **Solution**:
 1. Go to Azure Portal → App registrations → Your multi-tenant app → Authentication
 2. Add production redirect URI: `https://app-storingsdienst-prod.azurewebsites.net/authentication/login-callback`
+3. If using custom domain, also add: `https://storingsdienst.jll.io/authentication/login-callback`
+
+See [Custom Domain Configuration Guide](./CUSTOM_DOMAIN.md) for custom domain setup.
 
 ## Additional Configuration
 
