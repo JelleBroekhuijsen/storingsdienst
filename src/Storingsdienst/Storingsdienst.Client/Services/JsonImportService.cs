@@ -5,7 +5,7 @@ namespace Storingsdienst.Client.Services;
 
 public class JsonImportService
 {
-    public async Task<List<CalendarEventDto>> ParseJsonFileAsync(
+    public Task<List<CalendarEventDto>> ParseJsonFileAsync(
         string jsonContent,
         string subjectFilter,
         DateTime startDate,
@@ -86,14 +86,14 @@ public class JsonImportService
             });
         }
 
-        return results;
+        return Task.FromResult(results);
     }
 
-    public async Task<List<string>> GetRecurringSubjectsAsync(string jsonContent)
+    public Task<List<string>> GetRecurringSubjectsAsync(string jsonContent)
     {
         if (string.IsNullOrWhiteSpace(jsonContent))
         {
-            return new List<string>();
+            return Task.FromResult(new List<string>());
         }
 
         // Parse JSON with case-insensitive property matching
@@ -109,23 +109,24 @@ public class JsonImportService
         }
         catch (JsonException)
         {
-            return new List<string>();
+            return Task.FromResult(new List<string>());
         }
 
         if (export == null || export.Events == null || !export.Events.Any())
         {
-            return new List<string>();
+            return Task.FromResult(new List<string>());
         }
 
         // Group events by subject (case-insensitive) and count occurrences
+        // Use First().Subject to ensure consistent casing (preserves first occurrence)
         var subjectCounts = export.Events
             .Where(evt => !string.IsNullOrWhiteSpace(evt.Subject))
             .GroupBy(evt => evt.Subject, StringComparer.OrdinalIgnoreCase)
             .Where(group => group.Count() > 1)
-            .Select(group => group.Key)
+            .Select(group => group.First().Subject)
             .OrderBy(subject => subject, StringComparer.OrdinalIgnoreCase)
             .ToList();
 
-        return subjectCounts;
+        return Task.FromResult(subjectCounts);
     }
 }

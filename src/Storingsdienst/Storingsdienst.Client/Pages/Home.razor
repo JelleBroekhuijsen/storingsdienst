@@ -122,7 +122,8 @@
                     <MudSelect T="string" @bind-Value="_searchSubject" Label="Select Recurring Meeting Subject"
                                Variant="Variant.Outlined" Class="mb-3"
                                Disabled="_isLoading"
-                               HelperText="Choose from recurring meetings found in the file">
+                               HelperText="Choose from recurring meetings found in the file"
+                               Placeholder="Select a recurring meeting...">
                         @foreach (var subject in _recurringSubjects)
                         {
                             <MudSelectItem Value="@subject">@subject</MudSelectItem>

@@ -844,7 +844,7 @@ public class JsonImportServiceTests
         // Assert
         result.Should().HaveCount(1);
         // The result preserves the casing of the first occurrence
-        result[0].Should().BeOneOf("Daily Standup", "DAILY STANDUP", "daily standup");
+        result[0].Should().Be("Daily Standup");
     }
 
     [Fact]
