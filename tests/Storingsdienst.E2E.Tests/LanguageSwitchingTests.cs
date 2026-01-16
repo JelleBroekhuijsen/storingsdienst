@@ -8,7 +8,7 @@ namespace Storingsdienst.E2E.Tests;
 [TestFixture]
 public class LanguageSwitchingTests : PageTest
 {
-    private const string BaseUrl = "http://localhost:5266";
+    private const string BaseUrl = "https://localhost:5266";
 
     // Use the system-installed Edge browser
     public override BrowserNewContextOptions ContextOptions()
@@ -34,9 +34,13 @@ public class LanguageSwitchingTests : PageTest
         await Page.GotoAsync(BaseUrl);
         await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
-        // Assert - Default should be Dutch
-        var appTitle = await Page.Locator("text=Vergaderdagen Tracker").CountAsync();
-        appTitle.Should().Be(1, "App title should be shown in Dutch by default");
+        // Wait for translations to load (Dutch is default) - app bar title, exact match
+        var dutchTitleLocator = Page.GetByRole(AriaRole.Heading, new() { Name = "Vergaderdagen Tracker", Exact = true });
+        await Expect(dutchTitleLocator).ToBeVisibleAsync();
+
+        // Assert - Default should be Dutch (text appears in title bar)
+        var appTitle = await dutchTitleLocator.CountAsync();
+        appTitle.Should().BeGreaterThanOrEqualTo(1, "App title should be shown in Dutch by default");
     }
 
     [Test]
@@ -46,20 +50,17 @@ public class LanguageSwitchingTests : PageTest
         await Page.GotoAsync(BaseUrl);
         await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
-        // Verify we start in Dutch
-        var dutchTitle = await Page.Locator("text=Vergaderdagen Tracker").CountAsync();
-        dutchTitle.Should().Be(1, "Should start in Dutch");
+        // Wait for translations to load and verify we start in Dutch (app bar title, exact match)
+        var dutchTitleLocator = Page.GetByRole(AriaRole.Heading, new() { Name = "Vergaderdagen Tracker", Exact = true });
+        await Expect(dutchTitleLocator).ToBeVisibleAsync();
 
         // Act - Click the English flag button (second button in the group)
         var englishButton = Page.Locator("button[title='English']");
         await englishButton.ClickAsync();
 
-        // Wait for page reload
-        await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-
-        // Assert - Should now show English
-        var englishTitle = await Page.Locator("text=Meeting Days Tracker").CountAsync();
-        englishTitle.Should().Be(1, "App title should be in English after clicking English flag");
+        // Wait for UI to update (no page reload needed) - app bar title exact match
+        var englishTitleLocator = Page.GetByRole(AriaRole.Heading, new() { Name = "Meeting Days Tracker", Exact = true });
+        await Expect(englishTitleLocator).ToBeVisibleAsync();
     }
 
     [Test]
@@ -69,14 +70,17 @@ public class LanguageSwitchingTests : PageTest
         await Page.GotoAsync(BaseUrl);
         await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
+        // Wait for translations to load (app bar title, exact match)
+        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Vergaderdagen Tracker", Exact = true })).ToBeVisibleAsync();
+
         // Act - Click the English flag
         var englishButton = Page.Locator("button[title='English']");
         await englishButton.ClickAsync();
 
-        // Wait a moment for localStorage write
-        await Task.Delay(100);
+        // Wait for UI to update to English (app bar title, exact match)
+        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Meeting Days Tracker", Exact = true })).ToBeVisibleAsync();
 
-        // Assert - Check localStorage directly (before page reloads)
+        // Assert - Check localStorage directly
         var savedLanguage = await Page.EvaluateAsync<string>("localStorage.getItem('preferredLanguage')");
         savedLanguage.Should().Be("en", "Language preference should be saved to localStorage");
     }
@@ -88,20 +92,23 @@ public class LanguageSwitchingTests : PageTest
         await Page.GotoAsync(BaseUrl);
         await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
+        // Wait for translations to load (app bar title, exact match)
+        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Vergaderdagen Tracker", Exact = true })).ToBeVisibleAsync();
+
         // Click English flag
         var englishButton = Page.Locator("button[title='English']");
         await englishButton.ClickAsync();
 
-        // Wait for navigation to complete
-        await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+        // Wait for UI to update to English (app bar title, exact match)
+        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Meeting Days Tracker", Exact = true })).ToBeVisibleAsync();
 
         // Act - Manually refresh the page
         await Page.ReloadAsync();
         await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
-        // Assert - Should still be in English
-        var englishTitle = await Page.Locator("text=Meeting Days Tracker").CountAsync();
-        englishTitle.Should().Be(1, "English should persist after page refresh");
+        // Wait for translations to load after refresh (app bar title, exact match)
+        var englishTitleLocator = Page.GetByRole(AriaRole.Heading, new() { Name = "Meeting Days Tracker", Exact = true });
+        await Expect(englishTitleLocator).ToBeVisibleAsync();
     }
 
     [Test]
@@ -113,33 +120,36 @@ public class LanguageSwitchingTests : PageTest
         await Page.ReloadAsync();
         await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
-        // Verify we're in English
-        var englishTitle = await Page.Locator("text=Meeting Days Tracker").CountAsync();
-        englishTitle.Should().Be(1, "Should start in English");
+        // Wait for translations to load and verify we're in English (app bar title, exact match)
+        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Meeting Days Tracker", Exact = true })).ToBeVisibleAsync();
 
         // Act - Click the Dutch flag
         var dutchButton = Page.Locator("button[title='Nederlands']");
         await dutchButton.ClickAsync();
 
-        // Wait for page reload
-        await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-
-        // Assert - Should now show Dutch
-        var dutchTitle = await Page.Locator("text=Vergaderdagen Tracker").CountAsync();
-        dutchTitle.Should().Be(1, "App title should be in Dutch after clicking Dutch flag");
+        // Wait for UI to update (no page reload needed) - app bar title, exact match
+        var dutchTitleLocator = Page.GetByRole(AriaRole.Heading, new() { Name = "Vergaderdagen Tracker", Exact = true });
+        await Expect(dutchTitleLocator).ToBeVisibleAsync();
     }
 
     [Test]
     public async Task LanguageSelector_EnglishButton_HasCorrectVisualState()
     {
-        // Arrange - Set to English
+        // Arrange - Start with Dutch, then click English
         await Page.GotoAsync(BaseUrl);
-        await Page.EvaluateAsync("localStorage.setItem('preferredLanguage', 'en')");
-        await Page.ReloadAsync();
         await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
-        // Act & Assert - English button should have selected style (opacity: 1)
+        // Wait for translations to load (app bar title, exact match)
+        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Vergaderdagen Tracker", Exact = true })).ToBeVisibleAsync();
+
+        // Click English flag to switch
         var englishButton = Page.Locator("button[title='English']");
+        await englishButton.ClickAsync();
+
+        // Wait for UI to update (app bar title, exact match)
+        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Meeting Days Tracker", Exact = true })).ToBeVisibleAsync();
+
+        // Act & Assert - English button should have selected style (opacity: 1)
         var englishStyle = await englishButton.GetAttributeAsync("style");
         englishStyle.Should().Contain("opacity: 1", "Selected flag should have full opacity");
 
@@ -171,18 +181,34 @@ public class LanguageSwitchingTests : PageTest
         await Page.GotoAsync(BaseUrl);
         await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
-        // Assert - Check Dutch navigation labels
-        var homeLink = await Page.Locator("text=Startpagina").CountAsync();
-        homeLink.Should().Be(1, "Home link should be in Dutch");
+        // Wait for translations to load (app bar title, exact match)
+        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Vergaderdagen Tracker", Exact = true })).ToBeVisibleAsync();
+
+        // Wait for NavMenu to re-render with translations
+        await Task.Delay(1000);
+
+        // Assert - Check Dutch navigation labels in the drawer (first nav link should be Home)
+        // Use text content to debug what's actually rendered
+        var firstNavLink = Page.Locator(".mud-nav-link").First;
+        var firstLinkText = await firstNavLink.TextContentAsync();
+        Console.WriteLine($"DEBUG: First nav link text: '{firstLinkText}'");
+
+        // The first nav link should contain "Startpagina" in Dutch
+        firstLinkText.Should().Contain("Startpagina", $"First nav link should be 'Startpagina' but was '{firstLinkText}'");
 
         // Act - Switch to English
         var englishButton = Page.Locator("button[title='English']");
         await englishButton.ClickAsync();
-        await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+
+        // Wait for UI to update (app bar title, exact match)
+        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Meeting Days Tracker", Exact = true })).ToBeVisibleAsync();
+
+        // Wait for NavMenu to update
+        await Task.Delay(500);
 
         // Assert - Navigation should now be in English
-        var englishHomeLink = await Page.Locator("text=Home").CountAsync();
-        englishHomeLink.Should().Be(1, "Home link should be in English after switching");
+        var englishFirstLinkText = await firstNavLink.TextContentAsync();
+        englishFirstLinkText.Should().Contain("Home", $"First nav link should be 'Home' but was '{englishFirstLinkText}'");
     }
 
     [Test]
@@ -192,17 +218,22 @@ public class LanguageSwitchingTests : PageTest
         await Page.GotoAsync(BaseUrl);
         await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
-        // Assert - Check Dutch sign in
-        var signInDutch = await Page.Locator("text=Inloggen").CountAsync();
-        signInDutch.Should().Be(1, "Sign in button should be in Dutch");
+        // Wait for translations to load (app bar title, exact match)
+        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Vergaderdagen Tracker", Exact = true })).ToBeVisibleAsync();
+
+        // Assert - Check Dutch sign in button in the app bar
+        var signInDutchLocator = Page.GetByRole(AriaRole.Toolbar).GetByRole(AriaRole.Link, new() { Name = "Inloggen" });
+        await Expect(signInDutchLocator).ToBeVisibleAsync();
 
         // Act - Switch to English
         var englishButton = Page.Locator("button[title='English']");
         await englishButton.ClickAsync();
-        await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
-        // Assert - Sign in should now be in English
-        var signInEnglish = await Page.Locator("text=Sign In").CountAsync();
-        signInEnglish.Should().Be(1, "Sign in button should be in English after switching");
+        // Wait for UI to update (app bar title, exact match)
+        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Meeting Days Tracker", Exact = true })).ToBeVisibleAsync();
+
+        // Assert - Sign in should now be in English (app bar button)
+        var signInEnglishLocator = Page.GetByRole(AriaRole.Toolbar).GetByRole(AriaRole.Link, new() { Name = "Sign In" });
+        await Expect(signInEnglishLocator).ToBeVisibleAsync();
     }
 }

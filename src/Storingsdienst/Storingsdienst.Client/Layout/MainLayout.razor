@@ -102,14 +102,26 @@
 
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine("[MainLayout] OnInitializedAsync started");
         L.OnLanguageChanged += OnLanguageChanged;
+        Console.WriteLine("[MainLayout] Subscribed to OnLanguageChanged");
         await L.InitializeAsync();
+        Console.WriteLine($"[MainLayout] InitializeAsync complete, CurrentCulture: {L.CurrentCulture}");
+        Console.WriteLine($"[MainLayout] AppTitle value: {L["AppTitle"]}");
+        // Force re-render after translations are loaded
+        StateHasChanged();
     }
 
     private void OnLanguageChanged()
     {
+        Console.WriteLine($"[MainLayout] OnLanguageChanged called, CurrentCulture: {L.CurrentCulture}");
         // Use InvokeAsync to ensure StateHasChanged is called on the UI thread
-        InvokeAsync(StateHasChanged);
+        InvokeAsync(() =>
+        {
+            Console.WriteLine("[MainLayout] Calling StateHasChanged");
+            StateHasChanged();
+            Console.WriteLine("[MainLayout] StateHasChanged completed");
+        });
     }
 
     private void ToggleDrawer() => _drawerOpen = !_drawerOpen;

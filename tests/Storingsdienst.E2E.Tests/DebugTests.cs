@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
@@ -7,7 +8,7 @@ namespace Storingsdienst.E2E.Tests;
 [TestFixture]
 public class DebugTests : PageTest
 {
-    private const string BaseUrl = "http://localhost:5266";
+    private const string BaseUrl = "https://localhost:5266";
 
     public override BrowserNewContextOptions ContextOptions()
     {
@@ -20,6 +21,13 @@ public class DebugTests : PageTest
     [Test]
     public async Task DebugPageContent()
     {
+        // Capture console logs
+        var consoleMessages = new List<string>();
+        Page.Console += (_, msg) =>
+        {
+            consoleMessages.Add($"[{msg.Type}] {msg.Text}");
+        };
+
         // Navigate and wait
         await Page.GotoAsync(BaseUrl);
         await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
@@ -62,6 +70,30 @@ public class DebugTests : PageTest
             Console.WriteLine($"Element: {el.Substring(0, Math.Min(100, el.Length))}...");
         }
 
+        // Check if our JavaScript function exists
+        Console.WriteLine("\n=== CHECK IF storingsdienst_changeLanguage EXISTS ===");
+        var functionExists = await Page.EvaluateAsync<bool>("typeof window.storingsdienst_changeLanguage === 'function'");
+        Console.WriteLine($"storingsdienst_changeLanguage function exists: {functionExists}");
+
+        // Try setting localStorage and then manually reloading with Playwright
+        Console.WriteLine("\n=== SETTING LOCALSTORAGE AND RELOADING WITH PLAYWRIGHT ===");
+        await Page.EvaluateAsync("localStorage.setItem('preferredLanguage', 'en')");
+        Console.WriteLine("localStorage set to en");
+        
+        await Page.ReloadAsync();
+        await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+        Console.WriteLine("Page reloaded");
+        
+        // Wait for page to reload
+        await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+        
+        Console.WriteLine("\n=== AFTER DIRECT CALL ===");
+        var appBarTextAfterDirect = await Page.Locator(".mud-appbar").TextContentAsync();
+        Console.WriteLine($"AppBar After Direct Call: {appBarTextAfterDirect}");
+        
+        var meetingDaysAfterDirect = await Page.Locator("text=Meeting Days").CountAsync();
+        Console.WriteLine($"Found 'Meeting Days' {meetingDaysAfterDirect} times");
+
         // Now try clicking English flag
         Console.WriteLine("\n=== CLICKING ENGLISH FLAG ===");
         var englishButton = Page.Locator("button[title='English']");
@@ -81,5 +113,12 @@ public class DebugTests : PageTest
         Console.WriteLine("\n=== LocalStorage value ===");
         var savedLang = await Page.EvaluateAsync<string>("localStorage.getItem('preferredLanguage')");
         Console.WriteLine($"preferredLanguage: {savedLang}");
+
+        // Print all console messages
+        Console.WriteLine("\n=== BROWSER CONSOLE MESSAGES ===");
+        foreach (var msg in consoleMessages)
+        {
+            Console.WriteLine(msg);
+        }
     }
 }

@@ -18,6 +18,10 @@ builder.Services.AddMudServices();
 
 // Register localization services
 builder.Services.AddLocalization();
+
+// Register a default HttpClient for loading locale JSON files
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 
 // Register business logic services

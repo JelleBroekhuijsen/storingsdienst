@@ -1,14 +1,16 @@
 @inject ILocalizationService L
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JS
 @implements IDisposable
 
 <MudButtonGroup OverrideStyles="false">
-    <MudIconButton OnClick="@(() => SetLanguageAsync("nl"))"
+    <MudIconButton OnClick="@(async () => await SetLanguage("nl"))"
                    Title="Nederlands"
                    Size="Size.Small"
                    Style="@GetButtonStyle("nl")">
         <span style="font-size: 1.4em;">@DutchFlag</span>
     </MudIconButton>
-    <MudIconButton OnClick="@(() => SetLanguageAsync("en"))"
+    <MudIconButton OnClick="@(async () => await SetLanguage("en"))"
                    Title="English"
                    Size="Size.Small"
                    Style="@GetButtonStyle("en")">
@@ -40,14 +42,11 @@
             : "color: white; opacity: 0.6;";
     }
 
-    private async Task SetLanguageAsync(string culture)
+    private async Task SetLanguage(string culture)
     {
-        if (L.CurrentCulture != culture)
-        {
-            // Use the localization service to switch language
-            // This will persist to localStorage and trigger OnLanguageChanged
-            await L.SetLanguageAsync(culture);
-        }
+        // Use the LocalizationService to change language without page reload
+        // This updates the culture, persists to localStorage, and triggers OnLanguageChanged event
+        await L.SetLanguageAsync(culture);
     }
 
     public void Dispose()
