@@ -1,23 +1,38 @@
+@inject ILocalizationService L
+@implements IDisposable
+
 <MudNavMenu>
     <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">
-        Home
+        @L["Home"]
     </MudNavLink>
     <MudNavLink Href="guide/power-automate" Icon="@Icons.Material.Filled.MenuBook">
-        Power Automate Guide
+        @L["PowerAutomateGuide"]
     </MudNavLink>
     <MudDivider Class="my-2" />
-    <MudNavGroup Title="Account" Icon="@Icons.Material.Filled.AccountCircle" Expanded="true">
+    <MudNavGroup Title="@L["Account"]" Icon="@Icons.Material.Filled.AccountCircle" Expanded="true">
         <AuthorizeView>
             <Authorized>
                 <MudNavLink Href="authentication/logout" Icon="@Icons.Material.Filled.Logout">
-                    Sign Out
+                    @L["SignOut"]
                 </MudNavLink>
             </Authorized>
             <NotAuthorized>
                 <MudNavLink Href="authentication/login" Icon="@Icons.Material.Filled.Login">
-                    Sign In
+                    @L["SignIn"]
                 </MudNavLink>
             </NotAuthorized>
         </AuthorizeView>
     </MudNavGroup>
 </MudNavMenu>
+
+@code {
+    protected override void OnInitialized()
+    {
+        L.OnLanguageChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        L.OnLanguageChanged -= StateHasChanged;
+    }
+}

@@ -1,11 +1,13 @@
 @using Storingsdienst.Client.Models
+@inject ILocalizationService L
+@implements IDisposable
 
 <MudCard Class="verification-card">
     <MudCardHeader>
         <CardHeaderContent>
             <MudStack Row="true" AlignItems="AlignItems.Center">
                 <MudIcon Icon="@Icons.Material.Filled.EventAvailable" Class="mr-2" />
-                <MudText Typo="Typo.h6">Verify Paystub Data</MudText>
+                <MudText Typo="Typo.h6">@L["VerifyPaystubData"]</MudText>
             </MudStack>
         </CardHeaderContent>
         <CardHeaderActions>
@@ -22,9 +24,9 @@
             <MudGrid Spacing="3">
                 @* Month Selection *@
                 <MudItem xs="12">
-                    <MudSelect T="string" Label="Select Month to Verify" @bind-Value="SelectedMonthKey"
+                    <MudSelect T="string" Label="@L["SelectMonthToVerify"]" @bind-Value="SelectedMonthKey"
                                Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter">
-                        <MudSelectItem T="string" Value="@string.Empty">-- Select a month --</MudSelectItem>
+                        <MudSelectItem T="string" Value="@string.Empty">@L["SelectMonthPlaceholder"]</MudSelectItem>
                         @foreach (var month in MonthlyResults)
                         {
                             var key = $"{month.Year}-{month.Month:D2}";
@@ -39,13 +41,13 @@
                     <MudItem xs="12">
                         <MudAlert Severity="Severity.Info" Dense="true">
                             <MudText Typo="Typo.subtitle2" Class="mb-2">
-                                <strong>Calendar Data for @SelectedMonth.MonthName @SelectedMonth.Year:</strong>
+                                <strong>@string.Format(L["CalendarDataFor"], SelectedMonth.MonthName, SelectedMonth.Year)</strong>
                             </MudText>
                             <MudList T="string" Dense="true">
-                                <MudListItem>Weekdays: <strong>@SelectedMonth.WeekdayCount</strong></MudListItem>
-                                <MudListItem>Saturdays: <strong>@SelectedMonth.SaturdayCount</strong></MudListItem>
-                                <MudListItem>Sundays: <strong>@SelectedMonth.SundayCount</strong></MudListItem>
-                                <MudListItem>Holidays: <strong>@SelectedMonth.HolidayCount</strong></MudListItem>
+                                <MudListItem>@L["Weekdays"]: <strong>@SelectedMonth.WeekdayCount</strong></MudListItem>
+                                <MudListItem>@L["Saturdays"]: <strong>@SelectedMonth.SaturdayCount</strong></MudListItem>
+                                <MudListItem>@L["Sundays"]: <strong>@SelectedMonth.SundayCount</strong></MudListItem>
+                                <MudListItem>@L["Holidays"]: <strong>@SelectedMonth.HolidayCount</strong></MudListItem>
                             </MudList>
                         </MudAlert>
                     </MudItem>
@@ -53,26 +55,26 @@
                     @* Paystub Input Fields *@
                     <MudItem xs="12">
                         <MudDivider Class="my-2" />
-                        <MudText Typo="Typo.subtitle1" Class="mb-2">Enter Paystub Data:</MudText>
+                        <MudText Typo="Typo.subtitle1" Class="mb-2">@L["EnterPaystubData"]</MudText>
                     </MudItem>
 
                     <MudItem xs="12" sm="6">
-                        <MudNumericField T="int" Label="Weekdays Paid" @bind-Value="PaystubWeekdays"
+                        <MudNumericField T="int" Label="@L["WeekdaysPaid"]" @bind-Value="PaystubWeekdays"
                                          Variant="Variant.Outlined" Min="0" />
                     </MudItem>
 
                     <MudItem xs="12" sm="6">
-                        <MudNumericField T="int" Label="Saturdays Paid" @bind-Value="PaystubSaturdays"
+                        <MudNumericField T="int" Label="@L["SaturdaysPaid"]" @bind-Value="PaystubSaturdays"
                                          Variant="Variant.Outlined" Min="0" />
                     </MudItem>
 
                     <MudItem xs="12" sm="6">
-                        <MudNumericField T="int" Label="Sundays Paid" @bind-Value="PaystubSundays"
+                        <MudNumericField T="int" Label="@L["SundaysPaid"]" @bind-Value="PaystubSundays"
                                          Variant="Variant.Outlined" Min="0" />
                     </MudItem>
 
                     <MudItem xs="12" sm="6">
-                        <MudNumericField T="int" Label="Holidays Paid" @bind-Value="PaystubHolidays"
+                        <MudNumericField T="int" Label="@L["HolidaysPaid"]" @bind-Value="PaystubHolidays"
                                          Variant="Variant.Outlined" Min="0" />
                     </MudItem>
 
@@ -80,7 +82,7 @@
                     <MudItem xs="12">
                         <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true"
                                    StartIcon="@Icons.Material.Filled.CheckCircle" OnClick="VerifyData">
-                            Verify Data
+                            @L["VerifyData"]
                         </MudButton>
                     </MudItem>
 
@@ -94,8 +96,8 @@
                                     <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
                                         <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Size="Size.Large" />
                                         <div>
-                                            <MudText Typo="Typo.subtitle1"><strong>All data matches!</strong></MudText>
-                                            <MudText Typo="Typo.body2">Your paystub data matches the calendar entries.</MudText>
+                                            <MudText Typo="Typo.subtitle1"><strong>@L["AllDataMatches"]</strong></MudText>
+                                            <MudText Typo="Typo.body2">@L["PaystubDataMatchesCalendar"]</MudText>
                                         </div>
                                     </MudStack>
                                 </MudAlert>
@@ -105,58 +107,58 @@
                                 <MudAlert Severity="Severity.Warning" Variant="Variant.Filled">
                                     <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2" Class="mb-2">
                                         <MudIcon Icon="@Icons.Material.Filled.Warning" Size="Size.Large" />
-                                        <MudText Typo="Typo.subtitle1"><strong>Discrepancies found:</strong></MudText>
+                                        <MudText Typo="Typo.subtitle1"><strong>@L["DiscrepanciesFound"]</strong></MudText>
                                     </MudStack>
                                     <MudList T="string" Dense="true">
                                         @if (WeekdaysMatch)
                                         {
                                             <MudListItem Icon="@Icons.Material.Filled.Check" IconColor="Color.Success">
-                                                Weekdays match (@SelectedMonth.WeekdayCount)
+                                                @string.Format(L["WeekdaysMatch"], SelectedMonth.WeekdayCount)
                                             </MudListItem>
                                         }
                                         else
                                         {
                                             <MudListItem Icon="@Icons.Material.Filled.Close" IconColor="Color.Error">
-                                                Weekdays: Calendar shows @SelectedMonth.WeekdayCount, Paystub shows @PaystubWeekdays (Difference: @Math.Abs(SelectedMonth.WeekdayCount - PaystubWeekdays))
+                                                @string.Format(L["WeekdaysDiscrepancy"], SelectedMonth.WeekdayCount, PaystubWeekdays, Math.Abs(SelectedMonth.WeekdayCount - PaystubWeekdays))
                                             </MudListItem>
                                         }
 
                                         @if (SaturdaysMatch)
                                         {
                                             <MudListItem Icon="@Icons.Material.Filled.Check" IconColor="Color.Success">
-                                                Saturdays match (@SelectedMonth.SaturdayCount)
+                                                @string.Format(L["SaturdaysMatch"], SelectedMonth.SaturdayCount)
                                             </MudListItem>
                                         }
                                         else
                                         {
                                             <MudListItem Icon="@Icons.Material.Filled.Close" IconColor="Color.Error">
-                                                Saturdays: Calendar shows @SelectedMonth.SaturdayCount, Paystub shows @PaystubSaturdays (Difference: @Math.Abs(SelectedMonth.SaturdayCount - PaystubSaturdays))
+                                                @string.Format(L["SaturdaysDiscrepancy"], SelectedMonth.SaturdayCount, PaystubSaturdays, Math.Abs(SelectedMonth.SaturdayCount - PaystubSaturdays))
                                             </MudListItem>
                                         }
 
                                         @if (SundaysMatch)
                                         {
                                             <MudListItem Icon="@Icons.Material.Filled.Check" IconColor="Color.Success">
-                                                Sundays match (@SelectedMonth.SundayCount)
+                                                @string.Format(L["SundaysMatch"], SelectedMonth.SundayCount)
                                             </MudListItem>
                                         }
                                         else
                                         {
                                             <MudListItem Icon="@Icons.Material.Filled.Close" IconColor="Color.Error">
-                                                Sundays: Calendar shows @SelectedMonth.SundayCount, Paystub shows @PaystubSundays (Difference: @Math.Abs(SelectedMonth.SundayCount - PaystubSundays))
+                                                @string.Format(L["SundaysDiscrepancy"], SelectedMonth.SundayCount, PaystubSundays, Math.Abs(SelectedMonth.SundayCount - PaystubSundays))
                                             </MudListItem>
                                         }
 
                                         @if (HolidaysMatch)
                                         {
                                             <MudListItem Icon="@Icons.Material.Filled.Check" IconColor="Color.Success">
-                                                Holidays match (@SelectedMonth.HolidayCount)
+                                                @string.Format(L["HolidaysMatch"], SelectedMonth.HolidayCount)
                                             </MudListItem>
                                         }
                                         else
                                         {
                                             <MudListItem Icon="@Icons.Material.Filled.Close" IconColor="Color.Error">
-                                                Holidays: Calendar shows @SelectedMonth.HolidayCount, Paystub shows @PaystubHolidays (Difference: @Math.Abs(SelectedMonth.HolidayCount - PaystubHolidays))
+                                                @string.Format(L["HolidaysDiscrepancy"], SelectedMonth.HolidayCount, PaystubHolidays, Math.Abs(SelectedMonth.HolidayCount - PaystubHolidays))
                                             </MudListItem>
                                         }
                                     </MudList>
@@ -169,7 +171,7 @@
         }
         else
         {
-            <MudText Typo="Typo.body2" Class="mud-text-secondary">No calendar data available. Please process a file first.</MudText>
+            <MudText Typo="Typo.body2" Class="mud-text-secondary">@L["NoCalendarDataAvailable"]</MudText>
         }
     </MudCardContent>
 </MudCard>
@@ -202,6 +204,16 @@
     private bool SundaysMatch { get; set; }
     private bool HolidaysMatch { get; set; }
 
+    protected override void OnInitialized()
+    {
+        L.OnLanguageChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        L.OnLanguageChanged -= StateHasChanged;
+    }
+
     protected override void OnParametersSet()
     {
         // Auto-select the first month if none is selected and data is available
@@ -210,7 +222,7 @@
             var firstMonth = MonthlyResults.First();
             SelectedMonthKey = $"{firstMonth.Year}-{firstMonth.Month:D2}";
         }
-        
+
         UpdateSelectedMonth();
     }
 

@@ -4,11 +4,21 @@ using Microsoft.Graph;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 using MudBlazor.Services;
 using Storingsdienst.Client.Services;
+using System.Globalization;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
+// Set default culture to Dutch
+var defaultCulture = new CultureInfo("nl");
+CultureInfo.DefaultThreadCurrentCulture = defaultCulture;
+CultureInfo.DefaultThreadCurrentUICulture = defaultCulture;
+
 // Register MudBlazor services
 builder.Services.AddMudServices();
+
+// Register localization services
+builder.Services.AddLocalization();
+builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 
 // Register business logic services
 builder.Services.AddScoped<IHolidayService, HolidayService>();

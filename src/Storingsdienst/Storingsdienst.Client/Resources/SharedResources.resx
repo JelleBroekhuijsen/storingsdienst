@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- App Title and Layout -->
+  <data name="AppTitle" xml:space="preserve">
+    <value>Vergaderdagen Tracker</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Inloggen</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Uitloggen</value>
+  </data>
+  <data name="UnhandledError" xml:space="preserve">
+    <value>Er is een onverwachte fout opgetreden.</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Herladen</value>
+  </data>
+
+  <!-- Navigation Menu -->
+  <data name="Home" xml:space="preserve">
+    <value>Startpagina</value>
+  </data>
+  <data name="PowerAutomateGuide" xml:space="preserve">
+    <value>Power Automate Handleiding</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+
+  <!-- Home Page - Main Heading -->
+  <data name="M365MeetingDaysTracker" xml:space="preserve">
+    <value>M365 Vergaderdagen Tracker</value>
+  </data>
+  <data name="TrackAndAnalyzeMeetings" xml:space="preserve">
+    <value>Volg en analyseer vergaderingen van uw Microsoft 365 kalender. Kies tussen directe integratie of JSON-bestandsimport.</value>
+  </data>
+
+  <!-- Home Page - Step 1: Data Source Selection -->
+  <data name="Step1SelectDataSource" xml:space="preserve">
+    <value>Stap 1: Selecteer gegevensbron</value>
+  </data>
+  <data name="MicrosoftGraphApi" xml:space="preserve">
+    <value>Microsoft Graph API</value>
+  </data>
+  <data name="RequiresAzureAd" xml:space="preserve">
+    <value>Vereist Azure AD app-registratie</value>
+  </data>
+  <data name="JsonFileUpload" xml:space="preserve">
+    <value>JSON-bestand uploaden</value>
+  </data>
+  <data name="GeneratedByPowerAutomate" xml:space="preserve">
+    <value>Gegenereerd door Power Automate</value>
+  </data>
+
+  <!-- Home Page - Step 2: Graph API Mode -->
+  <data name="Step2SearchMeetingsGraphApi" xml:space="preserve">
+    <value>Stap 2: Vergaderingen zoeken (Graph API)</value>
+  </data>
+  <data name="GraphApiAuthInfo" xml:space="preserve">
+    <value>Deze modus vereist authenticatie met uw Microsoft 365 account. Gebruikers van elke organisatie kunnen inloggen en toestemming geven om hun kalender te lezen.</value>
+  </data>
+  <data name="MeetingSubject" xml:space="preserve">
+    <value>Onderwerp vergadering</value>
+  </data>
+  <data name="EnterMeetingTitleToSearch" xml:space="preserve">
+    <value>Voer vergadertitel in om te zoeken...</value>
+  </data>
+  <data name="SearchingFromTo" xml:space="preserve">
+    <value>Zoeken van {0} tot {1}</value>
+  </data>
+  <data name="SearchMeetings" xml:space="preserve">
+    <value>Vergaderingen zoeken</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Zoeken...</value>
+  </data>
+  <data name="PleaseSignInToSearchCalendar" xml:space="preserve">
+    <value>Log in om uw kalender te doorzoeken.</value>
+  </data>
+  <data name="SignInWithMicrosoft" xml:space="preserve">
+    <value>Inloggen met Microsoft</value>
+  </data>
+
+  <!-- Home Page - Step 2: JSON Import Mode -->
+  <data name="Step2UploadJsonFile" xml:space="preserve">
+    <value>Stap 2: JSON-bestand uploaden</value>
+  </data>
+  <data name="UploadJsonInfo" xml:space="preserve">
+    <value>Upload een JSON-bestand gegenereerd door uw Power Automate flow.</value>
+  </data>
+  <data name="ViewSetupGuide" xml:space="preserve">
+    <value>Bekijk installatiehandleiding</value>
+  </data>
+  <data name="SelectJsonFile" xml:space="preserve">
+    <value>JSON-bestand selecteren</value>
+  </data>
+  <data name="MaxFileSizeInfo" xml:space="preserve">
+    <value>Maximale bestandsgrootte: 10 MB</value>
+  </data>
+  <data name="SelectRecurringMeetingSubject" xml:space="preserve">
+    <value>Selecteer terugkerend vergaderonderwerp</value>
+  </data>
+  <data name="ChooseFromRecurringMeetings" xml:space="preserve">
+    <value>Kies uit terugkerende vergaderingen in het bestand</value>
+  </data>
+  <data name="SelectRecurringMeetingPlaceholder" xml:space="preserve">
+    <value>Selecteer een terugkerende vergadering...</value>
+  </data>
+  <data name="MeetingSubjectFilter" xml:space="preserve">
+    <value>Filter op vergaderonderwerp</value>
+  </data>
+  <data name="EnterMeetingTitleToFilter" xml:space="preserve">
+    <value>Voer vergadertitel in om te filteren...</value>
+  </data>
+  <data name="OnlyEventsContainingText" xml:space="preserve">
+    <value>Alleen afspraken met deze tekst worden opgenomen</value>
+  </data>
+  <data name="ProcessFile" xml:space="preserve">
+    <value>Bestand verwerken</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Verwerken...</value>
+  </data>
+
+  <!-- Home Page - Results Table -->
+  <data name="MonthlyBreakdown" xml:space="preserve">
+    <value>Maandelijks overzicht</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Exporteren naar Excel</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Maand</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Jaar</value>
+  </data>
+  <data name="TotalDays" xml:space="preserve">
+    <value>Totaal dagen</value>
+  </data>
+  <data name="Weekdays" xml:space="preserve">
+    <value>Werkdagen</value>
+  </data>
+  <data name="Saturdays" xml:space="preserve">
+    <value>Zaterdagen</value>
+  </data>
+  <data name="Sundays" xml:space="preserve">
+    <value>Zondagen</value>
+  </data>
+  <data name="Holidays" xml:space="preserve">
+    <value>Feestdagen</value>
+  </data>
+  <data name="HolidayDetails" xml:space="preserve">
+    <value>Feestdagdetails</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Totaal</value>
+  </data>
+  <data name="ShowingResultsForSubject" xml:space="preserve">
+    <value>Resultaten voor vergaderingen met onderwerp "{0}"</value>
+  </data>
+
+  <!-- Paystub Verification Section -->
+  <data name="VerifyPaystubData" xml:space="preserve">
+    <value>Loonstrookgegevens verifi&#235;ren</value>
+  </data>
+  <data name="AddAnotherMonth" xml:space="preserve">
+    <value>Nog een maand toevoegen</value>
+  </data>
+  <data name="VerifyPaystubInfo" xml:space="preserve">
+    <value>Controleer of uw loonstrookgegevens overeenkomen met de kalendergegevens. U kunt meerdere verificatiekaarten toevoegen om verschillende maanden tegelijk te controleren.</value>
+  </data>
+  <data name="SelectMonthToVerify" xml:space="preserve">
+    <value>Selecteer maand om te verifi&#235;ren</value>
+  </data>
+  <data name="SelectMonthPlaceholder" xml:space="preserve">
+    <value>-- Selecteer een maand --</value>
+  </data>
+  <data name="CalendarDataFor" xml:space="preserve">
+    <value>Kalendergegevens voor {0} {1}:</value>
+  </data>
+  <data name="EnterPaystubData" xml:space="preserve">
+    <value>Voer loonstrookgegevens in:</value>
+  </data>
+  <data name="WeekdaysPaid" xml:space="preserve">
+    <value>Betaalde werkdagen</value>
+  </data>
+  <data name="SaturdaysPaid" xml:space="preserve">
+    <value>Betaalde zaterdagen</value>
+  </data>
+  <data name="SundaysPaid" xml:space="preserve">
+    <value>Betaalde zondagen</value>
+  </data>
+  <data name="HolidaysPaid" xml:space="preserve">
+    <value>Betaalde feestdagen</value>
+  </data>
+  <data name="VerifyData" xml:space="preserve">
+    <value>Gegevens verifi&#235;ren</value>
+  </data>
+  <data name="AllDataMatches" xml:space="preserve">
+    <value>Alle gegevens komen overeen!</value>
+  </data>
+  <data name="PaystubDataMatchesCalendar" xml:space="preserve">
+    <value>Uw loonstrookgegevens komen overeen met de kalendergegevens.</value>
+  </data>
+  <data name="DiscrepanciesFound" xml:space="preserve">
+    <value>Afwijkingen gevonden:</value>
+  </data>
+  <data name="WeekdaysMatch" xml:space="preserve">
+    <value>Werkdagen komen overeen ({0})</value>
+  </data>
+  <data name="WeekdaysDiscrepancy" xml:space="preserve">
+    <value>Werkdagen: Kalender toont {0}, Loonstrook toont {1} (Verschil: {2})</value>
+  </data>
+  <data name="SaturdaysMatch" xml:space="preserve">
+    <value>Zaterdagen komen overeen ({0})</value>
+  </data>
+  <data name="SaturdaysDiscrepancy" xml:space="preserve">
+    <value>Zaterdagen: Kalender toont {0}, Loonstrook toont {1} (Verschil: {2})</value>
+  </data>
+  <data name="SundaysMatch" xml:space="preserve">
+    <value>Zondagen komen overeen ({0})</value>
+  </data>
+  <data name="SundaysDiscrepancy" xml:space="preserve">
+    <value>Zondagen: Kalender toont {0}, Loonstrook toont {1} (Verschil: {2})</value>
+  </data>
+  <data name="HolidaysMatch" xml:space="preserve">
+    <value>Feestdagen komen overeen ({0})</value>
+  </data>
+  <data name="HolidaysDiscrepancy" xml:space="preserve">
+    <value>Feestdagen: Kalender toont {0}, Loonstrook toont {1} (Verschil: {2})</value>
+  </data>
+  <data name="NoCalendarDataAvailable" xml:space="preserve">
+    <value>Geen kalendergegevens beschikbaar. Verwerk eerst een bestand.</value>
+  </data>
+
+  <!-- Authentication Page -->
+  <data name="Authentication" xml:space="preserve">
+    <value>Authenticatie</value>
+  </data>
+  <data name="SigningInWithMicrosoft" xml:space="preserve">
+    <value>Inloggen met Microsoft...</value>
+  </data>
+  <data name="PleaseWaitAuthentication" xml:space="preserve">
+    <value>Even geduld, we authenticeren u.</value>
+  </data>
+  <data name="CompletingSignIn" xml:space="preserve">
+    <value>Inloggen afronden...</value>
+  </data>
+  <data name="AlmostThere" xml:space="preserve">
+    <value>Bijna klaar!</value>
+  </data>
+  <data name="SigningOut" xml:space="preserve">
+    <value>Uitloggen...</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Even geduld...</value>
+  </data>
+  <data name="CompletingSignOut" xml:space="preserve">
+    <value>Uitloggen afronden...</value>
+  </data>
+  <data name="AuthenticationFailed" xml:space="preserve">
+    <value>Authenticatie mislukt</value>
+  </data>
+  <data name="AuthFailedExplanation" xml:space="preserve">
+    <value>We konden u niet inloggen. Dit kan komen door:</value>
+  </data>
+  <data name="InvalidOrExpiredCredentials" xml:space="preserve">
+    <value>Ongeldige of verlopen inloggegevens</value>
+  </data>
+  <data name="MissingPermissions" xml:space="preserve">
+    <value>Ontbrekende vereiste machtigingen (User.Read, Calendars.Read)</value>
+  </data>
+  <data name="AzureAdConfigIssues" xml:space="preserve">
+    <value>Azure AD app-registratieconfiguratieproblemen</value>
+  </data>
+  <data name="ReturnToHome" xml:space="preserve">
+    <value>Terug naar startpagina</value>
+  </data>
+  <data name="TryAgain" xml:space="preserve">
+    <value>Opnieuw proberen</value>
+  </data>
+  <data name="SignOutFailed" xml:space="preserve">
+    <value>Uitloggen mislukt</value>
+  </data>
+  <data name="SignOutFailedExplanation" xml:space="preserve">
+    <value>We konden het uitlogproces niet voltooien.</value>
+  </data>
+
+  <!-- Snackbar Messages -->
+  <data name="FileSizeExceeded" xml:space="preserve">
+    <value>Bestand overschrijdt de limiet van 10MB.</value>
+  </data>
+  <data name="PleaseSelectJsonFile" xml:space="preserve">
+    <value>Selecteer een JSON-bestand.</value>
+  </data>
+  <data name="ErrorReadingFile" xml:space="preserve">
+    <value>Fout bij het lezen van het bestand: {0}</value>
+  </data>
+  <data name="FileLoadedWithRecurring" xml:space="preserve">
+    <value>Bestand '{0}' succesvol geladen. {1} terugkerende vergaderonderwerp(en) gevonden. Selecteer er een en klik op Verwerken.</value>
+  </data>
+  <data name="FileLoadedEnterSubject" xml:space="preserve">
+    <value>Bestand '{0}' succesvol geladen. Voer een onderwerpfilter in en klik op Verwerken.</value>
+  </data>
+  <data name="NoFileContentToProcess" xml:space="preserve">
+    <value>Geen bestandsinhoud om te verwerken.</value>
+  </data>
+  <data name="NoEventsFoundMatchingSubject" xml:space="preserve">
+    <value>Geen afspraken gevonden met onderwerp '{0}' in het ge&#252;ploade bestand.</value>
+  </data>
+  <data name="NoMeetingDaysFoundAfterAnalysis" xml:space="preserve">
+    <value>Geen vergaderdagen gevonden na analyse.</value>
+  </data>
+  <data name="SuccessfullyAnalyzedEvents" xml:space="preserve">
+    <value>Succesvol {0} afspraken geanalyseerd over {1} unieke dagen.</value>
+  </data>
+  <data name="ErrorProcessingJsonFile" xml:space="preserve">
+    <value>Fout bij het verwerken van JSON-bestand: {0}</value>
+  </data>
+  <data name="NoEventsFoundInCalendar" xml:space="preserve">
+    <value>Geen afspraken gevonden met onderwerp '{0}' in uw kalender.</value>
+  </data>
+  <data name="SuccessfullyFoundEvents" xml:space="preserve">
+    <value>Succesvol {0} afspraken gevonden over {1} unieke dagen.</value>
+  </data>
+  <data name="ErrorSearchingMeetings" xml:space="preserve">
+    <value>Fout bij het zoeken naar vergaderingen: {0}</value>
+  </data>
+  <data name="NoDataToExport" xml:space="preserve">
+    <value>Geen gegevens om te exporteren.</value>
+  </data>
+  <data name="ExcelFileDownloaded" xml:space="preserve">
+    <value>Excel-bestand succesvol gedownload!</value>
+  </data>
+  <data name="ErrorExportingToExcel" xml:space="preserve">
+    <value>Fout bij het exporteren naar Excel: {0}</value>
+  </data>
+
+  <!-- Language Selector -->
+  <data name="Nederlands" xml:space="preserve">
+    <value>Nederlands</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+</root>

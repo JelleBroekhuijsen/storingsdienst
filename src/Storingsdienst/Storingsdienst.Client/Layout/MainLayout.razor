@@ -1,4 +1,6 @@
 @inherits LayoutComponentBase
+@inject ILocalizationService L
+@implements IDisposable
 
 <MudThemeProvider Theme="_theme" />
 <MudPopoverProvider />
@@ -10,20 +12,21 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
                        OnClick="@ToggleDrawer" />
         <MudIcon Icon="@Icons.Material.Filled.CalendarMonth" Class="ml-2" />
-        <MudText Typo="Typo.h6" Class="ml-2">Meeting Days Tracker</MudText>
+        <MudText Typo="Typo.h6" Class="ml-2">@L["AppTitle"]</MudText>
         <MudSpacer />
+        <LanguageSelector />
         <AuthorizeView>
             <Authorized>
                 <MudText Typo="Typo.body2" Class="mr-2 d-none d-sm-block">@context.User.Identity?.Name</MudText>
                 <MudButton Variant="Variant.Text" Color="Color.Inherit" Href="authentication/logout"
                            StartIcon="@Icons.Material.Filled.Logout">
-                    Sign Out
+                    @L["SignOut"]
                 </MudButton>
             </Authorized>
             <NotAuthorized>
                 <MudButton Variant="Variant.Text" Color="Color.Inherit" Href="authentication/login"
                            StartIcon="@Icons.Material.Filled.Login">
-                    Sign In
+                    @L["SignIn"]
                 </MudButton>
             </NotAuthorized>
         </AuthorizeView>
@@ -43,8 +46,8 @@
 </MudScrollToTop>
 
 <div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
+    @L["UnhandledError"]
+    <a href="" class="reload">@L["Reload"]</a>
     <a class="dismiss" aria-label="Dismiss error">
         <MudIcon Icon="@Icons.Material.Filled.Close" />
     </a>
@@ -97,5 +100,16 @@
         }
     };
 
+    protected override async Task OnInitializedAsync()
+    {
+        L.OnLanguageChanged += StateHasChanged;
+        await L.InitializeAsync();
+    }
+
     private void ToggleDrawer() => _drawerOpen = !_drawerOpen;
+
+    public void Dispose()
+    {
+        L.OnLanguageChanged -= StateHasChanged;
+    }
 }

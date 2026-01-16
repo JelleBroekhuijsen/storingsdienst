@@ -1,0 +1,50 @@
+@inject ILocalizationService L
+@implements IDisposable
+
+<MudMenu Icon="@Icons.Material.Filled.Language"
+         Color="Color.Inherit"
+         Dense="true"
+         AnchorOrigin="Origin.BottomCenter"
+         TransformOrigin="Origin.TopCenter">
+    <MudMenuItem OnClick="@(() => SetLanguageAsync("nl"))">
+        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+            <span style="font-size: 1.2em;">@DutchFlag</span>
+            <MudText>@L["Nederlands"]</MudText>
+            @if (L.CurrentCulture == "nl")
+            {
+                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+            }
+        </MudStack>
+    </MudMenuItem>
+    <MudMenuItem OnClick="@(() => SetLanguageAsync("en"))">
+        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+            <span style="font-size: 1.2em;">@BritishFlag</span>
+            <MudText>@L["English"]</MudText>
+            @if (L.CurrentCulture == "en")
+            {
+                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+            }
+        </MudStack>
+    </MudMenuItem>
+</MudMenu>
+
+@code {
+    // Flag emoji constants (Unicode regional indicator symbols)
+    private const string DutchFlag = "\U0001F1F3\U0001F1F1";   // NL flag
+    private const string BritishFlag = "\U0001F1EC\U0001F1E7"; // GB flag
+
+    protected override void OnInitialized()
+    {
+        L.OnLanguageChanged += StateHasChanged;
+    }
+
+    private async Task SetLanguageAsync(string culture)
+    {
+        await L.SetLanguageAsync(culture);
+    }
+
+    public void Dispose()
+    {
+        L.OnLanguageChanged -= StateHasChanged;
+    }
+}

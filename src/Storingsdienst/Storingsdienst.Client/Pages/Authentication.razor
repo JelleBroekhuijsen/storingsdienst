@@ -1,15 +1,17 @@
 @page "/authentication/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject ILocalizationService L
+@implements IDisposable
 
-<PageTitle>Authentication</PageTitle>
+<PageTitle>@L["Authentication"]</PageTitle>
 
 <RemoteAuthenticatorView Action="@Action">
     <LoggingIn>
         <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center justify-center" Style="height: 100vh;">
             <MudStack AlignItems="AlignItems.Center" Spacing="3">
                 <MudProgressCircular Color="Color.Primary" Size="Size.Large" Indeterminate="true" />
-                <MudText Typo="Typo.h5">Signing in with Microsoft...</MudText>
-                <MudText Typo="Typo.body2" Class="mud-text-secondary">Please wait while we authenticate you.</MudText>
+                <MudText Typo="Typo.h5">@L["SigningInWithMicrosoft"]</MudText>
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">@L["PleaseWaitAuthentication"]</MudText>
             </MudStack>
         </MudContainer>
     </LoggingIn>
@@ -17,8 +19,8 @@
         <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center justify-center" Style="height: 100vh;">
             <MudStack AlignItems="AlignItems.Center" Spacing="3">
                 <MudProgressCircular Color="Color.Success" Size="Size.Large" Indeterminate="true" />
-                <MudText Typo="Typo.h5">Completing sign in...</MudText>
-                <MudText Typo="Typo.body2" Class="mud-text-secondary">Almost there!</MudText>
+                <MudText Typo="Typo.h5">@L["CompletingSignIn"]</MudText>
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">@L["AlmostThere"]</MudText>
             </MudStack>
         </MudContainer>
     </CompletingLoggingIn>
@@ -26,8 +28,8 @@
         <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center justify-center" Style="height: 100vh;">
             <MudStack AlignItems="AlignItems.Center" Spacing="3">
                 <MudProgressCircular Color="Color.Warning" Size="Size.Large" Indeterminate="true" />
-                <MudText Typo="Typo.h5">Signing out...</MudText>
-                <MudText Typo="Typo.body2" Class="mud-text-secondary">Please wait...</MudText>
+                <MudText Typo="Typo.h5">@L["SigningOut"]</MudText>
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">@L["PleaseWait"]</MudText>
             </MudStack>
         </MudContainer>
     </LogOut>
@@ -35,8 +37,8 @@
         <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center justify-center" Style="height: 100vh;">
             <MudStack AlignItems="AlignItems.Center" Spacing="3">
                 <MudProgressCircular Color="Color.Info" Size="Size.Large" Indeterminate="true" />
-                <MudText Typo="Typo.h5">Completing sign out...</MudText>
-                <MudText Typo="Typo.body2" Class="mud-text-secondary">Almost there!</MudText>
+                <MudText Typo="Typo.h5">@L["CompletingSignOut"]</MudText>
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">@L["AlmostThere"]</MudText>
             </MudStack>
         </MudContainer>
     </CompletingLogOut>
@@ -46,24 +48,24 @@
                 <MudStack Spacing="2">
                     <MudText Typo="Typo.h6">
                         <MudIcon Icon="@Icons.Material.Filled.Warning" Class="mr-2" />
-                        Authentication Failed
+                        @L["AuthenticationFailed"]
                     </MudText>
-                    <MudText Typo="Typo.body2">We couldn't sign you in. This could be due to:</MudText>
+                    <MudText Typo="Typo.body2">@L["AuthFailedExplanation"]</MudText>
                     <MudList T="string" Dense="true">
-                        <MudListItem>Invalid or expired credentials</MudListItem>
-                        <MudListItem>Missing required permissions (User.Read, Calendars.Read)</MudListItem>
-                        <MudListItem>Azure AD app registration configuration issues</MudListItem>
+                        <MudListItem>@L["InvalidOrExpiredCredentials"]</MudListItem>
+                        <MudListItem>@L["MissingPermissions"]</MudListItem>
+                        <MudListItem>@L["AzureAdConfigIssues"]</MudListItem>
                     </MudList>
                 </MudStack>
             </MudAlert>
             <MudStack Row="true" Spacing="2">
                 <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/"
                            StartIcon="@Icons.Material.Filled.Home">
-                    Return to Home
+                    @L["ReturnToHome"]
                 </MudButton>
                 <MudButton Variant="Variant.Outlined" Color="Color.Primary" Href="authentication/login"
                            StartIcon="@Icons.Material.Filled.Refresh">
-                    Try Again
+                    @L["TryAgain"]
                 </MudButton>
             </MudStack>
         </MudContainer>
@@ -74,14 +76,14 @@
                 <MudStack Spacing="2">
                     <MudText Typo="Typo.h6">
                         <MudIcon Icon="@Icons.Material.Filled.Warning" Class="mr-2" />
-                        Sign Out Failed
+                        @L["SignOutFailed"]
                     </MudText>
-                    <MudText Typo="Typo.body2">We couldn't complete the sign out process.</MudText>
+                    <MudText Typo="Typo.body2">@L["SignOutFailedExplanation"]</MudText>
                 </MudStack>
             </MudAlert>
             <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/"
                        StartIcon="@Icons.Material.Filled.Home">
-                Return to Home
+                @L["ReturnToHome"]
             </MudButton>
         </MudContainer>
     </LogOutFailed>
@@ -90,4 +92,14 @@
 @code {
     [Parameter]
     public string? Action { get; set; }
+
+    protected override void OnInitialized()
+    {
+        L.OnLanguageChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        L.OnLanguageChanged -= StateHasChanged;
+    }
 }
