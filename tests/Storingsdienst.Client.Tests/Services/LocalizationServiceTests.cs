@@ -10,7 +10,7 @@ using System.Net;
 
 namespace Storingsdienst.Client.Tests.Services;
 
-public class LocalizationServiceTests
+public class LocalizationServiceTests : IDisposable
 {
     private readonly Mock<IStringLocalizerFactory> _mockLocalizerFactory;
     private readonly Mock<IStringLocalizer> _mockLocalizer;
@@ -48,6 +48,11 @@ public class LocalizationServiceTests
         };
 
         _sut = new LocalizationService(_mockLocalizerFactory.Object, _mockJsRuntime.Object, _mockHttpClient);
+    }
+
+    public void Dispose()
+    {
+        _mockHttpClient?.Dispose();
     }
 
     [Fact]
