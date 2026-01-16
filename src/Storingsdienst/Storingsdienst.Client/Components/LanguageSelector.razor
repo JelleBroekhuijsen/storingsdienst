@@ -1,0 +1,56 @@
+@inject ILocalizationService L
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JS
+@implements IDisposable
+
+<MudButtonGroup OverrideStyles="false">
+    <MudIconButton OnClick="@(async () => await SetLanguage("nl"))"
+                   Title="Nederlands"
+                   Size="Size.Small"
+                   Style="@GetButtonStyle("nl")">
+        <span style="font-size: 1.4em;">@DutchFlag</span>
+    </MudIconButton>
+    <MudIconButton OnClick="@(async () => await SetLanguage("en"))"
+                   Title="English"
+                   Size="Size.Small"
+                   Style="@GetButtonStyle("en")">
+        <span style="font-size: 1.4em;">@BritishFlag</span>
+    </MudIconButton>
+</MudButtonGroup>
+
+@code {
+    // Flag emoji constants (Unicode regional indicator symbols)
+    private const string DutchFlag = "\U0001F1F3\U0001F1F1";   // NL flag
+    private const string BritishFlag = "\U0001F1FA\U0001F1F0"; // UK flag
+
+    protected override void OnInitialized()
+    {
+        L.OnLanguageChanged += OnLanguageChanged;
+    }
+
+    private void OnLanguageChanged()
+    {
+        // Use InvokeAsync to ensure StateHasChanged is called on the UI thread
+        InvokeAsync(StateHasChanged);
+    }
+
+    private string GetButtonStyle(string culture)
+    {
+        var isSelected = L.CurrentCulture == culture;
+        return isSelected
+            ? "color: white; opacity: 1; border-bottom: 2px solid white;"
+            : "color: white; opacity: 0.6;";
+    }
+
+    private async Task SetLanguage(string culture)
+    {
+        // Use the LocalizationService to change language without page reload
+        // This updates the culture, persists to localStorage, and triggers OnLanguageChanged event
+        await L.SetLanguageAsync(culture);
+    }
+
+    public void Dispose()
+    {
+        L.OnLanguageChanged -= OnLanguageChanged;
+    }
+}

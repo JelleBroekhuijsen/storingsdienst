@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="0" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- App Title and Layout -->
+  <data name="AppTitle" xml:space="preserve">
+    <value>Vergaderdagen Tracker</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Inloggen</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Uitloggen</value>
+  </data>
+  <data name="UnhandledError" xml:space="preserve">
+    <value>Er is een onverwachte fout opgetreden.</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Herladen</value>
+  </data>
+
+  <!-- Navigation Menu -->
+  <data name="Home" xml:space="preserve">
+    <value>Startpagina</value>
+  </data>
+  <data name="PowerAutomateGuide" xml:space="preserve">
+    <value>Power Automate Handleiding</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+
+  <!-- Home Page - Main Heading -->
+  <data name="M365MeetingDaysTracker" xml:space="preserve">
+    <value>M365 Vergaderdagen Tracker</value>
+  </data>
+  <data name="TrackAndAnalyzeMeetings" xml:space="preserve">
+    <value>Volg en analyseer vergaderingen van uw Microsoft 365 kalender. Kies tussen directe integratie of JSON-bestandsimport.</value>
+  </data>
+
+  <!-- Home Page - Step 1: Data Source Selection -->
+  <data name="Step1SelectDataSource" xml:space="preserve">
+    <value>Stap 1: Selecteer gegevensbron</value>
+  </data>
+  <data name="MicrosoftGraphApi" xml:space="preserve">
+    <value>Microsoft Graph API</value>
+  </data>
+  <data name="RequiresAzureAd" xml:space="preserve">
+    <value>Vereist Azure AD app-registratie</value>
+  </data>
+  <data name="JsonFileUpload" xml:space="preserve">
+    <value>JSON-bestand uploaden</value>
+  </data>
+  <data name="GeneratedByPowerAutomate" xml:space="preserve">
+    <value>Gegenereerd door Power Automate</value>
+  </data>
+
+  <!-- Home Page - Step 2: Graph API Mode -->
+  <data name="Step2SearchMeetingsGraphApi" xml:space="preserve">
+    <value>Stap 2: Vergaderingen zoeken (Graph API)</value>
+  </data>
+  <data name="GraphApiAuthInfo" xml:space="preserve">
+    <value>Deze modus vereist authenticatie met uw Microsoft 365 account. Gebruikers van elke organisatie kunnen inloggen en toestemming geven om hun kalender te lezen.</value>
+  </data>
+  <data name="MeetingSubject" xml:space="preserve">
+    <value>Onderwerp vergadering</value>
+  </data>
+  <data name="EnterMeetingTitleToSearch" xml:space="preserve">
+    <value>Voer vergadertitel in om te zoeken...</value>
+  </data>
+  <data name="SearchingFromTo" xml:space="preserve">
+    <value>Zoeken van {0} tot {1}</value>
+  </data>
+  <data name="SearchMeetings" xml:space="preserve">
+    <value>Vergaderingen zoeken</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Zoeken...</value>
+  </data>
+  <data name="PleaseSignInToSearchCalendar" xml:space="preserve">
+    <value>Log in om uw kalender te doorzoeken.</value>
+  </data>
+  <data name="SignInWithMicrosoft" xml:space="preserve">
+    <value>Inloggen met Microsoft</value>
+  </data>
+
+  <!-- Home Page - Step 2: JSON Import Mode -->
+  <data name="Step2UploadJsonFile" xml:space="preserve">
+    <value>Stap 2: JSON-bestand uploaden</value>
+  </data>
+  <data name="UploadJsonInfo" xml:space="preserve">
+    <value>Upload een JSON-bestand gegenereerd door uw Power Automate flow.</value>
+  </data>
+  <data name="ViewSetupGuide" xml:space="preserve">
+    <value>Bekijk installatiehandleiding</value>
+  </data>
+  <data name="SelectJsonFile" xml:space="preserve">
+    <value>JSON-bestand selecteren</value>
+  </data>
+  <data name="MaxFileSizeInfo" xml:space="preserve">
+    <value>Maximale bestandsgrootte: 10 MB</value>
+  </data>
+  <data name="SelectRecurringMeetingSubject" xml:space="preserve">
+    <value>Selecteer terugkerend vergaderonderwerp</value>
+  </data>
+  <data name="ChooseFromRecurringMeetings" xml:space="preserve">
+    <value>Kies uit terugkerende vergaderingen in het bestand</value>
+  </data>
+  <data name="SelectRecurringMeetingPlaceholder" xml:space="preserve">
+    <value>Selecteer een terugkerende vergadering...</value>
+  </data>
+  <data name="MeetingSubjectFilter" xml:space="preserve">
+    <value>Filter op vergaderonderwerp</value>
+  </data>
+  <data name="EnterMeetingTitleToFilter" xml:space="preserve">
+    <value>Voer vergadertitel in om te filteren...</value>
+  </data>
+  <data name="OnlyEventsContainingText" xml:space="preserve">
+    <value>Alleen afspraken met deze tekst worden opgenomen</value>
+  </data>
+  <data name="ProcessFile" xml:space="preserve">
+    <value>Bestand verwerken</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Verwerken...</value>
+  </data>
+
+  <!-- Home Page - Results Table -->
+  <data name="MonthlyBreakdown" xml:space="preserve">
+    <value>Maandelijks overzicht</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Exporteren naar Excel</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Maand</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Jaar</value>
+  </data>
+  <data name="TotalDays" xml:space="preserve">
+    <value>Totaal dagen</value>
+  </data>
+  <data name="Weekdays" xml:space="preserve">
+    <value>Werkdagen</value>
+  </data>
+  <data name="Saturdays" xml:space="preserve">
+    <value>Zaterdagen</value>
+  </data>
+  <data name="Sundays" xml:space="preserve">
+    <value>Zondagen</value>
+  </data>
+  <data name="Holidays" xml:space="preserve">
+    <value>Feestdagen</value>
+  </data>
+  <data name="HolidayDetails" xml:space="preserve">
+    <value>Feestdagdetails</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Totaal</value>
+  </data>
+  <data name="ShowingResultsForSubject" xml:space="preserve">
+    <value>Resultaten voor vergaderingen met onderwerp "{0}"</value>
+  </data>
+
+  <!-- Paystub Verification Section -->
+  <data name="VerifyPaystubData" xml:space="preserve">
+    <value>Loonstrookgegevens verifiëren</value>
+  </data>
+  <data name="AddAnotherMonth" xml:space="preserve">
+    <value>Nog een maand toevoegen</value>
+  </data>
+  <data name="VerifyPaystubInfo" xml:space="preserve">
+    <value>Controleer of uw loonstrookgegevens overeenkomen met de kalendergegevens. U kunt meerdere verificatiekaarten toevoegen om verschillende maanden tegelijk te controleren.</value>
+  </data>
+  <data name="SelectMonthToVerify" xml:space="preserve">
+    <value>Selecteer maand om te verifiëren</value>
+  </data>
+  <data name="SelectMonthPlaceholder" xml:space="preserve">
+    <value>-- Selecteer een maand --</value>
+  </data>
+  <data name="CalendarDataFor" xml:space="preserve">
+    <value>Kalendergegevens voor {0} {1}:</value>
+  </data>
+  <data name="EnterPaystubData" xml:space="preserve">
+    <value>Voer loonstrookgegevens in:</value>
+  </data>
+  <data name="WeekdaysPaid" xml:space="preserve">
+    <value>Betaalde werkdagen</value>
+  </data>
+  <data name="SaturdaysPaid" xml:space="preserve">
+    <value>Betaalde zaterdagen</value>
+  </data>
+  <data name="SundaysPaid" xml:space="preserve">
+    <value>Betaalde zondagen</value>
+  </data>
+  <data name="HolidaysPaid" xml:space="preserve">
+    <value>Betaalde feestdagen</value>
+  </data>
+  <data name="VerifyData" xml:space="preserve">
+    <value>Gegevens verifiëren</value>
+  </data>
+  <data name="AllDataMatches" xml:space="preserve">
+    <value>Alle gegevens komen overeen!</value>
+  </data>
+  <data name="PaystubDataMatchesCalendar" xml:space="preserve">
+    <value>Uw loonstrookgegevens komen overeen met de kalendergegevens.</value>
+  </data>
+  <data name="DiscrepanciesFound" xml:space="preserve">
+    <value>Afwijkingen gevonden:</value>
+  </data>
+  <data name="WeekdaysMatch" xml:space="preserve">
+    <value>Werkdagen komen overeen ({0})</value>
+  </data>
+  <data name="WeekdaysDiscrepancy" xml:space="preserve">
+    <value>Werkdagen: Kalender toont {0}, Loonstrook toont {1} (Verschil: {2})</value>
+  </data>
+  <data name="SaturdaysMatch" xml:space="preserve">
+    <value>Zaterdagen komen overeen ({0})</value>
+  </data>
+  <data name="SaturdaysDiscrepancy" xml:space="preserve">
+    <value>Zaterdagen: Kalender toont {0}, Loonstrook toont {1} (Verschil: {2})</value>
+  </data>
+  <data name="SundaysMatch" xml:space="preserve">
+    <value>Zondagen komen overeen ({0})</value>
+  </data>
+  <data name="SundaysDiscrepancy" xml:space="preserve">
+    <value>Zondagen: Kalender toont {0}, Loonstrook toont {1} (Verschil: {2})</value>
+  </data>
+  <data name="HolidaysMatch" xml:space="preserve">
+    <value>Feestdagen komen overeen ({0})</value>
+  </data>
+  <data name="HolidaysDiscrepancy" xml:space="preserve">
+    <value>Feestdagen: Kalender toont {0}, Loonstrook toont {1} (Verschil: {2})</value>
+  </data>
+  <data name="NoCalendarDataAvailable" xml:space="preserve">
+    <value>Geen kalendergegevens beschikbaar. Verwerk eerst een bestand.</value>
+  </data>
+
+  <!-- Authentication Page -->
+  <data name="Authentication" xml:space="preserve">
+    <value>Authenticatie</value>
+  </data>
+  <data name="SigningInWithMicrosoft" xml:space="preserve">
+    <value>Inloggen met Microsoft...</value>
+  </data>
+  <data name="PleaseWaitAuthentication" xml:space="preserve">
+    <value>Even geduld, we authenticeren u.</value>
+  </data>
+  <data name="CompletingSignIn" xml:space="preserve">
+    <value>Inloggen afronden...</value>
+  </data>
+  <data name="AlmostThere" xml:space="preserve">
+    <value>Bijna klaar!</value>
+  </data>
+  <data name="SigningOut" xml:space="preserve">
+    <value>Uitloggen...</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Even geduld...</value>
+  </data>
+  <data name="CompletingSignOut" xml:space="preserve">
+    <value>Uitloggen afronden...</value>
+  </data>
+  <data name="AuthenticationFailed" xml:space="preserve">
+    <value>Authenticatie mislukt</value>
+  </data>
+  <data name="AuthFailedExplanation" xml:space="preserve">
+    <value>We konden u niet inloggen. Dit kan komen door:</value>
+  </data>
+  <data name="InvalidOrExpiredCredentials" xml:space="preserve">
+    <value>Ongeldige of verlopen inloggegevens</value>
+  </data>
+  <data name="MissingPermissions" xml:space="preserve">
+    <value>Ontbrekende vereiste machtigingen (User.Read, Calendars.Read)</value>
+  </data>
+  <data name="AzureAdConfigIssues" xml:space="preserve">
+    <value>Azure AD app-registratieconfiguratieproblemen</value>
+  </data>
+  <data name="ReturnToHome" xml:space="preserve">
+    <value>Terug naar startpagina</value>
+  </data>
+  <data name="TryAgain" xml:space="preserve">
+    <value>Opnieuw proberen</value>
+  </data>
+  <data name="SignOutFailed" xml:space="preserve">
+    <value>Uitloggen mislukt</value>
+  </data>
+  <data name="SignOutFailedExplanation" xml:space="preserve">
+    <value>We konden het uitlogproces niet voltooien.</value>
+  </data>
+
+  <!-- Snackbar Messages -->
+  <data name="FileSizeExceeded" xml:space="preserve">
+    <value>Bestand overschrijdt de limiet van 10MB.</value>
+  </data>
+  <data name="PleaseSelectJsonFile" xml:space="preserve">
+    <value>Selecteer een JSON-bestand.</value>
+  </data>
+  <data name="ErrorReadingFile" xml:space="preserve">
+    <value>Fout bij het lezen van het bestand: {0}</value>
+  </data>
+  <data name="FileLoadedWithRecurring" xml:space="preserve">
+    <value>Bestand '{0}' succesvol geladen. {1} terugkerende vergaderonderwerp(en) gevonden. Selecteer er een en klik op Verwerken.</value>
+  </data>
+  <data name="FileLoadedEnterSubject" xml:space="preserve">
+    <value>Bestand '{0}' succesvol geladen. Voer een onderwerpfilter in en klik op Verwerken.</value>
+  </data>
+  <data name="NoFileContentToProcess" xml:space="preserve">
+    <value>Geen bestandsinhoud om te verwerken.</value>
+  </data>
+  <data name="NoEventsFoundMatchingSubject" xml:space="preserve">
+    <value>Geen afspraken gevonden met onderwerp '{0}' in het geüploade bestand.</value>
+  </data>
+  <data name="NoMeetingDaysFoundAfterAnalysis" xml:space="preserve">
+    <value>Geen vergaderdagen gevonden na analyse.</value>
+  </data>
+  <data name="SuccessfullyAnalyzedEvents" xml:space="preserve">
+    <value>Succesvol {0} afspraken geanalyseerd over {1} unieke dagen.</value>
+  </data>
+  <data name="ErrorProcessingJsonFile" xml:space="preserve">
+    <value>Fout bij het verwerken van JSON-bestand: {0}</value>
+  </data>
+  <data name="NoEventsFoundInCalendar" xml:space="preserve">
+    <value>Geen afspraken gevonden met onderwerp '{0}' in uw kalender.</value>
+  </data>
+  <data name="SuccessfullyFoundEvents" xml:space="preserve">
+    <value>Succesvol {0} afspraken gevonden over {1} unieke dagen.</value>
+  </data>
+  <data name="ErrorSearchingMeetings" xml:space="preserve">
+    <value>Fout bij het zoeken naar vergaderingen: {0}</value>
+  </data>
+  <data name="NoDataToExport" xml:space="preserve">
+    <value>Geen gegevens om te exporteren.</value>
+  </data>
+  <data name="ExcelFileDownloaded" xml:space="preserve">
+    <value>Excel-bestand succesvol gedownload!</value>
+  </data>
+  <data name="ErrorExportingToExcel" xml:space="preserve">
+    <value>Fout bij het exporteren naar Excel: {0}</value>
+  </data>
+
+  <!-- Language Selector -->
+  <data name="Nederlands" xml:space="preserve">
+    <value>Nederlands</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+
+  <!-- Power Automate Guide -->
+  <data name="PowerAutomateSetupGuide" xml:space="preserve">
+    <value>Power Automate Installatiehandleiding</value>
+  </data>
+  <data name="ExportM365CalendarToJson" xml:space="preserve">
+    <value>Exporteer uw M365 kalenderafspraken naar JSON in 8 eenvoudige stappen</value>
+  </data>
+  <data name="StepsCompleted" xml:space="preserve">
+    <value>{0} van 8 stappen voltooid</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Voltooid</value>
+  </data>
+  <data name="Setup" xml:space="preserve">
+    <value>Instellen</value>
+  </data>
+  <data name="Configure" xml:space="preserve">
+    <value>Configureren</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Uitvoer</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>minuten</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>minuut</value>
+  </data>
+
+  <!-- Step 1 -->
+  <data name="GuideStep1Title" xml:space="preserve">
+    <value>Stap 1: Nieuwe Power Automate Flow aanmaken</value>
+  </data>
+  <data name="GuideStep1_GoTo" xml:space="preserve">
+    <value>Ga naar</value>
+  </data>
+  <data name="GuideStep1_ClickCreate" xml:space="preserve">
+    <value>Klik op Maken en daarna op Directe cloud-flow</value>
+  </data>
+  <data name="GuideStep1_EnterName" xml:space="preserve">
+    <value>Voer naam in:</value>
+  </data>
+  <data name="GuideStep1_FlowName" xml:space="preserve">
+    <value>Kalenderafspraken naar JSON exporteren</value>
+  </data>
+  <data name="GuideStep1_SelectTrigger" xml:space="preserve">
+    <value>Selecteer trigger: Handmatig een flow starten</value>
+  </data>
+  <data name="GuideStep1_ClickCreateBtn" xml:space="preserve">
+    <value>Klik op Maken</value>
+  </data>
+  <data name="GuideStep1_Tip" xml:space="preserve">
+    <value>Tip: Zorg ervoor dat u bent ingelogd met uw Microsoft 365 werkaccount voordat u begint.</value>
+  </data>
+
+  <!-- Step 2 -->
+  <data name="GuideStep2Title" xml:space="preserve">
+    <value>Stap 2: Invoerparameters toevoegen</value>
+  </data>
+  <data name="GuideStep2_AddInput" xml:space="preserve">
+    <value>Klik in de handmatige trigger op Invoer toevoegen</value>
+  </data>
+  <data name="GuideStep2_SelectText" xml:space="preserve">
+    <value>Selecteer Tekst</value>
+  </data>
+  <data name="GuideStep2_InputName" xml:space="preserve">
+    <value>Invoernaam:</value>
+  </data>
+  <data name="GuideStep2_SubjectFilter" xml:space="preserve">
+    <value>Onderwerpfilter</value>
+  </data>
+  <data name="GuideStep2_MarkRequired" xml:space="preserve">
+    <value>Markeer als Vereist</value>
+  </data>
+
+  <!-- Step 3 -->
+  <data name="GuideStep3Title" xml:space="preserve">
+    <value>Stap 3: Kalenderafspraken ophalen</value>
+  </data>
+  <data name="GuideStep3_NewStep" xml:space="preserve">
+    <value>Klik op + Nieuwe stap</value>
+  </data>
+  <data name="GuideStep3_SearchOutlook" xml:space="preserve">
+    <value>Zoek naar Office 365 Outlook</value>
+  </data>
+  <data name="GuideStep3_ChooseAction" xml:space="preserve">
+    <value>Kies: Kalenderweergave van gebeurtenissen ophalen (V3)</value>
+  </data>
+  <data name="GuideStep3_ConfigureParams" xml:space="preserve">
+    <value>Parameters configureren:</value>
+  </data>
+  <data name="GuideStep3_CalendarId" xml:space="preserve">
+    <value>Kalender-id:</value>
+  </data>
+  <data name="GuideStep3_StartTime" xml:space="preserve">
+    <value>Begintijd:</value>
+  </data>
+  <data name="GuideStep3_EndTime" xml:space="preserve">
+    <value>Eindtijd:</value>
+  </data>
+  <data name="GuideStep3_TimeZone" xml:space="preserve">
+    <value>Tijdzone:</value>
+  </data>
+  <data name="GuideStep3_TopCount" xml:space="preserve">
+    <value>Maximum aantal:</value>
+  </data>
+
+  <!-- Step 4 -->
+  <data name="GuideStep4Title" xml:space="preserve">
+    <value>Stap 4: Afspraken filteren op onderwerp</value>
+  </data>
+  <data name="GuideStep4_SearchData" xml:space="preserve">
+    <value>Zoek en selecteer Gegevensbewerking</value>
+  </data>
+  <data name="GuideStep4_ChooseFilter" xml:space="preserve">
+    <value>Kies Matrix filteren</value>
+  </data>
+  <data name="GuideStep4_FromField" xml:space="preserve">
+    <value>Van: Klik in het veld en selecteer "value" uit de dynamische inhoud</value>
+  </data>
+  <data name="GuideStep4_ConfigureCondition" xml:space="preserve">
+    <value>Voorwaarde configureren:</value>
+  </data>
+  <data name="GuideStep4_AdvancedMode" xml:space="preserve">
+    <value>Klik op Bewerken in geavanceerde modus en plak:</value>
+  </data>
+
+  <!-- Step 5 -->
+  <data name="GuideStep5Title" xml:space="preserve">
+    <value>Stap 5: Omzetten naar gewenst JSON-formaat</value>
+  </data>
+  <data name="GuideStep5_SelectAction" xml:space="preserve">
+    <value>Selecteer Gegevensbewerking en daarna Selecteren</value>
+  </data>
+  <data name="GuideStep5_FromOutput" xml:space="preserve">
+    <value>Van: Uitvoer van de Matrix filteren actie</value>
+  </data>
+  <data name="GuideStep5_ClickMap" xml:space="preserve">
+    <value>Klik op Toewijzen en voeg deze velden toe:</value>
+  </data>
+  <data name="GuideStep5_FieldMappings" xml:space="preserve">
+    <value>Veldtoewijzingen:</value>
+  </data>
+  <data name="GuideStep5_SwitchToArray" xml:space="preserve">
+    <value>Klik op "Overschakelen naar volledige matrix invoeren" en voer in:</value>
+  </data>
+
+  <!-- Step 6 -->
+  <data name="GuideStep6Title" xml:space="preserve">
+    <value>Stap 6: JSON-wrapper maken</value>
+  </data>
+  <data name="GuideStep6_SelectCompose" xml:space="preserve">
+    <value>Selecteer Gegevensbewerking en daarna Opstellen</value>
+  </data>
+  <data name="GuideStep6_InputsField" xml:space="preserve">
+    <value>Schakel in het veld Invoer over naar codeweergave en plak:</value>
+  </data>
+
+  <!-- Step 7 -->
+  <data name="GuideStep7Title" xml:space="preserve">
+    <value>Stap 7: Opslaan naar OneDrive</value>
+  </data>
+  <data name="GuideStep7_SearchOneDrive" xml:space="preserve">
+    <value>Zoek en selecteer OneDrive voor Bedrijven</value>
+  </data>
+  <data name="GuideStep7_ChooseCreate" xml:space="preserve">
+    <value>Kies Bestand maken</value>
+  </data>
+  <data name="GuideStep7_ConfigureFile" xml:space="preserve">
+    <value>Bestandsinstellingen configureren:</value>
+  </data>
+  <data name="GuideStep7_FolderPath" xml:space="preserve">
+    <value>Mappad:</value>
+  </data>
+  <data name="GuideStep7_FileName" xml:space="preserve">
+    <value>Bestandsnaam:</value>
+  </data>
+  <data name="GuideStep7_FileContent" xml:space="preserve">
+    <value>Bestandsinhoud: Selecteer "Uitvoer" van de Opstellen stap</value>
+  </data>
+  <data name="GuideStep7_CreateFolder" xml:space="preserve">
+    <value>Let op: Maak de map /Documents/CalendarExports aan in OneDrive voordat u de flow uitvoert.</value>
+  </data>
+  <data name="GuideStep7_SharePointAlt" xml:space="preserve">
+    <value>Alternatief: U kunt ook SharePoint gebruiken in plaats van OneDrive door "SharePoint" - "Bestand maken" te selecteren.</value>
+  </data>
+
+  <!-- Step 8 -->
+  <data name="GuideStep8Title" xml:space="preserve">
+    <value>Stap 8: Testen &amp; Exporteren</value>
+  </data>
+  <data name="GuideStep8_RunningFlow" xml:space="preserve">
+    <value>Uw flow uitvoeren:</value>
+  </data>
+  <data name="GuideStep8_ClickMyFlows" xml:space="preserve">
+    <value>Klik op Mijn flows</value>
+  </data>
+  <data name="GuideStep8_FindFlow" xml:space="preserve">
+    <value>Zoek uw flow en klik op Uitvoeren</value>
+  </data>
+  <data name="GuideStep8_EnterSubject" xml:space="preserve">
+    <value>Voer het vergaderonderwerp in dat u wilt filteren (bijv. "Project Standup")</value>
+  </data>
+  <data name="GuideStep8_ClickRunFlow" xml:space="preserve">
+    <value>Klik op Flow uitvoeren</value>
+  </data>
+  <data name="GuideStep8_GoToOneDrive" xml:space="preserve">
+    <value>Ga naar OneDrive - Documenten - CalendarExports</value>
+  </data>
+  <data name="GuideStep8_DownloadJson" xml:space="preserve">
+    <value>Download het nieuwste JSON-bestand</value>
+  </data>
+  <data name="GuideStep8_UploadToApp" xml:space="preserve">
+    <value>Upload het naar de Storingsdienst webapplicatie</value>
+  </data>
+  <data name="GuideStep8_ExpectedFormat" xml:space="preserve">
+    <value>Verwacht JSON-uitvoerformaat:</value>
+  </data>
+  <data name="GuideStep8_Congratulations" xml:space="preserve">
+    <value>Gefeliciteerd!</value>
+  </data>
+  <data name="GuideStep8_FlowComplete" xml:space="preserve">
+    <value>Uw Power Automate flow is nu voltooid. U kunt deze op elk moment uitvoeren om uw kalenderafspraken naar JSON-formaat te exporteren.</value>
+  </data>
+  <data name="GuideStep8_ReturnToHome" xml:space="preserve">
+    <value>Terug naar startpagina &amp; JSON uploaden</value>
+  </data>
+
+  <!-- Troubleshooting Section -->
+  <data name="Troubleshooting" xml:space="preserve">
+    <value>Probleemoplossing</value>
+  </data>
+  <data name="Troubleshoot_Unauthorized" xml:space="preserve">
+    <value>Flow mislukt met "Niet geautoriseerd"</value>
+  </data>
+  <data name="Troubleshoot_Unauthorized1" xml:space="preserve">
+    <value>Zorg ervoor dat u de Office 365 Outlook en OneDrive verbindingen hebt geautoriseerd</value>
+  </data>
+  <data name="Troubleshoot_Unauthorized2" xml:space="preserve">
+    <value>Ga naar Verbindingen en verifieer opnieuw indien nodig</value>
+  </data>
+  <data name="Troubleshoot_NoEvents" xml:space="preserve">
+    <value>Geen afspraken in de uitvoer</value>
+  </data>
+  <data name="Troubleshoot_NoEvents1" xml:space="preserve">
+    <value>Controleer of uw onderwerpfilter overeenkomt met werkelijke vergadertitels (hoofdlettergevoelig!)</value>
+  </data>
+  <data name="Troubleshoot_NoEvents2" xml:space="preserve">
+    <value>Controleer of er vergaderingen bestaan in het afgelopen jaar</value>
+  </data>
+  <data name="Troubleshoot_NoEvents3" xml:space="preserve">
+    <value>Probeer een gedeeltelijke overeenkomst (bijv. "Standup" in plaats van "Project Standup Meeting")</value>
+  </data>
+  <data name="Troubleshoot_NoFile" xml:space="preserve">
+    <value>JSON-bestand niet gevonden in OneDrive</value>
+  </data>
+  <data name="Troubleshoot_NoFile1" xml:space="preserve">
+    <value>Zorg ervoor dat de map /Documents/CalendarExports bestaat</value>
+  </data>
+  <data name="Troubleshoot_NoFile2" xml:space="preserve">
+    <value>Controleer de uitvoeringsgeschiedenis van de flow op fouten</value>
+  </data>
+  <data name="Troubleshoot_NoFile3" xml:space="preserve">
+    <value>Controleer of de OneDrive-verbinding is geautoriseerd</value>
+  </data>
+  <data name="Troubleshoot_InvalidJson" xml:space="preserve">
+    <value>Ongeldige JSON-fout in de app</value>
+  </data>
+  <data name="Troubleshoot_InvalidJson1" xml:space="preserve">
+    <value>Download en open het JSON-bestand in een teksteditor</value>
+  </data>
+  <data name="Troubleshoot_InvalidJson2" xml:space="preserve">
+    <value>Controleer of het overeenkomt met het verwachte formaat hierboven</value>
+  </data>
+  <data name="Troubleshoot_InvalidJson3" xml:space="preserve">
+    <value>Controleer op foutmeldingen in het bestand</value>
+  </data>
+
+  <!-- Security Section -->
+  <data name="SecurityAndPrivacy" xml:space="preserve">
+    <value>Beveiliging &amp; Privacy</value>
+  </data>
+  <data name="Security_RunsInTenant" xml:space="preserve">
+    <value>De flow draait volledig binnen uw Microsoft 365 tenant</value>
+  </data>
+  <data name="Security_NoExternalData" xml:space="preserve">
+    <value>Er worden geen gegevens naar externe services verstuurd</value>
+  </data>
+  <data name="Security_StoredInOneDrive" xml:space="preserve">
+    <value>JSON-bestanden worden opgeslagen in uw persoonlijke OneDrive</value>
+  </data>
+  <data name="Security_CanDelete" xml:space="preserve">
+    <value>U kunt JSON-bestanden verwijderen na het importeren in de app</value>
+  </data>
+</root>

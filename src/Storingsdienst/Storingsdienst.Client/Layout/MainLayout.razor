@@ -1,4 +1,6 @@
 @inherits LayoutComponentBase
+@inject ILocalizationService L
+@implements IDisposable
 
 <MudThemeProvider Theme="_theme" />
 <MudPopoverProvider />
@@ -10,20 +12,21 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
                        OnClick="@ToggleDrawer" />
         <MudIcon Icon="@Icons.Material.Filled.CalendarMonth" Class="ml-2" />
-        <MudText Typo="Typo.h6" Class="ml-2">Meeting Days Tracker</MudText>
+        <MudText Typo="Typo.h6" Class="ml-2">@L["AppTitle"]</MudText>
         <MudSpacer />
+        <LanguageSelector />
         <AuthorizeView>
             <Authorized>
                 <MudText Typo="Typo.body2" Class="mr-2 d-none d-sm-block">@context.User.Identity?.Name</MudText>
                 <MudButton Variant="Variant.Text" Color="Color.Inherit" Href="authentication/logout"
                            StartIcon="@Icons.Material.Filled.Logout">
-                    Sign Out
+                    @L["SignOut"]
                 </MudButton>
             </Authorized>
             <NotAuthorized>
                 <MudButton Variant="Variant.Text" Color="Color.Inherit" Href="authentication/login"
                            StartIcon="@Icons.Material.Filled.Login">
-                    Sign In
+                    @L["SignIn"]
                 </MudButton>
             </NotAuthorized>
         </AuthorizeView>
@@ -43,8 +46,8 @@
 </MudScrollToTop>
 
 <div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
+    @L["UnhandledError"]
+    <a href="" class="reload">@L["Reload"]</a>
     <a class="dismiss" aria-label="Dismiss error">
         <MudIcon Icon="@Icons.Material.Filled.Close" />
     </a>
@@ -97,5 +100,34 @@
         }
     };
 
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("[MainLayout] OnInitializedAsync started");
+        L.OnLanguageChanged += OnLanguageChanged;
+        Console.WriteLine("[MainLayout] Subscribed to OnLanguageChanged");
+        await L.InitializeAsync();
+        Console.WriteLine($"[MainLayout] InitializeAsync complete, CurrentCulture: {L.CurrentCulture}");
+        Console.WriteLine($"[MainLayout] AppTitle value: {L["AppTitle"]}");
+        // Force re-render after translations are loaded
+        StateHasChanged();
+    }
+
+    private void OnLanguageChanged()
+    {
+        Console.WriteLine($"[MainLayout] OnLanguageChanged called, CurrentCulture: {L.CurrentCulture}");
+        // Use InvokeAsync to ensure StateHasChanged is called on the UI thread
+        InvokeAsync(() =>
+        {
+            Console.WriteLine("[MainLayout] Calling StateHasChanged");
+            StateHasChanged();
+            Console.WriteLine("[MainLayout] StateHasChanged completed");
+        });
+    }
+
     private void ToggleDrawer() => _drawerOpen = !_drawerOpen;
+
+    public void Dispose()
+    {
+        L.OnLanguageChanged -= OnLanguageChanged;
+    }
 }

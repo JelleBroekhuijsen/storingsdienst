@@ -18,7 +18,15 @@
       "Bash(dotnet restore:*)",
       "mcp__playwright__browser_navigate",
       "mcp__playwright__browser_wait_for",
-      "mcp__playwright__browser_take_screenshot"
+      "mcp__playwright__browser_take_screenshot",
+      "Bash(cd /c/Repos/jll.io Consultancy/storingsdienst)",
+      "Bash(pwsh:*)",
+      "Bash(exit 0)",
+      "Bash(Start-Sleep -Seconds 10)",
+      "mcp__playwright__browser_run_code",
+      "mcp__playwright__browser_close",
+      "Bash(dotnet test:*)",
+      "Bash(if not exist \"c:\\\\Repos\\\\jll.io Consultancy\\\\storingsdienst\\\\src\\\\Storingsdienst\\\\Storingsdienst\\\\wwwroot\\\\locales\" mkdir \"c:\\\\Repos\\\\jll.io Consultancy\\\\storingsdienst\\\\src\\\\Storingsdienst\\\\Storingsdienst\\\\wwwroot\\\\locales\")"
     ],
     "additionalDirectories": [
       "c:\\Repos\\jll.io Consultancy\\storingsdienst"
