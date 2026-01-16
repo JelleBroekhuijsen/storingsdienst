@@ -348,7 +348,7 @@
     <value>Geen bestandsinhoud om te verwerken.</value>
   </data>
   <data name="NoEventsFoundMatchingSubject" xml:space="preserve">
-    <value>Geen afspraken gevonden met onderwerp '{0}' in het ge&#252;ploade bestand.</value>
+    <value>Geen afspraken gevonden met onderwerp '{0}' in het geüploade bestand.</value>
   </data>
   <data name="NoMeetingDaysFoundAfterAnalysis" xml:space="preserve">
     <value>Geen vergaderdagen gevonden na analyse.</value>
