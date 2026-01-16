@@ -203,7 +203,7 @@
 
   <!-- Paystub Verification Section -->
   <data name="VerifyPaystubData" xml:space="preserve">
-    <value>Loonstrookgegevens verifi&#235;ren</value>
+    <value>Loonstrookgegevens verifiëren</value>
   </data>
   <data name="AddAnotherMonth" xml:space="preserve">
     <value>Nog een maand toevoegen</value>
@@ -212,7 +212,7 @@
     <value>Controleer of uw loonstrookgegevens overeenkomen met de kalendergegevens. U kunt meerdere verificatiekaarten toevoegen om verschillende maanden tegelijk te controleren.</value>
   </data>
   <data name="SelectMonthToVerify" xml:space="preserve">
-    <value>Selecteer maand om te verifi&#235;ren</value>
+    <value>Selecteer maand om te verifiëren</value>
   </data>
   <data name="SelectMonthPlaceholder" xml:space="preserve">
     <value>-- Selecteer een maand --</value>
@@ -236,7 +236,7 @@
     <value>Betaalde feestdagen</value>
   </data>
   <data name="VerifyData" xml:space="preserve">
-    <value>Gegevens verifi&#235;ren</value>
+    <value>Gegevens verifiëren</value>
   </data>
   <data name="AllDataMatches" xml:space="preserve">
     <value>Alle gegevens komen overeen!</value>
