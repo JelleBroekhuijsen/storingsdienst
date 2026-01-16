@@ -2,6 +2,7 @@ using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
 using Storingsdienst.Client.Resources;
 using System.Globalization;
+using System.Resources;
 
 namespace Storingsdienst.Client.Services;
 
@@ -11,22 +12,37 @@ namespace Storingsdienst.Client.Services;
 /// </summary>
 public class LocalizationService : ILocalizationService
 {
-    private readonly IStringLocalizer<SharedResources> _localizer;
     private readonly IJSRuntime _jsRuntime;
+    private readonly ResourceManager _resourceManager;
     private string _currentCulture = "nl"; // Dutch is the default
+    private CultureInfo _currentCultureInfo;
 
     public event Action? OnLanguageChanged;
 
     public string CurrentCulture => _currentCulture;
 
-    public string this[string key] => _localizer[key];
+    public string this[string key]
+    {
+        get
+        {
+            // Use ResourceManager directly with explicit culture
+            var value = _resourceManager.GetString(key, _currentCultureInfo);
+            return value ?? key;
+        }
+    }
 
     public LocalizationService(
-        IStringLocalizer<SharedResources> localizer,
+        IStringLocalizerFactory localizerFactory,
         IJSRuntime jsRuntime)
     {
-        _localizer = localizer;
         _jsRuntime = jsRuntime;
+
+        // Get the ResourceManager from the SharedResources type
+        _resourceManager = new ResourceManager(
+            typeof(SharedResources).FullName!,
+            typeof(SharedResources).Assembly);
+
+        _currentCultureInfo = new CultureInfo(_currentCulture);
     }
 
     public async Task InitializeAsync()
@@ -62,6 +78,7 @@ public class LocalizationService : ILocalizationService
             return;
 
         _currentCulture = culture;
+        _currentCultureInfo = new CultureInfo(culture);
 
         var cultureInfo = new CultureInfo(culture);
         CultureInfo.DefaultThreadCurrentCulture = cultureInfo;

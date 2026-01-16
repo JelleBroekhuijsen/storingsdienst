@@ -10,15 +10,23 @@ namespace Storingsdienst.Client.Tests.Services;
 
 public class LocalizationServiceTests
 {
-    private readonly Mock<IStringLocalizer<SharedResources>> _mockLocalizer;
+    private readonly Mock<IStringLocalizerFactory> _mockLocalizerFactory;
+    private readonly Mock<IStringLocalizer> _mockLocalizer;
     private readonly Mock<IJSRuntime> _mockJsRuntime;
     private readonly LocalizationService _sut;
 
     public LocalizationServiceTests()
     {
-        _mockLocalizer = new Mock<IStringLocalizer<SharedResources>>();
+        _mockLocalizerFactory = new Mock<IStringLocalizerFactory>();
+        _mockLocalizer = new Mock<IStringLocalizer>();
         _mockJsRuntime = new Mock<IJSRuntime>();
-        _sut = new LocalizationService(_mockLocalizer.Object, _mockJsRuntime.Object);
+
+        // Setup factory to return the mock localizer
+        _mockLocalizerFactory
+            .Setup(f => f.Create(typeof(SharedResources)))
+            .Returns(_mockLocalizer.Object);
+
+        _sut = new LocalizationService(_mockLocalizerFactory.Object, _mockJsRuntime.Object);
     }
 
     [Fact]

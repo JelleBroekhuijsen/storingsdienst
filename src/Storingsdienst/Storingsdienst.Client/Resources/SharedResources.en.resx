@@ -385,4 +385,302 @@
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
+
+  <!-- Power Automate Guide -->
+  <data name="PowerAutomateSetupGuide" xml:space="preserve">
+    <value>Power Automate Setup Guide</value>
+  </data>
+  <data name="ExportM365CalendarToJson" xml:space="preserve">
+    <value>Export your M365 Calendar Meetings to JSON in 8 simple steps</value>
+  </data>
+  <data name="StepsCompleted" xml:space="preserve">
+    <value>{0} of 8 steps completed</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="Setup" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="Configure" xml:space="preserve">
+    <value>Configure</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>minute</value>
+  </data>
+
+  <!-- Step 1 -->
+  <data name="GuideStep1Title" xml:space="preserve">
+    <value>Step 1: Create New Power Automate Flow</value>
+  </data>
+  <data name="GuideStep1_GoTo" xml:space="preserve">
+    <value>Go to</value>
+  </data>
+  <data name="GuideStep1_ClickCreate" xml:space="preserve">
+    <value>Click Create then Instant cloud flow</value>
+  </data>
+  <data name="GuideStep1_EnterName" xml:space="preserve">
+    <value>Enter name:</value>
+  </data>
+  <data name="GuideStep1_FlowName" xml:space="preserve">
+    <value>Export Calendar Meetings to JSON</value>
+  </data>
+  <data name="GuideStep1_SelectTrigger" xml:space="preserve">
+    <value>Select trigger: Manually trigger a flow</value>
+  </data>
+  <data name="GuideStep1_ClickCreateBtn" xml:space="preserve">
+    <value>Click Create</value>
+  </data>
+  <data name="GuideStep1_Tip" xml:space="preserve">
+    <value>Tip: Make sure you're signed in with your Microsoft 365 work account before starting.</value>
+  </data>
+
+  <!-- Step 2 -->
+  <data name="GuideStep2Title" xml:space="preserve">
+    <value>Step 2: Add Input Parameters</value>
+  </data>
+  <data name="GuideStep2_AddInput" xml:space="preserve">
+    <value>In the manual trigger, click Add an input</value>
+  </data>
+  <data name="GuideStep2_SelectText" xml:space="preserve">
+    <value>Select Text</value>
+  </data>
+  <data name="GuideStep2_InputName" xml:space="preserve">
+    <value>Input name:</value>
+  </data>
+  <data name="GuideStep2_SubjectFilter" xml:space="preserve">
+    <value>Subject Filter</value>
+  </data>
+  <data name="GuideStep2_MarkRequired" xml:space="preserve">
+    <value>Mark as Required</value>
+  </data>
+
+  <!-- Step 3 -->
+  <data name="GuideStep3Title" xml:space="preserve">
+    <value>Step 3: List Calendar Events</value>
+  </data>
+  <data name="GuideStep3_NewStep" xml:space="preserve">
+    <value>Click + New step</value>
+  </data>
+  <data name="GuideStep3_SearchOutlook" xml:space="preserve">
+    <value>Search for Office 365 Outlook</value>
+  </data>
+  <data name="GuideStep3_ChooseAction" xml:space="preserve">
+    <value>Choose: Get calendar view of events (V3)</value>
+  </data>
+  <data name="GuideStep3_ConfigureParams" xml:space="preserve">
+    <value>Configure Parameters:</value>
+  </data>
+  <data name="GuideStep3_CalendarId" xml:space="preserve">
+    <value>Calendar id:</value>
+  </data>
+  <data name="GuideStep3_StartTime" xml:space="preserve">
+    <value>Start Time:</value>
+  </data>
+  <data name="GuideStep3_EndTime" xml:space="preserve">
+    <value>End Time:</value>
+  </data>
+  <data name="GuideStep3_TimeZone" xml:space="preserve">
+    <value>Time Zone:</value>
+  </data>
+  <data name="GuideStep3_TopCount" xml:space="preserve">
+    <value>Top Count:</value>
+  </data>
+
+  <!-- Step 4 -->
+  <data name="GuideStep4Title" xml:space="preserve">
+    <value>Step 4: Filter Events by Subject</value>
+  </data>
+  <data name="GuideStep4_SearchData" xml:space="preserve">
+    <value>Search for and select Data Operation</value>
+  </data>
+  <data name="GuideStep4_ChooseFilter" xml:space="preserve">
+    <value>Choose Filter array</value>
+  </data>
+  <data name="GuideStep4_FromField" xml:space="preserve">
+    <value>From: Click in the field and select "value" from the dynamic content</value>
+  </data>
+  <data name="GuideStep4_ConfigureCondition" xml:space="preserve">
+    <value>Configure Condition:</value>
+  </data>
+  <data name="GuideStep4_AdvancedMode" xml:space="preserve">
+    <value>Click Edit in advanced mode and paste:</value>
+  </data>
+
+  <!-- Step 5 -->
+  <data name="GuideStep5Title" xml:space="preserve">
+    <value>Step 5: Transform to Required JSON Format</value>
+  </data>
+  <data name="GuideStep5_SelectAction" xml:space="preserve">
+    <value>Select Data Operation then Select</value>
+  </data>
+  <data name="GuideStep5_FromOutput" xml:space="preserve">
+    <value>From: Output from Filter array action</value>
+  </data>
+  <data name="GuideStep5_ClickMap" xml:space="preserve">
+    <value>Click Map and add these fields:</value>
+  </data>
+  <data name="GuideStep5_FieldMappings" xml:space="preserve">
+    <value>Field Mappings:</value>
+  </data>
+  <data name="GuideStep5_SwitchToArray" xml:space="preserve">
+    <value>Click "Switch to input entire array" and enter:</value>
+  </data>
+
+  <!-- Step 6 -->
+  <data name="GuideStep6Title" xml:space="preserve">
+    <value>Step 6: Create JSON Wrapper</value>
+  </data>
+  <data name="GuideStep6_SelectCompose" xml:space="preserve">
+    <value>Select Data Operation then Compose</value>
+  </data>
+  <data name="GuideStep6_InputsField" xml:space="preserve">
+    <value>In the Inputs field, switch to code view and paste:</value>
+  </data>
+
+  <!-- Step 7 -->
+  <data name="GuideStep7Title" xml:space="preserve">
+    <value>Step 7: Save to OneDrive</value>
+  </data>
+  <data name="GuideStep7_SearchOneDrive" xml:space="preserve">
+    <value>Search for and select OneDrive for Business</value>
+  </data>
+  <data name="GuideStep7_ChooseCreate" xml:space="preserve">
+    <value>Choose Create file</value>
+  </data>
+  <data name="GuideStep7_ConfigureFile" xml:space="preserve">
+    <value>Configure File Settings:</value>
+  </data>
+  <data name="GuideStep7_FolderPath" xml:space="preserve">
+    <value>Folder Path:</value>
+  </data>
+  <data name="GuideStep7_FileName" xml:space="preserve">
+    <value>File Name:</value>
+  </data>
+  <data name="GuideStep7_FileContent" xml:space="preserve">
+    <value>File Content: Select "Outputs" from the Compose step</value>
+  </data>
+  <data name="GuideStep7_CreateFolder" xml:space="preserve">
+    <value>Note: Create the folder /Documents/CalendarExports in OneDrive before running the flow.</value>
+  </data>
+  <data name="GuideStep7_SharePointAlt" xml:space="preserve">
+    <value>Alternative: You can use SharePoint instead of OneDrive by selecting "SharePoint" - "Create file" and choosing your site.</value>
+  </data>
+
+  <!-- Step 8 -->
+  <data name="GuideStep8Title" xml:space="preserve">
+    <value>Step 8: Test &amp; Export Your Flow</value>
+  </data>
+  <data name="GuideStep8_RunningFlow" xml:space="preserve">
+    <value>Running Your Flow:</value>
+  </data>
+  <data name="GuideStep8_ClickMyFlows" xml:space="preserve">
+    <value>Click on My flows</value>
+  </data>
+  <data name="GuideStep8_FindFlow" xml:space="preserve">
+    <value>Find your flow and click Run</value>
+  </data>
+  <data name="GuideStep8_EnterSubject" xml:space="preserve">
+    <value>Enter the meeting subject you want to filter (e.g., "Project Standup")</value>
+  </data>
+  <data name="GuideStep8_ClickRunFlow" xml:space="preserve">
+    <value>Click Run flow</value>
+  </data>
+  <data name="GuideStep8_GoToOneDrive" xml:space="preserve">
+    <value>Go to OneDrive - Documents - CalendarExports</value>
+  </data>
+  <data name="GuideStep8_DownloadJson" xml:space="preserve">
+    <value>Download the latest JSON file</value>
+  </data>
+  <data name="GuideStep8_UploadToApp" xml:space="preserve">
+    <value>Upload it to the Storingsdienst web application</value>
+  </data>
+  <data name="GuideStep8_ExpectedFormat" xml:space="preserve">
+    <value>Expected JSON Output Format:</value>
+  </data>
+  <data name="GuideStep8_Congratulations" xml:space="preserve">
+    <value>Congratulations!</value>
+  </data>
+  <data name="GuideStep8_FlowComplete" xml:space="preserve">
+    <value>Your Power Automate flow is now complete. You can run it anytime to export your calendar meetings to JSON format.</value>
+  </data>
+  <data name="GuideStep8_ReturnToHome" xml:space="preserve">
+    <value>Return to Home &amp; Upload Your JSON</value>
+  </data>
+
+  <!-- Troubleshooting Section -->
+  <data name="Troubleshooting" xml:space="preserve">
+    <value>Troubleshooting</value>
+  </data>
+  <data name="Troubleshoot_Unauthorized" xml:space="preserve">
+    <value>Flow fails with "Unauthorized"</value>
+  </data>
+  <data name="Troubleshoot_Unauthorized1" xml:space="preserve">
+    <value>Ensure you've authorized the Office 365 Outlook and OneDrive connections</value>
+  </data>
+  <data name="Troubleshoot_Unauthorized2" xml:space="preserve">
+    <value>Go to Connections and re-authenticate if needed</value>
+  </data>
+  <data name="Troubleshoot_NoEvents" xml:space="preserve">
+    <value>No events in the output</value>
+  </data>
+  <data name="Troubleshoot_NoEvents1" xml:space="preserve">
+    <value>Check that your subject filter matches actual meeting titles (case-sensitive!)</value>
+  </data>
+  <data name="Troubleshoot_NoEvents2" xml:space="preserve">
+    <value>Verify meetings exist in the past year</value>
+  </data>
+  <data name="Troubleshoot_NoEvents3" xml:space="preserve">
+    <value>Try a partial match (e.g., "Standup" instead of "Project Standup Meeting")</value>
+  </data>
+  <data name="Troubleshoot_NoFile" xml:space="preserve">
+    <value>JSON file not found in OneDrive</value>
+  </data>
+  <data name="Troubleshoot_NoFile1" xml:space="preserve">
+    <value>Ensure the /Documents/CalendarExports folder exists</value>
+  </data>
+  <data name="Troubleshoot_NoFile2" xml:space="preserve">
+    <value>Check the flow run history for errors</value>
+  </data>
+  <data name="Troubleshoot_NoFile3" xml:space="preserve">
+    <value>Verify OneDrive connection is authorized</value>
+  </data>
+  <data name="Troubleshoot_InvalidJson" xml:space="preserve">
+    <value>Invalid JSON error in the app</value>
+  </data>
+  <data name="Troubleshoot_InvalidJson1" xml:space="preserve">
+    <value>Download and open the JSON file in a text editor</value>
+  </data>
+  <data name="Troubleshoot_InvalidJson2" xml:space="preserve">
+    <value>Verify it matches the expected format above</value>
+  </data>
+  <data name="Troubleshoot_InvalidJson3" xml:space="preserve">
+    <value>Check for any error messages in the file</value>
+  </data>
+
+  <!-- Security Section -->
+  <data name="SecurityAndPrivacy" xml:space="preserve">
+    <value>Security &amp; Privacy</value>
+  </data>
+  <data name="Security_RunsInTenant" xml:space="preserve">
+    <value>The flow runs entirely within your Microsoft 365 tenant</value>
+  </data>
+  <data name="Security_NoExternalData" xml:space="preserve">
+    <value>No data is sent to external services</value>
+  </data>
+  <data name="Security_StoredInOneDrive" xml:space="preserve">
+    <value>JSON files are stored in your personal OneDrive</value>
+  </data>
+  <data name="Security_CanDelete" xml:space="preserve">
+    <value>You can delete JSON files after importing them to the app</value>
+  </data>
 </root>

@@ -1,6 +1,5 @@
 using Bunit;
 using FluentAssertions;
-using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using MudBlazor;
@@ -21,8 +20,6 @@ public class LanguageSelectorTests : TestContext
 
         // Setup default behavior
         _mockLocalizationService.Setup(l => l.CurrentCulture).Returns("nl");
-        _mockLocalizationService.Setup(l => l["Nederlands"]).Returns("Nederlands");
-        _mockLocalizationService.Setup(l => l["English"]).Returns("English");
 
         // Capture the OnLanguageChanged event subscription
         _mockLocalizationService.SetupAdd(l => l.OnLanguageChanged += It.IsAny<Action>())
@@ -31,6 +28,8 @@ public class LanguageSelectorTests : TestContext
         // Register services
         Services.AddSingleton(_mockLocalizationService.Object);
         Services.AddMudServices();
+
+        // bUnit provides a FakeNavigationManager automatically - no need to mock it
 
         // Add JSInterop mock for MudBlazor
         JSInterop.Mode = JSRuntimeMode.Loose;
@@ -54,21 +53,24 @@ public class LanguageSelectorTests : TestContext
 
         // Assert - Component should render without throwing
         cut.Should().NotBeNull();
-        cut.Markup.Should().Contain("mud-menu"); // Verify the menu is rendered
+        cut.Markup.Should().Contain("mud-button-group"); // Now uses button group instead of menu
     }
 
     [Fact]
-    public void LanguageSelector_RendersLanguageButton()
+    public void LanguageSelector_RendersTwoFlagButtons()
     {
         // Act
         var cut = RenderLanguageSelector();
 
-        // Assert - Component should have a language icon button
+        // Assert - Component should have two icon buttons (one for each flag)
         cut.Markup.Should().Contain("mud-icon-button");
+        // Should contain both flag emojis
+        cut.Markup.Should().Contain("\U0001F1F3\U0001F1F1"); // Dutch flag
+        cut.Markup.Should().Contain("\U0001F1EC\U0001F1E7"); // British flag
     }
 
     [Fact]
-    public void LanguageSelector_CurrentCulture_Dutch()
+    public void LanguageSelector_CurrentCulture_Dutch_ShowsSelectedStyle()
     {
         // Arrange
         _mockLocalizationService.Setup(l => l.CurrentCulture).Returns("nl");
@@ -76,13 +78,13 @@ public class LanguageSelectorTests : TestContext
         // Act
         var cut = RenderLanguageSelector();
 
-        // Assert - The component should render without errors
+        // Assert - The component should render with Dutch selected (opacity: 1)
         cut.Should().NotBeNull();
-        cut.Markup.Should().NotBeEmpty();
+        cut.Markup.Should().Contain("opacity: 1");
     }
 
     [Fact]
-    public void LanguageSelector_CurrentCulture_English()
+    public void LanguageSelector_CurrentCulture_English_ShowsSelectedStyle()
     {
         // Arrange
         _mockLocalizationService.Setup(l => l.CurrentCulture).Returns("en");
@@ -90,7 +92,7 @@ public class LanguageSelectorTests : TestContext
         // Act
         var cut = RenderLanguageSelector();
 
-        // Assert - The component should render without errors
+        // Assert - The component should render with English selected
         cut.Should().NotBeNull();
         cut.Markup.Should().NotBeEmpty();
     }
@@ -124,17 +126,13 @@ public class LanguageSelectorTests : TestContext
     }
 
     [Fact]
-    public void LanguageSelector_RendersMenuComponent()
+    public void LanguageSelector_RendersButtonGroup()
     {
-        // Arrange
-        _mockLocalizationService.Setup(l => l["Nederlands"]).Returns("Nederlands");
-        _mockLocalizationService.Setup(l => l["English"]).Returns("English");
-
         // Act
         var cut = RenderLanguageSelector();
 
-        // Assert - Component should have rendered a MudMenu
-        cut.Markup.Should().Contain("mud-menu");
+        // Assert - Component should have rendered a MudButtonGroup
+        cut.Markup.Should().Contain("mud-button-group");
     }
 
     [Fact]

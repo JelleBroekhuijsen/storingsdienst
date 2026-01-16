@@ -1,20 +1,22 @@
 @page "/guide/power-automate"
 @inject IJSRuntime JSRuntime
+@inject ILocalizationService L
+@implements IDisposable
 
-<PageTitle>Power Automate Setup Guide</PageTitle>
+<PageTitle>@L["PowerAutomateSetupGuide"]</PageTitle>
 
 <MudContainer MaxWidth="MaxWidth.Large" Class="py-4">
     <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
         <MudIcon Icon="@Icons.Custom.Brands.Microsoft" Size="Size.Large" />
-        <MudText Typo="Typo.h4">Power Automate Setup Guide</MudText>
+        <MudText Typo="Typo.h4">@L["PowerAutomateSetupGuide"]</MudText>
     </MudStack>
     <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-4">
-        Export your M365 Calendar Meetings to JSON in 8 simple steps
+        @L["ExportM365CalendarToJson"]
     </MudText>
 
     <MudProgressLinear Color="Color.Primary" Value="@GetProgressPercentage()" Class="mb-2" />
     <MudText Typo="Typo.body2" Class="mud-text-secondary mb-4">
-        @_completedSteps.Count(s => s) of 8 steps completed
+        @string.Format(L["StepsCompleted"], _completedSteps.Count(s => s))
     </MudText>
 
     <MudTimeline TimelinePosition="TimelinePosition.Start">
@@ -29,34 +31,34 @@
                         <CardHeaderContent>
                             <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
                                 <div>
-                                    <MudText Typo="Typo.h6">Step 1: Create New Power Automate Flow</MudText>
-                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">Setup - ~2 minutes</MudText>
+                                    <MudText Typo="Typo.h6">@L["GuideStep1Title"]</MudText>
+                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["Setup"] - ~2 @L["Minutes"]</MudText>
                                 </div>
                                 <MudCheckBox T="bool" @bind-Value="_completedSteps[0]" @bind-Value:after="SaveProgressToStorage"
-                                             Color="Color.Success" Label="Complete" />
+                                             Color="Color.Success" Label="@L["Complete"]" />
                             </MudStack>
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
                         <MudList T="string" Dense="true">
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Go to <MudLink Href="https://make.powerautomate.com" Target="_blank">make.powerautomate.com</MudLink>
+                                @L["GuideStep1_GoTo"] <MudLink Href="https://make.powerautomate.com" Target="_blank">make.powerautomate.com</MudLink>
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Click <strong>Create</strong> then <strong>Instant cloud flow</strong>
+                                @L["GuideStep1_ClickCreate"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Enter name: <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined">Export Calendar Meetings to JSON</MudChip>
+                                @L["GuideStep1_EnterName"] <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined">@L["GuideStep1_FlowName"]</MudChip>
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Select trigger: <strong>Manually trigger a flow</strong>
+                                @L["GuideStep1_SelectTrigger"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Click <strong>Create</strong>
+                                @L["GuideStep1_ClickCreateBtn"]
                             </MudListItem>
                         </MudList>
                         <MudAlert Severity="Severity.Info" Class="mt-3" Dense="true">
-                            <strong>Tip:</strong> Make sure you're signed in with your Microsoft 365 work account before starting.
+                            <strong>@L["GuideStep1_Tip"]</strong>
                         </MudAlert>
                     </MudCardContent>
                 </MudCard>
@@ -74,27 +76,27 @@
                         <CardHeaderContent>
                             <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
                                 <div>
-                                    <MudText Typo="Typo.h6">Step 2: Add Input Parameters</MudText>
-                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">Setup - ~1 minute</MudText>
+                                    <MudText Typo="Typo.h6">@L["GuideStep2Title"]</MudText>
+                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["Setup"] - ~1 @L["Minute"]</MudText>
                                 </div>
                                 <MudCheckBox T="bool" @bind-Value="_completedSteps[1]" @bind-Value:after="SaveProgressToStorage"
-                                             Color="Color.Success" Label="Complete" />
+                                             Color="Color.Success" Label="@L["Complete"]" />
                             </MudStack>
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
                         <MudList T="string" Dense="true">
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                In the manual trigger, click <strong>Add an input</strong>
+                                @L["GuideStep2_AddInput"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Select <strong>Text</strong>
+                                @L["GuideStep2_SelectText"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Input name: <code>Subject Filter</code>
+                                @L["GuideStep2_InputName"] <code>@L["GuideStep2_SubjectFilter"]</code>
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Mark as <strong>Required</strong>
+                                @L["GuideStep2_MarkRequired"]
                             </MudListItem>
                         </MudList>
                     </MudCardContent>
@@ -113,35 +115,35 @@
                         <CardHeaderContent>
                             <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
                                 <div>
-                                    <MudText Typo="Typo.h6">Step 3: List Calendar Events</MudText>
-                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">Configure - ~2 minutes</MudText>
+                                    <MudText Typo="Typo.h6">@L["GuideStep3Title"]</MudText>
+                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["Configure"] - ~2 @L["Minutes"]</MudText>
                                 </div>
                                 <MudCheckBox T="bool" @bind-Value="_completedSteps[2]" @bind-Value:after="SaveProgressToStorage"
-                                             Color="Color.Success" Label="Complete" />
+                                             Color="Color.Success" Label="@L["Complete"]" />
                             </MudStack>
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
                         <MudList T="string" Dense="true">
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Click <strong>+ New step</strong>
+                                @L["GuideStep3_NewStep"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Search for <strong>Office 365 Outlook</strong>
+                                @L["GuideStep3_SearchOutlook"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Choose: <strong>Get calendar view of events (V3)</strong>
+                                @L["GuideStep3_ChooseAction"]
                             </MudListItem>
                         </MudList>
 
-                        <MudText Typo="Typo.subtitle2" Class="mt-3 mb-2">Configure Parameters:</MudText>
+                        <MudText Typo="Typo.subtitle2" Class="mt-3 mb-2">@L["GuideStep3_ConfigureParams"]</MudText>
                         <MudPaper Class="pa-3" Elevation="0" Style="background: var(--mud-palette-background-gray);">
                             <MudStack Spacing="1">
-                                <MudText Typo="Typo.body2"><strong>Calendar id:</strong> <code>Calendar</code></MudText>
-                                <MudText Typo="Typo.body2"><strong>Start Time:</strong> <code>addDays(utcNow(), -365)</code></MudText>
-                                <MudText Typo="Typo.body2"><strong>End Time:</strong> <code>utcNow()</code></MudText>
-                                <MudText Typo="Typo.body2"><strong>Time Zone:</strong> <code>UTC</code></MudText>
-                                <MudText Typo="Typo.body2"><strong>Top Count:</strong> <code>1000</code></MudText>
+                                <MudText Typo="Typo.body2"><strong>@L["GuideStep3_CalendarId"]</strong> <code>Calendar</code></MudText>
+                                <MudText Typo="Typo.body2"><strong>@L["GuideStep3_StartTime"]</strong> <code>addDays(utcNow(), -365)</code></MudText>
+                                <MudText Typo="Typo.body2"><strong>@L["GuideStep3_EndTime"]</strong> <code>utcNow()</code></MudText>
+                                <MudText Typo="Typo.body2"><strong>@L["GuideStep3_TimeZone"]</strong> <code>UTC</code></MudText>
+                                <MudText Typo="Typo.body2"><strong>@L["GuideStep3_TopCount"]</strong> <code>1000</code></MudText>
                             </MudStack>
                         </MudPaper>
                     </MudCardContent>
@@ -160,33 +162,33 @@
                         <CardHeaderContent>
                             <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
                                 <div>
-                                    <MudText Typo="Typo.h6">Step 4: Filter Events by Subject</MudText>
-                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">Configure - ~1 minute</MudText>
+                                    <MudText Typo="Typo.h6">@L["GuideStep4Title"]</MudText>
+                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["Configure"] - ~1 @L["Minute"]</MudText>
                                 </div>
                                 <MudCheckBox T="bool" @bind-Value="_completedSteps[3]" @bind-Value:after="SaveProgressToStorage"
-                                             Color="Color.Success" Label="Complete" />
+                                             Color="Color.Success" Label="@L["Complete"]" />
                             </MudStack>
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
                         <MudList T="string" Dense="true">
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Click <strong>+ New step</strong>
+                                @L["GuideStep3_NewStep"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Search for and select <strong>Data Operation</strong>
+                                @L["GuideStep4_SearchData"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Choose <strong>Filter array</strong>
+                                @L["GuideStep4_ChooseFilter"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                <strong>From:</strong> Click in the field and select "value" from the dynamic content
+                                @L["GuideStep4_FromField"]
                             </MudListItem>
                         </MudList>
 
-                        <MudText Typo="Typo.subtitle2" Class="mt-3 mb-2">Configure Condition:</MudText>
+                        <MudText Typo="Typo.subtitle2" Class="mt-3 mb-2">@L["GuideStep4_ConfigureCondition"]</MudText>
                         <MudPaper Class="pa-3" Elevation="0" Style="background: var(--mud-palette-background-gray);">
-                            <MudText Typo="Typo.body2" Class="mb-2">Click <strong>Edit in advanced mode</strong> and paste:</MudText>
+                            <MudText Typo="Typo.body2" Class="mb-2">@L["GuideStep4_AdvancedMode"]</MudText>
                             <code>@@contains(item()?['subject'], triggerBody()['text'])</code>
                         </MudPaper>
                     </MudCardContent>
@@ -205,40 +207,40 @@
                         <CardHeaderContent>
                             <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
                                 <div>
-                                    <MudText Typo="Typo.h6">Step 5: Transform to Required JSON Format</MudText>
-                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">Configure - ~3 minutes</MudText>
+                                    <MudText Typo="Typo.h6">@L["GuideStep5Title"]</MudText>
+                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["Configure"] - ~3 @L["Minutes"]</MudText>
                                 </div>
                                 <MudCheckBox T="bool" @bind-Value="_completedSteps[4]" @bind-Value:after="SaveProgressToStorage"
-                                             Color="Color.Success" Label="Complete" />
+                                             Color="Color.Success" Label="@L["Complete"]" />
                             </MudStack>
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
                         <MudList T="string" Dense="true">
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Click <strong>+ New step</strong>
+                                @L["GuideStep3_NewStep"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Select <strong>Data Operation</strong> then <strong>Select</strong>
+                                @L["GuideStep5_SelectAction"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                <strong>From:</strong> Output from Filter array action
+                                @L["GuideStep5_FromOutput"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Click <strong>Map</strong> and add these fields:
+                                @L["GuideStep5_ClickMap"]
                             </MudListItem>
                         </MudList>
 
-                        <MudText Typo="Typo.subtitle2" Class="mt-3 mb-2">Field Mappings:</MudText>
+                        <MudText Typo="Typo.subtitle2" Class="mt-3 mb-2">@L["GuideStep5_FieldMappings"]</MudText>
                         <MudPaper Class="pa-3" Elevation="0" Style="background: var(--mud-palette-background-gray);">
                             <MudStack Spacing="2">
                                 <MudText Typo="Typo.body2"><strong>subject:</strong> <code>item()?['subject']</code></MudText>
                                 <div>
-                                    <MudText Typo="Typo.body2"><strong>start:</strong> Click "Switch to input entire array" and enter:</MudText>
+                                    <MudText Typo="Typo.body2"><strong>start:</strong> @L["GuideStep5_SwitchToArray"]</MudText>
                                     <pre style="font-size: 0.85rem; margin-top: 4px;">{ "dateTime": "@@{item()?['start']?['dateTime']}", "timeZone": "@@{item()?['start']?['timeZone']}" }</pre>
                                 </div>
                                 <div>
-                                    <MudText Typo="Typo.body2"><strong>end:</strong> Click "Switch to input entire array" and enter:</MudText>
+                                    <MudText Typo="Typo.body2"><strong>end:</strong> @L["GuideStep5_SwitchToArray"]</MudText>
                                     <pre style="font-size: 0.85rem; margin-top: 4px;">{ "dateTime": "@@{item()?['end']?['dateTime']}", "timeZone": "@@{item()?['end']?['timeZone']}" }</pre>
                                 </div>
                                 <MudText Typo="Typo.body2"><strong>isAllDay:</strong> <code>item()?['isAllDay']</code></MudText>
@@ -260,24 +262,24 @@
                         <CardHeaderContent>
                             <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
                                 <div>
-                                    <MudText Typo="Typo.h6">Step 6: Create JSON Wrapper</MudText>
-                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">Configure - ~1 minute</MudText>
+                                    <MudText Typo="Typo.h6">@L["GuideStep6Title"]</MudText>
+                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["Configure"] - ~1 @L["Minute"]</MudText>
                                 </div>
                                 <MudCheckBox T="bool" @bind-Value="_completedSteps[5]" @bind-Value:after="SaveProgressToStorage"
-                                             Color="Color.Success" Label="Complete" />
+                                             Color="Color.Success" Label="@L["Complete"]" />
                             </MudStack>
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
                         <MudList T="string" Dense="true">
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Click <strong>+ New step</strong>
+                                @L["GuideStep3_NewStep"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Select <strong>Data Operation</strong> then <strong>Compose</strong>
+                                @L["GuideStep6_SelectCompose"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                In the <strong>Inputs</strong> field, switch to code view and paste:
+                                @L["GuideStep6_InputsField"]
                             </MudListItem>
                         </MudList>
 
@@ -304,42 +306,42 @@
                         <CardHeaderContent>
                             <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
                                 <div>
-                                    <MudText Typo="Typo.h6">Step 7: Save to OneDrive</MudText>
-                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">Output - ~2 minutes</MudText>
+                                    <MudText Typo="Typo.h6">@L["GuideStep7Title"]</MudText>
+                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["Output"] - ~2 @L["Minutes"]</MudText>
                                 </div>
                                 <MudCheckBox T="bool" @bind-Value="_completedSteps[6]" @bind-Value:after="SaveProgressToStorage"
-                                             Color="Color.Success" Label="Complete" />
+                                             Color="Color.Success" Label="@L["Complete"]" />
                             </MudStack>
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
                         <MudList T="string" Dense="true">
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Click <strong>+ New step</strong>
+                                @L["GuideStep3_NewStep"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Search for and select <strong>OneDrive for Business</strong>
+                                @L["GuideStep7_SearchOneDrive"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Choose <strong>Create file</strong>
+                                @L["GuideStep7_ChooseCreate"]
                             </MudListItem>
                         </MudList>
 
-                        <MudText Typo="Typo.subtitle2" Class="mt-3 mb-2">Configure File Settings:</MudText>
+                        <MudText Typo="Typo.subtitle2" Class="mt-3 mb-2">@L["GuideStep7_ConfigureFile"]</MudText>
                         <MudPaper Class="pa-3" Elevation="0" Style="background: var(--mud-palette-background-gray);">
                             <MudStack Spacing="1">
-                                <MudText Typo="Typo.body2"><strong>Folder Path:</strong> <code>/Documents/CalendarExports</code></MudText>
-                                <MudText Typo="Typo.body2"><strong>File Name:</strong> <code>calendar_export_@@{formatDateTime(utcNow(), 'yyyyMMdd_HHmmss')}.json</code></MudText>
-                                <MudText Typo="Typo.body2"><strong>File Content:</strong> Select "Outputs" from the Compose step</MudText>
+                                <MudText Typo="Typo.body2"><strong>@L["GuideStep7_FolderPath"]</strong> <code>/Documents/CalendarExports</code></MudText>
+                                <MudText Typo="Typo.body2"><strong>@L["GuideStep7_FileName"]</strong> <code>calendar_export_@@{formatDateTime(utcNow(), 'yyyyMMdd_HHmmss')}.json</code></MudText>
+                                <MudText Typo="Typo.body2"><strong>@L["GuideStep7_FileContent"]</strong></MudText>
                             </MudStack>
                         </MudPaper>
 
                         <MudAlert Severity="Severity.Warning" Class="mt-3" Dense="true">
-                            <strong>Note:</strong> Create the folder <code>/Documents/CalendarExports</code> in OneDrive before running the flow.
+                            <strong>@L["GuideStep7_CreateFolder"]</strong>
                         </MudAlert>
 
                         <MudAlert Severity="Severity.Info" Class="mt-2" Dense="true">
-                            <strong>Alternative:</strong> You can use <strong>SharePoint</strong> instead of OneDrive by selecting "SharePoint" - "Create file" and choosing your site.
+                            <strong>@L["GuideStep7_SharePointAlt"]</strong>
                         </MudAlert>
                     </MudCardContent>
                 </MudCard>
@@ -357,44 +359,44 @@
                         <CardHeaderContent>
                             <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
                                 <div>
-                                    <MudText Typo="Typo.h6">Step 8: Test & Export Your Flow</MudText>
-                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">Test - ~2 minutes</MudText>
+                                    <MudText Typo="Typo.h6">@L["GuideStep8Title"]</MudText>
+                                    <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["Test"] - ~2 @L["Minutes"]</MudText>
                                 </div>
                                 <MudCheckBox T="bool" @bind-Value="_completedSteps[7]" @bind-Value:after="SaveProgressToStorage"
-                                             Color="Color.Success" Label="Complete" />
+                                             Color="Color.Success" Label="@L["Complete"]" />
                             </MudStack>
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
-                        <MudText Typo="Typo.subtitle2" Class="mb-2">Running Your Flow:</MudText>
+                        <MudText Typo="Typo.subtitle2" Class="mb-2">@L["GuideStep8_RunningFlow"]</MudText>
                         <MudList T="string" Dense="true">
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Go to <MudLink Href="https://make.powerautomate.com" Target="_blank">make.powerautomate.com</MudLink>
+                                @L["GuideStep1_GoTo"] <MudLink Href="https://make.powerautomate.com" Target="_blank">make.powerautomate.com</MudLink>
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Click on <strong>My flows</strong>
+                                @L["GuideStep8_ClickMyFlows"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Find your flow and click <strong>Run</strong>
+                                @L["GuideStep8_FindFlow"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Enter the meeting subject you want to filter (e.g., "Project Standup")
+                                @L["GuideStep8_EnterSubject"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Click <strong>Run flow</strong>
+                                @L["GuideStep8_ClickRunFlow"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Go to OneDrive - Documents - CalendarExports
+                                @L["GuideStep8_GoToOneDrive"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Download the latest JSON file
+                                @L["GuideStep8_DownloadJson"]
                             </MudListItem>
                             <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                Upload it to the Storingsdienst web application
+                                @L["GuideStep8_UploadToApp"]
                             </MudListItem>
                         </MudList>
 
-                        <MudText Typo="Typo.subtitle2" Class="mt-4 mb-2">Expected JSON Output Format:</MudText>
+                        <MudText Typo="Typo.subtitle2" Class="mt-4 mb-2">@L["GuideStep8_ExpectedFormat"]</MudText>
                         <MudPaper Class="pa-3" Elevation="0" Style="background: var(--mud-palette-background-gray);">
                             <pre style="font-size: 0.8rem; margin: 0;">{
   "events": [
@@ -411,15 +413,15 @@
                         </MudPaper>
 
                         <MudAlert Severity="Severity.Success" Class="mt-4" Variant="Variant.Filled">
-                            <MudText Typo="Typo.subtitle1"><strong>Congratulations!</strong></MudText>
+                            <MudText Typo="Typo.subtitle1"><strong>@L["GuideStep8_Congratulations"]</strong></MudText>
                             <MudText Typo="Typo.body2">
-                                Your Power Automate flow is now complete. You can run it anytime to export your calendar meetings to JSON format.
+                                @L["GuideStep8_FlowComplete"]
                             </MudText>
                         </MudAlert>
 
                         <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large"
                                    StartIcon="@Icons.Material.Filled.Home" Href="/" Class="mt-4" FullWidth="true">
-                            Return to Home & Upload Your JSON
+                            @L["GuideStep8_ReturnToHome"]
                         </MudButton>
                     </MudCardContent>
                 </MudCard>
@@ -429,65 +431,65 @@
 
     @* Troubleshooting Section *@
     <MudExpansionPanels Class="mt-4">
-        <MudExpansionPanel Text="Troubleshooting" Icon="@Icons.Material.Filled.Build">
+        <MudExpansionPanel Text="@L["Troubleshooting"]" Icon="@Icons.Material.Filled.Build">
             <MudGrid>
                 <MudItem xs="12" md="6">
                     <MudText Typo="Typo.subtitle2" Color="Color.Error" Class="mb-2">
                         <MudIcon Icon="@Icons.Material.Filled.Cancel" Size="Size.Small" />
-                        Flow fails with "Unauthorized"
+                        @L["Troubleshoot_Unauthorized"]
                     </MudText>
                     <MudList T="string" Dense="true">
-                        <MudListItem>Ensure you've authorized the Office 365 Outlook and OneDrive connections</MudListItem>
-                        <MudListItem>Go to Connections and re-authenticate if needed</MudListItem>
+                        <MudListItem>@L["Troubleshoot_Unauthorized1"]</MudListItem>
+                        <MudListItem>@L["Troubleshoot_Unauthorized2"]</MudListItem>
                     </MudList>
 
                     <MudText Typo="Typo.subtitle2" Color="Color.Error" Class="mt-3 mb-2">
                         <MudIcon Icon="@Icons.Material.Filled.Cancel" Size="Size.Small" />
-                        No events in the output
+                        @L["Troubleshoot_NoEvents"]
                     </MudText>
                     <MudList T="string" Dense="true">
-                        <MudListItem>Check that your subject filter matches actual meeting titles (case-sensitive!)</MudListItem>
-                        <MudListItem>Verify meetings exist in the past year</MudListItem>
-                        <MudListItem>Try a partial match (e.g., "Standup" instead of "Project Standup Meeting")</MudListItem>
+                        <MudListItem>@L["Troubleshoot_NoEvents1"]</MudListItem>
+                        <MudListItem>@L["Troubleshoot_NoEvents2"]</MudListItem>
+                        <MudListItem>@L["Troubleshoot_NoEvents3"]</MudListItem>
                     </MudList>
                 </MudItem>
                 <MudItem xs="12" md="6">
                     <MudText Typo="Typo.subtitle2" Color="Color.Error" Class="mb-2">
                         <MudIcon Icon="@Icons.Material.Filled.Cancel" Size="Size.Small" />
-                        JSON file not found in OneDrive
+                        @L["Troubleshoot_NoFile"]
                     </MudText>
                     <MudList T="string" Dense="true">
-                        <MudListItem>Ensure the <code>/Documents/CalendarExports</code> folder exists</MudListItem>
-                        <MudListItem>Check the flow run history for errors</MudListItem>
-                        <MudListItem>Verify OneDrive connection is authorized</MudListItem>
+                        <MudListItem>@L["Troubleshoot_NoFile1"]</MudListItem>
+                        <MudListItem>@L["Troubleshoot_NoFile2"]</MudListItem>
+                        <MudListItem>@L["Troubleshoot_NoFile3"]</MudListItem>
                     </MudList>
 
                     <MudText Typo="Typo.subtitle2" Color="Color.Error" Class="mt-3 mb-2">
                         <MudIcon Icon="@Icons.Material.Filled.Cancel" Size="Size.Small" />
-                        Invalid JSON error in the app
+                        @L["Troubleshoot_InvalidJson"]
                     </MudText>
                     <MudList T="string" Dense="true">
-                        <MudListItem>Download and open the JSON file in a text editor</MudListItem>
-                        <MudListItem>Verify it matches the expected format above</MudListItem>
-                        <MudListItem>Check for any error messages in the file</MudListItem>
+                        <MudListItem>@L["Troubleshoot_InvalidJson1"]</MudListItem>
+                        <MudListItem>@L["Troubleshoot_InvalidJson2"]</MudListItem>
+                        <MudListItem>@L["Troubleshoot_InvalidJson3"]</MudListItem>
                     </MudList>
                 </MudItem>
             </MudGrid>
         </MudExpansionPanel>
 
-        <MudExpansionPanel Text="Security & Privacy" Icon="@Icons.Material.Filled.Security">
+        <MudExpansionPanel Text="@L["SecurityAndPrivacy"]" Icon="@Icons.Material.Filled.Security">
             <MudList T="string" Dense="true">
                 <MudListItem Icon="@Icons.Material.Filled.Check" IconColor="Color.Success">
-                    The flow runs entirely within your Microsoft 365 tenant
+                    @L["Security_RunsInTenant"]
                 </MudListItem>
                 <MudListItem Icon="@Icons.Material.Filled.Check" IconColor="Color.Success">
-                    No data is sent to external services
+                    @L["Security_NoExternalData"]
                 </MudListItem>
                 <MudListItem Icon="@Icons.Material.Filled.Check" IconColor="Color.Success">
-                    JSON files are stored in your personal OneDrive
+                    @L["Security_StoredInOneDrive"]
                 </MudListItem>
                 <MudListItem Icon="@Icons.Material.Filled.Check" IconColor="Color.Success">
-                    You can delete JSON files after importing them to the app
+                    @L["Security_CanDelete"]
                 </MudListItem>
             </MudList>
         </MudExpansionPanel>
@@ -500,6 +502,21 @@
     private double GetProgressPercentage() => (_completedSteps.Count(s => s) / 8.0) * 100;
 
     private Color GetStepColor(int stepIndex) => _completedSteps[stepIndex] ? Color.Success : Color.Primary;
+
+    protected override void OnInitialized()
+    {
+        L.OnLanguageChanged += OnLanguageChanged;
+    }
+
+    private void OnLanguageChanged()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        L.OnLanguageChanged -= OnLanguageChanged;
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

@@ -95,11 +95,16 @@
 
     protected override void OnInitialized()
     {
-        L.OnLanguageChanged += StateHasChanged;
+        L.OnLanguageChanged += OnLanguageChanged;
+    }
+
+    private void OnLanguageChanged()
+    {
+        InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()
     {
-        L.OnLanguageChanged -= StateHasChanged;
+        L.OnLanguageChanged -= OnLanguageChanged;
     }
 }

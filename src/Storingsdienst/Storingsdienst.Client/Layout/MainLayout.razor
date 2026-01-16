@@ -102,14 +102,20 @@
 
     protected override async Task OnInitializedAsync()
     {
-        L.OnLanguageChanged += StateHasChanged;
+        L.OnLanguageChanged += OnLanguageChanged;
         await L.InitializeAsync();
+    }
+
+    private void OnLanguageChanged()
+    {
+        // Use InvokeAsync to ensure StateHasChanged is called on the UI thread
+        InvokeAsync(StateHasChanged);
     }
 
     private void ToggleDrawer() => _drawerOpen = !_drawerOpen;
 
     public void Dispose()
     {
-        L.OnLanguageChanged -= StateHasChanged;
+        L.OnLanguageChanged -= OnLanguageChanged;
     }
 }

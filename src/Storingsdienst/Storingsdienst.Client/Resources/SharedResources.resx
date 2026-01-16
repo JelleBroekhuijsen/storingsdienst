@@ -385,4 +385,302 @@
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
+
+  <!-- Power Automate Guide -->
+  <data name="PowerAutomateSetupGuide" xml:space="preserve">
+    <value>Power Automate Installatiehandleiding</value>
+  </data>
+  <data name="ExportM365CalendarToJson" xml:space="preserve">
+    <value>Exporteer uw M365 kalenderafspraken naar JSON in 8 eenvoudige stappen</value>
+  </data>
+  <data name="StepsCompleted" xml:space="preserve">
+    <value>{0} van 8 stappen voltooid</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Voltooid</value>
+  </data>
+  <data name="Setup" xml:space="preserve">
+    <value>Instellen</value>
+  </data>
+  <data name="Configure" xml:space="preserve">
+    <value>Configureren</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Uitvoer</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>minuten</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>minuut</value>
+  </data>
+
+  <!-- Step 1 -->
+  <data name="GuideStep1Title" xml:space="preserve">
+    <value>Stap 1: Nieuwe Power Automate Flow aanmaken</value>
+  </data>
+  <data name="GuideStep1_GoTo" xml:space="preserve">
+    <value>Ga naar</value>
+  </data>
+  <data name="GuideStep1_ClickCreate" xml:space="preserve">
+    <value>Klik op Maken en daarna op Directe cloud-flow</value>
+  </data>
+  <data name="GuideStep1_EnterName" xml:space="preserve">
+    <value>Voer naam in:</value>
+  </data>
+  <data name="GuideStep1_FlowName" xml:space="preserve">
+    <value>Kalenderafspraken naar JSON exporteren</value>
+  </data>
+  <data name="GuideStep1_SelectTrigger" xml:space="preserve">
+    <value>Selecteer trigger: Handmatig een flow starten</value>
+  </data>
+  <data name="GuideStep1_ClickCreateBtn" xml:space="preserve">
+    <value>Klik op Maken</value>
+  </data>
+  <data name="GuideStep1_Tip" xml:space="preserve">
+    <value>Tip: Zorg ervoor dat u bent ingelogd met uw Microsoft 365 werkaccount voordat u begint.</value>
+  </data>
+
+  <!-- Step 2 -->
+  <data name="GuideStep2Title" xml:space="preserve">
+    <value>Stap 2: Invoerparameters toevoegen</value>
+  </data>
+  <data name="GuideStep2_AddInput" xml:space="preserve">
+    <value>Klik in de handmatige trigger op Invoer toevoegen</value>
+  </data>
+  <data name="GuideStep2_SelectText" xml:space="preserve">
+    <value>Selecteer Tekst</value>
+  </data>
+  <data name="GuideStep2_InputName" xml:space="preserve">
+    <value>Invoernaam:</value>
+  </data>
+  <data name="GuideStep2_SubjectFilter" xml:space="preserve">
+    <value>Onderwerpfilter</value>
+  </data>
+  <data name="GuideStep2_MarkRequired" xml:space="preserve">
+    <value>Markeer als Vereist</value>
+  </data>
+
+  <!-- Step 3 -->
+  <data name="GuideStep3Title" xml:space="preserve">
+    <value>Stap 3: Kalenderafspraken ophalen</value>
+  </data>
+  <data name="GuideStep3_NewStep" xml:space="preserve">
+    <value>Klik op + Nieuwe stap</value>
+  </data>
+  <data name="GuideStep3_SearchOutlook" xml:space="preserve">
+    <value>Zoek naar Office 365 Outlook</value>
+  </data>
+  <data name="GuideStep3_ChooseAction" xml:space="preserve">
+    <value>Kies: Kalenderweergave van gebeurtenissen ophalen (V3)</value>
+  </data>
+  <data name="GuideStep3_ConfigureParams" xml:space="preserve">
+    <value>Parameters configureren:</value>
+  </data>
+  <data name="GuideStep3_CalendarId" xml:space="preserve">
+    <value>Kalender-id:</value>
+  </data>
+  <data name="GuideStep3_StartTime" xml:space="preserve">
+    <value>Begintijd:</value>
+  </data>
+  <data name="GuideStep3_EndTime" xml:space="preserve">
+    <value>Eindtijd:</value>
+  </data>
+  <data name="GuideStep3_TimeZone" xml:space="preserve">
+    <value>Tijdzone:</value>
+  </data>
+  <data name="GuideStep3_TopCount" xml:space="preserve">
+    <value>Maximum aantal:</value>
+  </data>
+
+  <!-- Step 4 -->
+  <data name="GuideStep4Title" xml:space="preserve">
+    <value>Stap 4: Afspraken filteren op onderwerp</value>
+  </data>
+  <data name="GuideStep4_SearchData" xml:space="preserve">
+    <value>Zoek en selecteer Gegevensbewerking</value>
+  </data>
+  <data name="GuideStep4_ChooseFilter" xml:space="preserve">
+    <value>Kies Matrix filteren</value>
+  </data>
+  <data name="GuideStep4_FromField" xml:space="preserve">
+    <value>Van: Klik in het veld en selecteer "value" uit de dynamische inhoud</value>
+  </data>
+  <data name="GuideStep4_ConfigureCondition" xml:space="preserve">
+    <value>Voorwaarde configureren:</value>
+  </data>
+  <data name="GuideStep4_AdvancedMode" xml:space="preserve">
+    <value>Klik op Bewerken in geavanceerde modus en plak:</value>
+  </data>
+
+  <!-- Step 5 -->
+  <data name="GuideStep5Title" xml:space="preserve">
+    <value>Stap 5: Omzetten naar gewenst JSON-formaat</value>
+  </data>
+  <data name="GuideStep5_SelectAction" xml:space="preserve">
+    <value>Selecteer Gegevensbewerking en daarna Selecteren</value>
+  </data>
+  <data name="GuideStep5_FromOutput" xml:space="preserve">
+    <value>Van: Uitvoer van de Matrix filteren actie</value>
+  </data>
+  <data name="GuideStep5_ClickMap" xml:space="preserve">
+    <value>Klik op Toewijzen en voeg deze velden toe:</value>
+  </data>
+  <data name="GuideStep5_FieldMappings" xml:space="preserve">
+    <value>Veldtoewijzingen:</value>
+  </data>
+  <data name="GuideStep5_SwitchToArray" xml:space="preserve">
+    <value>Klik op "Overschakelen naar volledige matrix invoeren" en voer in:</value>
+  </data>
+
+  <!-- Step 6 -->
+  <data name="GuideStep6Title" xml:space="preserve">
+    <value>Stap 6: JSON-wrapper maken</value>
+  </data>
+  <data name="GuideStep6_SelectCompose" xml:space="preserve">
+    <value>Selecteer Gegevensbewerking en daarna Opstellen</value>
+  </data>
+  <data name="GuideStep6_InputsField" xml:space="preserve">
+    <value>Schakel in het veld Invoer over naar codeweergave en plak:</value>
+  </data>
+
+  <!-- Step 7 -->
+  <data name="GuideStep7Title" xml:space="preserve">
+    <value>Stap 7: Opslaan naar OneDrive</value>
+  </data>
+  <data name="GuideStep7_SearchOneDrive" xml:space="preserve">
+    <value>Zoek en selecteer OneDrive voor Bedrijven</value>
+  </data>
+  <data name="GuideStep7_ChooseCreate" xml:space="preserve">
+    <value>Kies Bestand maken</value>
+  </data>
+  <data name="GuideStep7_ConfigureFile" xml:space="preserve">
+    <value>Bestandsinstellingen configureren:</value>
+  </data>
+  <data name="GuideStep7_FolderPath" xml:space="preserve">
+    <value>Mappad:</value>
+  </data>
+  <data name="GuideStep7_FileName" xml:space="preserve">
+    <value>Bestandsnaam:</value>
+  </data>
+  <data name="GuideStep7_FileContent" xml:space="preserve">
+    <value>Bestandsinhoud: Selecteer "Uitvoer" van de Opstellen stap</value>
+  </data>
+  <data name="GuideStep7_CreateFolder" xml:space="preserve">
+    <value>Let op: Maak de map /Documents/CalendarExports aan in OneDrive voordat u de flow uitvoert.</value>
+  </data>
+  <data name="GuideStep7_SharePointAlt" xml:space="preserve">
+    <value>Alternatief: U kunt ook SharePoint gebruiken in plaats van OneDrive door "SharePoint" - "Bestand maken" te selecteren.</value>
+  </data>
+
+  <!-- Step 8 -->
+  <data name="GuideStep8Title" xml:space="preserve">
+    <value>Stap 8: Testen &amp; Exporteren</value>
+  </data>
+  <data name="GuideStep8_RunningFlow" xml:space="preserve">
+    <value>Uw flow uitvoeren:</value>
+  </data>
+  <data name="GuideStep8_ClickMyFlows" xml:space="preserve">
+    <value>Klik op Mijn flows</value>
+  </data>
+  <data name="GuideStep8_FindFlow" xml:space="preserve">
+    <value>Zoek uw flow en klik op Uitvoeren</value>
+  </data>
+  <data name="GuideStep8_EnterSubject" xml:space="preserve">
+    <value>Voer het vergaderonderwerp in dat u wilt filteren (bijv. "Project Standup")</value>
+  </data>
+  <data name="GuideStep8_ClickRunFlow" xml:space="preserve">
+    <value>Klik op Flow uitvoeren</value>
+  </data>
+  <data name="GuideStep8_GoToOneDrive" xml:space="preserve">
+    <value>Ga naar OneDrive - Documenten - CalendarExports</value>
+  </data>
+  <data name="GuideStep8_DownloadJson" xml:space="preserve">
+    <value>Download het nieuwste JSON-bestand</value>
+  </data>
+  <data name="GuideStep8_UploadToApp" xml:space="preserve">
+    <value>Upload het naar de Storingsdienst webapplicatie</value>
+  </data>
+  <data name="GuideStep8_ExpectedFormat" xml:space="preserve">
+    <value>Verwacht JSON-uitvoerformaat:</value>
+  </data>
+  <data name="GuideStep8_Congratulations" xml:space="preserve">
+    <value>Gefeliciteerd!</value>
+  </data>
+  <data name="GuideStep8_FlowComplete" xml:space="preserve">
+    <value>Uw Power Automate flow is nu voltooid. U kunt deze op elk moment uitvoeren om uw kalenderafspraken naar JSON-formaat te exporteren.</value>
+  </data>
+  <data name="GuideStep8_ReturnToHome" xml:space="preserve">
+    <value>Terug naar startpagina &amp; JSON uploaden</value>
+  </data>
+
+  <!-- Troubleshooting Section -->
+  <data name="Troubleshooting" xml:space="preserve">
+    <value>Probleemoplossing</value>
+  </data>
+  <data name="Troubleshoot_Unauthorized" xml:space="preserve">
+    <value>Flow mislukt met "Niet geautoriseerd"</value>
+  </data>
+  <data name="Troubleshoot_Unauthorized1" xml:space="preserve">
+    <value>Zorg ervoor dat u de Office 365 Outlook en OneDrive verbindingen hebt geautoriseerd</value>
+  </data>
+  <data name="Troubleshoot_Unauthorized2" xml:space="preserve">
+    <value>Ga naar Verbindingen en verifieer opnieuw indien nodig</value>
+  </data>
+  <data name="Troubleshoot_NoEvents" xml:space="preserve">
+    <value>Geen afspraken in de uitvoer</value>
+  </data>
+  <data name="Troubleshoot_NoEvents1" xml:space="preserve">
+    <value>Controleer of uw onderwerpfilter overeenkomt met werkelijke vergadertitels (hoofdlettergevoelig!)</value>
+  </data>
+  <data name="Troubleshoot_NoEvents2" xml:space="preserve">
+    <value>Controleer of er vergaderingen bestaan in het afgelopen jaar</value>
+  </data>
+  <data name="Troubleshoot_NoEvents3" xml:space="preserve">
+    <value>Probeer een gedeeltelijke overeenkomst (bijv. "Standup" in plaats van "Project Standup Meeting")</value>
+  </data>
+  <data name="Troubleshoot_NoFile" xml:space="preserve">
+    <value>JSON-bestand niet gevonden in OneDrive</value>
+  </data>
+  <data name="Troubleshoot_NoFile1" xml:space="preserve">
+    <value>Zorg ervoor dat de map /Documents/CalendarExports bestaat</value>
+  </data>
+  <data name="Troubleshoot_NoFile2" xml:space="preserve">
+    <value>Controleer de uitvoeringsgeschiedenis van de flow op fouten</value>
+  </data>
+  <data name="Troubleshoot_NoFile3" xml:space="preserve">
+    <value>Controleer of de OneDrive-verbinding is geautoriseerd</value>
+  </data>
+  <data name="Troubleshoot_InvalidJson" xml:space="preserve">
+    <value>Ongeldige JSON-fout in de app</value>
+  </data>
+  <data name="Troubleshoot_InvalidJson1" xml:space="preserve">
+    <value>Download en open het JSON-bestand in een teksteditor</value>
+  </data>
+  <data name="Troubleshoot_InvalidJson2" xml:space="preserve">
+    <value>Controleer of het overeenkomt met het verwachte formaat hierboven</value>
+  </data>
+  <data name="Troubleshoot_InvalidJson3" xml:space="preserve">
+    <value>Controleer op foutmeldingen in het bestand</value>
+  </data>
+
+  <!-- Security Section -->
+  <data name="SecurityAndPrivacy" xml:space="preserve">
+    <value>Beveiliging &amp; Privacy</value>
+  </data>
+  <data name="Security_RunsInTenant" xml:space="preserve">
+    <value>De flow draait volledig binnen uw Microsoft 365 tenant</value>
+  </data>
+  <data name="Security_NoExternalData" xml:space="preserve">
+    <value>Er worden geen gegevens naar externe services verstuurd</value>
+  </data>
+  <data name="Security_StoredInOneDrive" xml:space="preserve">
+    <value>JSON-bestanden worden opgeslagen in uw persoonlijke OneDrive</value>
+  </data>
+  <data name="Security_CanDelete" xml:space="preserve">
+    <value>U kunt JSON-bestanden verwijderen na het importeren in de app</value>
+  </data>
 </root>
