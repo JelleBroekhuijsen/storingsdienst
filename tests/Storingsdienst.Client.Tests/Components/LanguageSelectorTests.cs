@@ -66,7 +66,7 @@ public class LanguageSelectorTests : TestContext
         cut.Markup.Should().Contain("mud-icon-button");
         // Should contain both flag emojis
         cut.Markup.Should().Contain("\U0001F1F3\U0001F1F1"); // Dutch flag
-        cut.Markup.Should().Contain("\U0001F1EC\U0001F1E7"); // British flag
+        cut.Markup.Should().Contain("\U0001F1FA\U0001F1F0"); // UK flag
     }
 
     [Fact]
