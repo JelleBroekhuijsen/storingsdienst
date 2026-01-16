@@ -2,9 +2,11 @@ using FluentAssertions;
 using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
 using Moq;
+using Moq.Protected;
 using Storingsdienst.Client.Resources;
 using Storingsdienst.Client.Services;
 using System.Globalization;
+using System.Net;
 
 namespace Storingsdienst.Client.Tests.Services;
 
@@ -13,6 +15,7 @@ public class LocalizationServiceTests
     private readonly Mock<IStringLocalizerFactory> _mockLocalizerFactory;
     private readonly Mock<IStringLocalizer> _mockLocalizer;
     private readonly Mock<IJSRuntime> _mockJsRuntime;
+    private readonly HttpClient _mockHttpClient;
     private readonly LocalizationService _sut;
 
     public LocalizationServiceTests()
@@ -26,7 +29,25 @@ public class LocalizationServiceTests
             .Setup(f => f.Create(typeof(SharedResources)))
             .Returns(_mockLocalizer.Object);
 
-        _sut = new LocalizationService(_mockLocalizerFactory.Object, _mockJsRuntime.Object);
+        // Create a mock HttpClient that returns empty JSON for translation files
+        var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
+        mockHttpMessageHandler.Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.IsAny<HttpRequestMessage>(),
+                ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent("{}")
+            });
+        
+        _mockHttpClient = new HttpClient(mockHttpMessageHandler.Object)
+        {
+            BaseAddress = new Uri("http://localhost/")
+        };
+
+        _sut = new LocalizationService(_mockLocalizerFactory.Object, _mockJsRuntime.Object, _mockHttpClient);
     }
 
     [Fact]
@@ -37,19 +58,16 @@ public class LocalizationServiceTests
     }
 
     [Fact]
-    public void Indexer_ReturnsLocalizedString()
+    public void Indexer_WhenKeyNotFound_ReturnsKey()
     {
         // Arrange
         var testKey = "TestKey";
-        var expectedValue = "Test Value";
-        var localizedString = new LocalizedString(testKey, expectedValue);
-        _mockLocalizer.Setup(l => l[testKey]).Returns(localizedString);
 
-        // Act
+        // Act - Key doesn't exist in translations, so it should return the key itself
         var result = _sut[testKey];
 
-        // Assert
-        result.Should().Be(expectedValue);
+        // Assert - The indexer returns the key as fallback when translation not found
+        result.Should().Be(testKey);
     }
 
     [Theory]

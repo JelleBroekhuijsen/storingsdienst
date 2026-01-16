@@ -50,6 +50,13 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore ${{ inputs.solution-path }}
 
+      - name: Build test project to generate Playwright installation script
+        run: dotnet build tests/Storingsdienst.E2E.Tests/Storingsdienst.E2E.Tests.csproj --configuration ${{ inputs.configuration }} --no-restore
+
+      - name: Install Playwright Browsers
+        run: pwsh tests/Storingsdienst.E2E.Tests/bin/${{ inputs.configuration }}/net8.0/playwright.ps1 install --with-deps
+        continue-on-error: false
+
       - name: Run unit tests with code coverage
         id: test
         run: |
