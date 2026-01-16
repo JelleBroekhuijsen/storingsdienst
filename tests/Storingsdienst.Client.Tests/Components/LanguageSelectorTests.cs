@@ -98,7 +98,7 @@ public class LanguageSelectorTests : TestContext
     public void LanguageSelector_SubscribesToOnLanguageChanged()
     {
         // Act
-        var cut = RenderComponent<LanguageSelector>();
+        RenderComponent<LanguageSelector>();
 
         // Assert
         _mockLocalizationService.VerifyAdd(
