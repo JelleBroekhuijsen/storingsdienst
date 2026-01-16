@@ -98,7 +98,7 @@ public class LanguageSelectorTests : TestContext
     public void LanguageSelector_SubscribesToOnLanguageChanged()
     {
         // Act
-        var cut = RenderComponent<LanguageSelector>();
+        RenderComponent<LanguageSelector>();
 
         // Assert
         _mockLocalizationService.VerifyAdd(
@@ -142,7 +142,6 @@ public class LanguageSelectorTests : TestContext
         // Arrange
         _mockLocalizationService.Setup(l => l.CurrentCulture).Returns("nl");
         var cut = RenderComponent<LanguageSelector>();
-        var initialMarkup = cut.Markup;
 
         // Act - Simulate language change by updating the mock and triggering the callback
         _mockLocalizationService.Setup(l => l.CurrentCulture).Returns("en");
