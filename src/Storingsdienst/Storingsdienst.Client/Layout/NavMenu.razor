@@ -8,21 +8,6 @@
     <MudNavLink Href="guide/power-automate" Icon="@Icons.Material.Filled.MenuBook">
         @L["PowerAutomateGuide"]
     </MudNavLink>
-    <MudDivider Class="my-2" />
-    <MudNavGroup Title="@L["Account"]" Icon="@Icons.Material.Filled.AccountCircle" Expanded="true">
-        <AuthorizeView>
-            <Authorized>
-                <MudNavLink Href="authentication/logout" Icon="@Icons.Material.Filled.Logout">
-                    @L["SignOut"]
-                </MudNavLink>
-            </Authorized>
-            <NotAuthorized>
-                <MudNavLink Href="authentication/login" Icon="@Icons.Material.Filled.Login">
-                    @L["SignIn"]
-                </MudNavLink>
-            </NotAuthorized>
-        </AuthorizeView>
-    </MudNavGroup>
 </MudNavMenu>
 
 @code {

@@ -15,21 +15,6 @@
         <MudText Typo="Typo.h6" Class="ml-2">@L["AppTitle"]</MudText>
         <MudSpacer />
         <LanguageSelector />
-        <AuthorizeView>
-            <Authorized>
-                <MudText Typo="Typo.body2" Class="mr-2 d-none d-sm-block">@context.User.Identity?.Name</MudText>
-                <MudButton Variant="Variant.Text" Color="Color.Inherit" Href="authentication/logout"
-                           StartIcon="@Icons.Material.Filled.Logout">
-                    @L["SignOut"]
-                </MudButton>
-            </Authorized>
-            <NotAuthorized>
-                <MudButton Variant="Variant.Text" Color="Color.Inherit" Href="authentication/login"
-                           StartIcon="@Icons.Material.Filled.Login">
-                    @L["SignIn"]
-                </MudButton>
-            </NotAuthorized>
-        </AuthorizeView>
     </MudAppBar>
 
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
