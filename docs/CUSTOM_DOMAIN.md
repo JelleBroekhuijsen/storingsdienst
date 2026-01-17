@@ -16,7 +16,7 @@ Before configuring the custom domain, ensure you have:
 - [x] Azure Web App deployed (see [DEPLOYMENT.md](./DEPLOYMENT.md))
 - [x] Access to DNS management for `jll.io` domain
 - [x] Azure Portal access with permissions to modify the Web App
-- [x] Azure AD App Registration access to update redirect URIs
+- [x] Microsoft Entra App Registration access to update redirect URIs
 
 ## Architecture
 
@@ -155,9 +155,9 @@ az deployment sub create \
   --parameters infra/parameters/prod.bicepparam
 ```
 
-### Step 4: Update Azure AD Redirect URIs
+### Step 4: Update Microsoft Entra Redirect URIs
 
-The Azure AD App Registration must include redirect URIs for the custom domain.
+The Microsoft Entra App Registration must include redirect URIs for the custom domain.
 
 #### 4.1 Navigate to App Registration
 
@@ -286,7 +286,7 @@ Users can access either URL; authentication works on both.
 
 #### Error: "AADSTS50011: Reply URL mismatch"
 
-**Cause**: Custom domain redirect URI not added to Azure AD App Registration.
+**Cause**: Custom domain redirect URI not added to Microsoft Entra App Registration.
 
 **Solution**:
 1. Follow Step 4 to add: `https://storingsdienst.jll.io/authentication/login-callback`
@@ -299,7 +299,7 @@ Users can access either URL; authentication works on both.
 **Cause**: Missing redirect URI for custom domain.
 
 **Solution**:
-1. Verify all three redirect URIs are configured in Azure AD:
+1. Verify all three redirect URIs are configured in Microsoft Entra:
    - `https://storingsdienst.jll.io/authentication/login-callback`
    - `https://app-storingsdienst-prod.azurewebsites.net/authentication/login-callback`
    - `https://localhost:5266/authentication/login-callback`
@@ -425,5 +425,5 @@ For custom domain issues:
 
 - [Azure App Service Custom Domain Documentation](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain)
 - [Azure Managed Certificates](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate)
-- [Azure AD Redirect URI Configuration](https://learn.microsoft.com/en-us/azure/active-directory/develop/reply-url)
+- [Microsoft Entra Redirect URI Configuration](https://learn.microsoft.com/en-us/azure/active-directory/develop/reply-url)
 - [DNS CNAME Records](https://www.cloudflare.com/learning/dns/dns-records/dns-cname-record/)

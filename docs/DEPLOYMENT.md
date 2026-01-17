@@ -5,7 +5,7 @@ This guide provides complete instructions for deploying the Storingsdienst appli
 ## Table of Contents
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
-- [Azure AD Architecture](#azure-ad-architecture)
+- [Microsoft Entra Architecture](#azure-ad-architecture)
 - [One-Time Setup](#one-time-setup)
 - [Deployment Process](#deployment-process)
 - [Post-Deployment Configuration](#post-deployment-configuration)
@@ -36,18 +36,18 @@ Before starting, ensure you have:
 
 - [x] Azure subscription with **Contributor** access
 - [x] GitHub repository with **admin** access
-- [x] Multi-tenant Azure AD App Registration created (for user authentication)
+- [x] Multi-tenant Microsoft Entra App Registration created (for user authentication)
 - [ ] Azure CLI installed (optional, for manual operations)
 
-## Azure AD Architecture
+## Microsoft Entra Architecture
 
-This deployment uses **two separate Azure AD identities** for different purposes. Understanding this separation is critical:
+This deployment uses **two separate Microsoft Entra identities** for different purposes. Understanding this separation is critical:
 
 ### 1. Deployment Service Principal (GitHub Actions → Azure)
 
 **Purpose**: Allows GitHub Actions to deploy infrastructure and code to your Azure subscription.
 
-**Type**: Azure AD Service Principal with Azure RBAC permissions
+**Type**: Microsoft Entra Service Principal with Azure RBAC permissions
 
 **Permissions**:
 - `Contributor` role on subscription or resource group
@@ -63,7 +63,7 @@ This deployment uses **two separate Azure AD identities** for different purposes
 
 **Purpose**: Allows end users from ANY organization to sign in and access their Microsoft 365 calendar data.
 
-**Type**: Azure AD App Registration configured for multi-tenancy
+**Type**: Microsoft Entra App Registration configured for multi-tenancy
 
 **Permissions**:
 - Microsoft Graph API: `User.Read` (delegated)
@@ -156,7 +156,7 @@ Verify these delegated permissions are granted:
 #### 2.3 Multi-tenant Configuration
 1. Go to **Authentication** → **Supported account types**
 2. Ensure it's set to:
-   - **Accounts in any organizational directory (Any Azure AD directory - Multitenant)**
+   - **Accounts in any organizational directory (Any Microsoft Entra directory - Multitenant)**
 
 #### 2.4 Copy Client ID
 1. Go to **Overview**
@@ -236,7 +236,7 @@ After infrastructure deployment, you need the publish profile for application de
 
 ### Step 6: Deploy Application
 
-This builds the application, injects the Azure AD Client ID, and deploys to Azure.
+This builds the application, injects the Microsoft Entra Client ID, and deploys to Azure.
 
 #### Automatic Deployment (on push to main)
 Any push to the `main` branch automatically triggers deployment (unless the changes are only to documentation).
@@ -254,7 +254,7 @@ Any push to the `main` branch automatically triggers deployment (unless the chan
 1. Code is checked out
 2. .NET 8 SDK is set up
 3. Dependencies are restored
-4. **Azure AD Client ID is injected** into `appsettings.json`
+4. **Microsoft Entra Client ID is injected** into `appsettings.json`
 5. Solution is built
 6. Server project (including WebAssembly client) is published
 7. Application is deployed to Azure Web App
@@ -321,7 +321,7 @@ git push origin main
 
 # GitHub Actions automatically:
 # 1. Builds the application
-# 2. Injects Azure AD Client ID
+# 2. Injects Microsoft Entra Client ID
 # 3. Deploys to Azure
 # 4. Application is live within 4-6 minutes
 ```
@@ -375,9 +375,9 @@ az role assignment create \
 #### Error: "AADSTS50020: User account does not exist in tenant"
 **Cause**: Attempting to sign in with a personal Microsoft account (multi-tenant is configured for organizational accounts only)
 
-**Solution**: Multi-tenant apps support **organizational accounts** (Azure AD). If you need personal Microsoft accounts, update the app registration:
+**Solution**: Multi-tenant apps support **organizational accounts** (Microsoft Entra). If you need personal Microsoft accounts, update the app registration:
 1. Go to **Authentication** → **Supported account types**
-2. Select: **Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)**
+2. Select: **Accounts in any organizational directory (Any Microsoft Entra directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)**
 
 ### Application Issues
 
@@ -513,4 +513,4 @@ az webapp deployment source config-zip \
   --src ./app.zip
 ```
 
-**Note**: Manual deployment does NOT inject the Azure AD Client ID. You must manually update `appsettings.json` before building.
+**Note**: Manual deployment does NOT inject the Microsoft Entra Client ID. You must manually update `appsettings.json` before building.

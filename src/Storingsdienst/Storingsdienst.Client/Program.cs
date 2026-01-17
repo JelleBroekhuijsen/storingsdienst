@@ -30,7 +30,7 @@ builder.Services.AddScoped<IMeetingAnalysisService, MeetingAnalysisService>();
 builder.Services.AddScoped<IExcelExportService, ExcelExportService>();
 builder.Services.AddScoped<JsonImportService>();
 
-// MSAL Authentication (multi-tenant, any Azure AD organization)
+// MSAL Authentication (multi-tenant, any Microsoft Entra organization)
 builder.Services.AddMsalAuthentication(options =>
 {
     builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);

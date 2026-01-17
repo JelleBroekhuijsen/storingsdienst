@@ -1,6 +1,20 @@
 // JavaScript interop functions for Storingsdienst
 
 /**
+ * Scrolls smoothly to an element by its ID
+ * @param {string} elementId - The ID of the element to scroll to
+ */
+window.scrollToElement = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+};
+
+/**
  * Downloads a file from a base64-encoded stream
  * @param {string} fileName - The name of the file to download
  * @param {string} base64Data - The file data encoded as base64

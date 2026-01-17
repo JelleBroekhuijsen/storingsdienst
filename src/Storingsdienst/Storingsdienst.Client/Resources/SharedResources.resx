@@ -84,7 +84,7 @@
     <value>Microsoft Graph API</value>
   </data>
   <data name="RequiresAzureAd" xml:space="preserve">
-    <value>Vereist Azure AD app-registratie</value>
+    <value>Vereist Microsoft Entra app-registratie</value>
   </data>
   <data name="JsonFileUpload" xml:space="preserve">
     <value>JSON-bestand uploaden</value>
@@ -313,7 +313,7 @@
     <value>Ontbrekende vereiste machtigingen (User.Read, Calendars.Read)</value>
   </data>
   <data name="AzureAdConfigIssues" xml:space="preserve">
-    <value>Azure AD app-registratieconfiguratieproblemen</value>
+    <value>Microsoft Entra app-registratieconfiguratieproblemen</value>
   </data>
   <data name="ReturnToHome" xml:space="preserve">
     <value>Terug naar startpagina</value>

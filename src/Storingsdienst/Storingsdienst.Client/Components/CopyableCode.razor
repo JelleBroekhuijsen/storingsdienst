@@ -1,0 +1,93 @@
+@inject IJSRuntime JSRuntime
+
+@if (IsBlock)
+{
+    <MudPaper Class="copyable-code-block" Elevation="0">
+        <pre class="code-content">@Value</pre>
+        <MudIconButton Icon="@Icons.Material.Filled.ContentCopy"
+                       Size="Size.Small"
+                       Class="copy-button"
+                       OnClick="CopyToClipboard"
+                       Title="Copy to clipboard" />
+    </MudPaper>
+}
+else
+{
+    <span class="copyable-code-inline">
+        <code>@Value</code>
+        <MudIconButton Icon="@Icons.Material.Filled.ContentCopy"
+                       Size="Size.Small"
+                       Class="copy-button-inline"
+                       OnClick="CopyToClipboard"
+                       Title="Copy to clipboard" />
+    </span>
+}
+
+@code {
+    [Parameter]
+    public string Value { get; set; } = string.Empty;
+
+    [Parameter]
+    public bool IsBlock { get; set; } = false;
+
+    [Parameter]
+    public EventCallback OnCopy { get; set; }
+
+    private async Task CopyToClipboard()
+    {
+        await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", Value);
+        await OnCopy.InvokeAsync();
+    }
+}
+
+<style>
+    .copyable-code-inline {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .copyable-code-inline code {
+        background-color: var(--mud-palette-background-gray);
+        border: 1px solid var(--mud-palette-lines-default);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.875rem;
+        color: var(--mud-palette-primary);
+    }
+
+    .copy-button-inline {
+        padding: 2px !important;
+        min-width: 24px !important;
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    .copy-button-inline .mud-icon-root {
+        font-size: 16px !important;
+    }
+
+    .copyable-code-block {
+        position: relative;
+        background: var(--mud-palette-background-gray);
+        border: 1px solid var(--mud-palette-lines-default);
+        border-radius: 8px;
+        padding: 12px 40px 12px 12px;
+    }
+
+    .copyable-code-block .code-content {
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.85rem;
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+        color: var(--mud-palette-text-primary);
+    }
+
+    .copyable-code-block .copy-button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+    }
+</style>

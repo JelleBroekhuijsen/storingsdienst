@@ -6,7 +6,7 @@ A Blazor WebAssembly application for tracking and analyzing Microsoft 365 calend
 
 - **Dual Data Source Support**:
   - **Graph API Mode**: Direct OAuth authentication and real-time M365 calendar access
-  - **JSON Import Mode**: Upload Power Automate-generated JSON files (no Azure AD app registration required)
+  - **JSON Import Mode**: Upload Power Automate-generated JSON files (no Microsoft Entra app registration required)
 - **Meeting Analysis**: Tracks meetings up to 1 year in the past
 - **Multi-Day Event Support**: Each day of multi-day events is counted separately
 - **Dutch Holiday Detection**: Categorizes days as weekdays, weekends, or Dutch holidays
@@ -62,7 +62,7 @@ storingsdienst/
    ```
 
 3. **For Graph API Mode** (optional):
-   - Register an application in Azure Portal (Azure AD → App registrations)
+   - Register an application in Azure Portal (Microsoft Entra → App registrations)
    - Add redirect URI: `https://localhost:7xxx/authentication/login-callback`
    - Add API permissions: `User.Read`, `Calendars.Read`
    - Copy the Application (client) ID
@@ -280,7 +280,7 @@ GitHub Repository (main branch)
 GitHub Actions Workflow
     ↓
     ├─ Build .NET 8 Application
-    ├─ Inject Azure AD Client ID
+    ├─ Inject Microsoft Entra Client ID
     ├─ Publish WebAssembly + Server
     └─ Deploy to Azure Web App
         ↓
@@ -313,14 +313,14 @@ Go to **Actions** → **Deploy Application** → **Run workflow**
 For complete deployment setup and configuration:
 - **[Deployment Guide](docs/DEPLOYMENT.md)** - Complete setup instructions
 - **[Custom Domain Guide](docs/CUSTOM_DOMAIN.md)** - Custom domain configuration
-- **[Configuration Guide](docs/CONFIGURATION.md)** - Azure AD and app settings
+- **[Configuration Guide](docs/CONFIGURATION.md)** - Microsoft Entra and app settings
 - **[Infrastructure README](infra/README.md)** - Bicep templates and Azure resources
 
 ### Key Features
 - ✅ Fully automated CI/CD with GitHub Actions
 - ✅ Infrastructure as Code using Bicep
 - ✅ Separate deployment and application identities
-- ✅ Multi-tenant Azure AD authentication
+- ✅ Multi-tenant Microsoft Entra authentication
 - ✅ Application Insights monitoring
 - ✅ HTTPS enforced
 - ✅ Automatic rollback support

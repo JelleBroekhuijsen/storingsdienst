@@ -1,0 +1,60 @@
+@inject ILocalizationService L
+@implements IDisposable
+
+<MudPaper Class="mt-auto" Elevation="0" Square="true" Style="background-color: var(--mud-palette-appbar-background);">
+    <MudContainer MaxWidth="MaxWidth.Large" Class="py-4">
+        <MudGrid Justify="Justify.SpaceBetween" Spacing="3">
+            <MudItem xs="12" sm="6">
+                <MudStack Spacing="1">
+                    <MudText Typo="Typo.subtitle2" Style="color: #FFFFFF;">
+                        @L["Contact"]
+                    </MudText>
+                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                        <MudIcon Icon="@Icons.Material.Filled.Email" Size="Size.Small" Style="color: var(--mud-palette-secondary);" />
+                        <MudLink Href="mailto:consultancy@jll.io" Typo="Typo.body2" Underline="Underline.Hover" Style="color: #FFFFFF !important;">
+                            consultancy@jll.io
+                        </MudLink>
+                    </MudStack>
+                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                        <MudIcon Icon="@Icons.Material.Filled.Language" Size="Size.Small" Style="color: var(--mud-palette-secondary);" />
+                        <MudLink Href="https://www.jll.io" Target="_blank" Typo="Typo.body2" Underline="Underline.Hover" Style="color: #FFFFFF !important;">
+                            www.jll.io
+                        </MudLink>
+                    </MudStack>
+                </MudStack>
+            </MudItem>
+
+            <MudItem xs="12" sm="6">
+                <MudStack AlignItems="AlignItems.End" Class="d-none d-sm-flex" Spacing="2">
+                    <img src="jll-io-logo.svg" alt="jll.io Consultancy" style="height: 40px; width: auto;" />
+                    <MudText Typo="Typo.caption" Style="color: #FFFFFF; opacity: 0.85;">
+                        © @DateTime.Now.Year jll.io Consultancy. @L["AllRightsReserved"]
+                    </MudText>
+                </MudStack>
+                <MudStack AlignItems="AlignItems.Start" Class="d-flex d-sm-none" Spacing="2">
+                    <img src="jll-io-logo.svg" alt="jll.io Consultancy" style="height: 40px; width: auto;" />
+                    <MudText Typo="Typo.caption" Style="color: #FFFFFF; opacity: 0.85;">
+                        © @DateTime.Now.Year jll.io Consultancy. @L["AllRightsReserved"]
+                    </MudText>
+                </MudStack>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+</MudPaper>
+
+@code {
+    protected override void OnInitialized()
+    {
+        L.OnLanguageChanged += OnLanguageChanged;
+    }
+
+    private void OnLanguageChanged()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        L.OnLanguageChanged -= OnLanguageChanged;
+    }
+}

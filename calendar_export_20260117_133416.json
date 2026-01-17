@@ -1,0 +1,1590 @@
+{
+    "events": [
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-03T08:00:00+00:00",
+            "end": "2025-02-03T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-04T08:00:00+00:00",
+            "end": "2025-02-04T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-06T08:00:00+00:00",
+            "end": "2025-02-06T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-07T08:00:00+00:00",
+            "end": "2025-02-07T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-10T08:00:00+00:00",
+            "end": "2025-02-10T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-11T08:00:00+00:00",
+            "end": "2025-02-11T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-13T08:00:00+00:00",
+            "end": "2025-02-13T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-14T08:00:00+00:00",
+            "end": "2025-02-14T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-17T08:00:00+00:00",
+            "end": "2025-02-17T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-18T08:00:00+00:00",
+            "end": "2025-02-18T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-20T08:00:00+00:00",
+            "end": "2025-02-20T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-21T08:00:00+00:00",
+            "end": "2025-02-21T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-24T08:00:00+00:00",
+            "end": "2025-02-24T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-25T08:00:00+00:00",
+            "end": "2025-02-25T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-27T08:00:00+00:00",
+            "end": "2025-02-27T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-02-28T08:00:00+00:00",
+            "end": "2025-02-28T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-03T08:00:00+00:00",
+            "end": "2025-03-03T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-04T08:00:00+00:00",
+            "end": "2025-03-04T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-06T08:00:00+00:00",
+            "end": "2025-03-06T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-07T08:00:00+00:00",
+            "end": "2025-03-07T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-10T08:00:00+00:00",
+            "end": "2025-03-10T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-11T08:00:00+00:00",
+            "end": "2025-03-11T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-13T08:00:00+00:00",
+            "end": "2025-03-13T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-14T08:00:00+00:00",
+            "end": "2025-03-14T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-17T08:00:00+00:00",
+            "end": "2025-03-17T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-18T08:00:00+00:00",
+            "end": "2025-03-18T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-20T08:00:00+00:00",
+            "end": "2025-03-20T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-21T08:00:00+00:00",
+            "end": "2025-03-21T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-24T08:00:00+00:00",
+            "end": "2025-03-24T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-25T08:00:00+00:00",
+            "end": "2025-03-25T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-27T08:00:00+00:00",
+            "end": "2025-03-27T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-28T08:00:00+00:00",
+            "end": "2025-03-28T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-03-31T08:00:00+00:00",
+            "end": "2025-03-31T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-01T08:00:00+00:00",
+            "end": "2025-04-01T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-03T08:00:00+00:00",
+            "end": "2025-04-03T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-07T08:00:00+00:00",
+            "end": "2025-04-07T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-08T08:00:00+00:00",
+            "end": "2025-04-08T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-10T08:00:00+00:00",
+            "end": "2025-04-10T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-11T08:00:00+00:00",
+            "end": "2025-04-11T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-14T08:00:00+00:00",
+            "end": "2025-04-14T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-15T08:00:00+00:00",
+            "end": "2025-04-15T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-17T08:00:00+00:00",
+            "end": "2025-04-17T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-18T08:00:00+00:00",
+            "end": "2025-04-18T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-21T08:00:00+00:00",
+            "end": "2025-04-21T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-22T08:00:00+00:00",
+            "end": "2025-04-22T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-24T08:00:00+00:00",
+            "end": "2025-04-24T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-25T08:00:00+00:00",
+            "end": "2025-04-25T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-28T08:00:00+00:00",
+            "end": "2025-04-28T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-04-29T08:00:00+00:00",
+            "end": "2025-04-29T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-01T08:00:00+00:00",
+            "end": "2025-05-01T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-02T08:00:00+00:00",
+            "end": "2025-05-02T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-06T08:00:00+00:00",
+            "end": "2025-05-06T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-08T08:00:00+00:00",
+            "end": "2025-05-08T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-09T08:00:00+00:00",
+            "end": "2025-05-09T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-12T08:00:00+00:00",
+            "end": "2025-05-12T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-13T08:00:00+00:00",
+            "end": "2025-05-13T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-15T08:00:00+00:00",
+            "end": "2025-05-15T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-16T08:00:00+00:00",
+            "end": "2025-05-16T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-19T08:00:00+00:00",
+            "end": "2025-05-19T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-20T08:00:00+00:00",
+            "end": "2025-05-20T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-22T08:00:00+00:00",
+            "end": "2025-05-22T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-23T08:00:00+00:00",
+            "end": "2025-05-23T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-26T08:00:00+00:00",
+            "end": "2025-05-26T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-29T08:00:00+00:00",
+            "end": "2025-05-29T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-05-30T08:00:00+00:00",
+            "end": "2025-05-30T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-02T08:00:00+00:00",
+            "end": "2025-06-02T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-03T08:00:00+00:00",
+            "end": "2025-06-03T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-05T08:00:00+00:00",
+            "end": "2025-06-05T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-06T08:00:00+00:00",
+            "end": "2025-06-06T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-09T08:00:00+00:00",
+            "end": "2025-06-09T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-10T08:00:00+00:00",
+            "end": "2025-06-10T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-12T08:00:00+00:00",
+            "end": "2025-06-12T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-13T08:00:00+00:00",
+            "end": "2025-06-13T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-16T08:00:00+00:00",
+            "end": "2025-06-16T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-17T08:00:00+00:00",
+            "end": "2025-06-17T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-19T08:00:00+00:00",
+            "end": "2025-06-19T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-20T08:00:00+00:00",
+            "end": "2025-06-20T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-23T08:00:00+00:00",
+            "end": "2025-06-23T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-24T08:00:00+00:00",
+            "end": "2025-06-24T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-26T08:00:00+00:00",
+            "end": "2025-06-26T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-27T08:00:00+00:00",
+            "end": "2025-06-27T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "Daily Standup - Heneways",
+            "start": "2025-06-30T08:00:00+00:00",
+            "end": "2025-06-30T08:15:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-08T08:30:00+00:00",
+            "end": "2025-05-08T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-09T08:30:00+00:00",
+            "end": "2025-05-09T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-12T08:30:00+00:00",
+            "end": "2025-05-12T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-13T08:30:00+00:00",
+            "end": "2025-05-13T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-14T08:30:00+00:00",
+            "end": "2025-05-14T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-15T08:30:00+00:00",
+            "end": "2025-05-15T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-16T08:30:00+00:00",
+            "end": "2025-05-16T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-19T08:30:00+00:00",
+            "end": "2025-05-19T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-20T08:30:00+00:00",
+            "end": "2025-05-20T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-21T08:30:00+00:00",
+            "end": "2025-05-21T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-22T08:30:00+00:00",
+            "end": "2025-05-22T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-23T08:30:00+00:00",
+            "end": "2025-05-23T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-26T08:30:00+00:00",
+            "end": "2025-05-26T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-27T08:30:00+00:00",
+            "end": "2025-05-27T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-28T09:30:00+00:00",
+            "end": "2025-05-28T09:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-29T08:30:00+00:00",
+            "end": "2025-05-29T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-05-30T08:30:00+00:00",
+            "end": "2025-05-30T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-02T08:30:00+00:00",
+            "end": "2025-06-02T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-03T08:30:00+00:00",
+            "end": "2025-06-03T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-04T08:30:00+00:00",
+            "end": "2025-06-04T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-05T08:30:00+00:00",
+            "end": "2025-06-05T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-06T08:30:00+00:00",
+            "end": "2025-06-06T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-09T08:30:00+00:00",
+            "end": "2025-06-09T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-10T08:30:00+00:00",
+            "end": "2025-06-10T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-11T08:30:00+00:00",
+            "end": "2025-06-11T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-12T08:30:00+00:00",
+            "end": "2025-06-12T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-13T08:30:00+00:00",
+            "end": "2025-06-13T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-16T08:30:00+00:00",
+            "end": "2025-06-16T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-17T08:30:00+00:00",
+            "end": "2025-06-17T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-18T08:30:00+00:00",
+            "end": "2025-06-18T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-19T08:30:00+00:00",
+            "end": "2025-06-19T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-20T08:30:00+00:00",
+            "end": "2025-06-20T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-23T08:30:00+00:00",
+            "end": "2025-06-23T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-24T08:30:00+00:00",
+            "end": "2025-06-24T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-25T08:30:00+00:00",
+            "end": "2025-06-25T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-26T08:30:00+00:00",
+            "end": "2025-06-26T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-27T08:30:00+00:00",
+            "end": "2025-06-27T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-06-30T08:30:00+00:00",
+            "end": "2025-06-30T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-01T08:30:00+00:00",
+            "end": "2025-07-01T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-02T08:30:00+00:00",
+            "end": "2025-07-02T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-03T08:30:00+00:00",
+            "end": "2025-07-03T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-04T08:30:00+00:00",
+            "end": "2025-07-04T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-07T08:30:00+00:00",
+            "end": "2025-07-07T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-08T08:30:00+00:00",
+            "end": "2025-07-08T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-09T08:30:00+00:00",
+            "end": "2025-07-09T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-10T08:30:00+00:00",
+            "end": "2025-07-10T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-11T08:30:00+00:00",
+            "end": "2025-07-11T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-14T08:30:00+00:00",
+            "end": "2025-07-14T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-15T08:30:00+00:00",
+            "end": "2025-07-15T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-16T08:30:00+00:00",
+            "end": "2025-07-16T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-17T08:30:00+00:00",
+            "end": "2025-07-17T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-18T08:30:00+00:00",
+            "end": "2025-07-18T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-21T08:30:00+00:00",
+            "end": "2025-07-21T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-22T08:30:00+00:00",
+            "end": "2025-07-22T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-23T08:30:00+00:00",
+            "end": "2025-07-23T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-24T08:30:00+00:00",
+            "end": "2025-07-24T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-25T08:30:00+00:00",
+            "end": "2025-07-25T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-28T08:30:00+00:00",
+            "end": "2025-07-28T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-29T08:30:00+00:00",
+            "end": "2025-07-29T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-30T08:30:00+00:00",
+            "end": "2025-07-30T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-31T08:30:00+00:00",
+            "end": "2025-07-31T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-30T08:30:00+00:00",
+            "end": "2025-07-30T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-07-31T08:30:00+00:00",
+            "end": "2025-07-31T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-01T08:30:00+00:00",
+            "end": "2025-08-01T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-04T08:30:00+00:00",
+            "end": "2025-08-04T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-05T08:30:00+00:00",
+            "end": "2025-08-05T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-06T08:30:00+00:00",
+            "end": "2025-08-06T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-07T08:30:00+00:00",
+            "end": "2025-08-07T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-08T08:30:00+00:00",
+            "end": "2025-08-08T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-11T08:30:00+00:00",
+            "end": "2025-08-11T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-12T08:30:00+00:00",
+            "end": "2025-08-12T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-13T08:30:00+00:00",
+            "end": "2025-08-13T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-14T08:30:00+00:00",
+            "end": "2025-08-14T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-15T08:30:00+00:00",
+            "end": "2025-08-15T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-18T08:30:00+00:00",
+            "end": "2025-08-18T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-19T08:30:00+00:00",
+            "end": "2025-08-19T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-20T08:30:00+00:00",
+            "end": "2025-08-20T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-21T08:30:00+00:00",
+            "end": "2025-08-21T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-22T08:30:00+00:00",
+            "end": "2025-08-22T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-25T08:30:00+00:00",
+            "end": "2025-08-25T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-26T08:30:00+00:00",
+            "end": "2025-08-26T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-27T08:30:00+00:00",
+            "end": "2025-08-27T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-28T08:30:00+00:00",
+            "end": "2025-08-28T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-08-29T08:30:00+00:00",
+            "end": "2025-08-29T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-01T08:30:00+00:00",
+            "end": "2025-09-01T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-02T08:30:00+00:00",
+            "end": "2025-09-02T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-03T08:30:00+00:00",
+            "end": "2025-09-03T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-04T08:30:00+00:00",
+            "end": "2025-09-04T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-05T08:30:00+00:00",
+            "end": "2025-09-05T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-08T08:30:00+00:00",
+            "end": "2025-09-08T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-09T08:30:00+00:00",
+            "end": "2025-09-09T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-10T08:30:00+00:00",
+            "end": "2025-09-10T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-11T08:30:00+00:00",
+            "end": "2025-09-11T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-12T08:30:00+00:00",
+            "end": "2025-09-12T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-15T08:30:00+00:00",
+            "end": "2025-09-15T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-16T08:30:00+00:00",
+            "end": "2025-09-16T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-17T08:30:00+00:00",
+            "end": "2025-09-17T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-18T08:30:00+00:00",
+            "end": "2025-09-18T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-19T08:30:00+00:00",
+            "end": "2025-09-19T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-22T08:30:00+00:00",
+            "end": "2025-09-22T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-23T08:30:00+00:00",
+            "end": "2025-09-23T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-24T08:30:00+00:00",
+            "end": "2025-09-24T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-25T08:30:00+00:00",
+            "end": "2025-09-25T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-26T08:30:00+00:00",
+            "end": "2025-09-26T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-29T08:30:00+00:00",
+            "end": "2025-09-29T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-09-30T08:30:00+00:00",
+            "end": "2025-09-30T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-01T08:30:00+00:00",
+            "end": "2025-10-01T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-02T08:30:00+00:00",
+            "end": "2025-10-02T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-03T08:30:00+00:00",
+            "end": "2025-10-03T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-06T08:30:00+00:00",
+            "end": "2025-10-06T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-07T08:30:00+00:00",
+            "end": "2025-10-07T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-08T08:30:00+00:00",
+            "end": "2025-10-08T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-09T08:30:00+00:00",
+            "end": "2025-10-09T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-10T08:30:00+00:00",
+            "end": "2025-10-10T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-13T08:30:00+00:00",
+            "end": "2025-10-13T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-14T08:30:00+00:00",
+            "end": "2025-10-14T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-15T08:30:00+00:00",
+            "end": "2025-10-15T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-16T08:30:00+00:00",
+            "end": "2025-10-16T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-17T08:30:00+00:00",
+            "end": "2025-10-17T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-20T08:30:00+00:00",
+            "end": "2025-10-20T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-21T08:30:00+00:00",
+            "end": "2025-10-21T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-22T08:30:00+00:00",
+            "end": "2025-10-22T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-23T08:30:00+00:00",
+            "end": "2025-10-23T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-24T08:30:00+00:00",
+            "end": "2025-10-24T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-27T08:30:00+00:00",
+            "end": "2025-10-27T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-28T08:30:00+00:00",
+            "end": "2025-10-28T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-29T08:30:00+00:00",
+            "end": "2025-10-29T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-30T08:30:00+00:00",
+            "end": "2025-10-30T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-10-31T08:30:00+00:00",
+            "end": "2025-10-31T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-03T08:30:00+00:00",
+            "end": "2025-11-03T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-04T08:30:00+00:00",
+            "end": "2025-11-04T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-05T08:30:00+00:00",
+            "end": "2025-11-05T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-06T08:30:00+00:00",
+            "end": "2025-11-06T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-07T08:30:00+00:00",
+            "end": "2025-11-07T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-10T08:30:00+00:00",
+            "end": "2025-11-10T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-11T08:30:00+00:00",
+            "end": "2025-11-11T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-12T08:30:00+00:00",
+            "end": "2025-11-12T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-13T08:30:00+00:00",
+            "end": "2025-11-13T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-14T08:30:00+00:00",
+            "end": "2025-11-14T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-17T08:30:00+00:00",
+            "end": "2025-11-17T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-18T08:30:00+00:00",
+            "end": "2025-11-18T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-19T08:30:00+00:00",
+            "end": "2025-11-19T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-20T08:30:00+00:00",
+            "end": "2025-11-20T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-21T08:30:00+00:00",
+            "end": "2025-11-21T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-24T08:30:00+00:00",
+            "end": "2025-11-24T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-25T08:30:00+00:00",
+            "end": "2025-11-25T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-26T08:30:00+00:00",
+            "end": "2025-11-26T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-27T08:30:00+00:00",
+            "end": "2025-11-27T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-11-28T08:30:00+00:00",
+            "end": "2025-11-28T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-01T08:30:00+00:00",
+            "end": "2025-12-01T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-02T08:30:00+00:00",
+            "end": "2025-12-02T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-03T08:30:00+00:00",
+            "end": "2025-12-03T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-04T08:30:00+00:00",
+            "end": "2025-12-04T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-05T08:30:00+00:00",
+            "end": "2025-12-05T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-08T08:30:00+00:00",
+            "end": "2025-12-08T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-09T08:30:00+00:00",
+            "end": "2025-12-09T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-10T08:30:00+00:00",
+            "end": "2025-12-10T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-11T08:30:00+00:00",
+            "end": "2025-12-11T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-12T08:30:00+00:00",
+            "end": "2025-12-12T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-15T08:30:00+00:00",
+            "end": "2025-12-15T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-16T08:30:00+00:00",
+            "end": "2025-12-16T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-17T08:30:00+00:00",
+            "end": "2025-12-17T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-18T08:30:00+00:00",
+            "end": "2025-12-18T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-19T08:30:00+00:00",
+            "end": "2025-12-19T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-22T08:30:00+00:00",
+            "end": "2025-12-22T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-23T08:30:00+00:00",
+            "end": "2025-12-23T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-24T08:30:00+00:00",
+            "end": "2025-12-24T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-25T08:30:00+00:00",
+            "end": "2025-12-25T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-26T08:30:00+00:00",
+            "end": "2025-12-26T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-29T08:30:00+00:00",
+            "end": "2025-12-29T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-30T08:30:00+00:00",
+            "end": "2025-12-30T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily Standup",
+            "start": "2025-12-31T08:30:00+00:00",
+            "end": "2025-12-31T08:45:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily standup",
+            "start": "2026-01-05T08:30:00+00:00",
+            "end": "2026-01-05T09:00:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily standup",
+            "start": "2026-01-06T08:30:00+00:00",
+            "end": "2026-01-06T09:00:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily standup",
+            "start": "2026-01-07T08:30:00+00:00",
+            "end": "2026-01-07T09:00:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily standup",
+            "start": "2026-01-08T08:30:00+00:00",
+            "end": "2026-01-08T09:00:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily standup",
+            "start": "2026-01-09T08:30:00+00:00",
+            "end": "2026-01-09T09:00:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily standup",
+            "start": "2026-01-12T08:30:00+00:00",
+            "end": "2026-01-12T09:00:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily standup",
+            "start": "2026-01-13T08:30:00+00:00",
+            "end": "2026-01-13T09:00:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily standup",
+            "start": "2026-01-14T08:30:00+00:00",
+            "end": "2026-01-14T09:00:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily standup",
+            "start": "2026-01-15T08:30:00+00:00",
+            "end": "2026-01-15T09:00:00+00:00",
+            "isAllDay": false
+        },
+        {
+            "subject": "[SMC] Daily standup",
+            "start": "2026-01-16T08:30:00+00:00",
+            "end": "2026-01-16T09:00:00+00:00",
+            "isAllDay": false
+        }
+    ],
+    "exportDate": "2026-01-17T13:34:15.9660872Z",
+    "subjectFilter": "Daily"
+}

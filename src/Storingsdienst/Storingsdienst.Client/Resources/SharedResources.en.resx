@@ -84,7 +84,7 @@
     <value>Microsoft Graph API</value>
   </data>
   <data name="RequiresAzureAd" xml:space="preserve">
-    <value>Requires Azure AD app registration</value>
+    <value>Requires Microsoft Entra app registration</value>
   </data>
   <data name="JsonFileUpload" xml:space="preserve">
     <value>JSON File Upload</value>
@@ -313,7 +313,7 @@
     <value>Missing required permissions (User.Read, Calendars.Read)</value>
   </data>
   <data name="AzureAdConfigIssues" xml:space="preserve">
-    <value>Azure AD app registration configuration issues</value>
+    <value>Microsoft Entra app registration configuration issues</value>
   </data>
   <data name="ReturnToHome" xml:space="preserve">
     <value>Return to Home</value>

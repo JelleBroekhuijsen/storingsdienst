@@ -1,10 +1,10 @@
 <#
 .SYNOPSIS
-    Creates a multi-tenant Azure AD app registration for Storingsdienst.
+    Creates a multi-tenant Microsoft Entra app registration for Storingsdienst.
 
 .DESCRIPTION
-    This script creates an Azure AD app registration configured for:
-    - Multi-tenant authentication (users from any Azure AD tenant can sign in)
+    This script creates an Microsoft Entra app registration configured for:
+    - Multi-tenant authentication (users from any Microsoft Entra tenant can sign in)
     - SPA (Single Page Application) redirect URIs
     - Microsoft Graph API permissions: User.Read, Calendars.Read (delegated)
     - ID token issuance enabled
@@ -13,7 +13,7 @@
     The display name for the app registration. Default: "Storingsdienst"
 
 .PARAMETER TenantId
-    The Azure AD tenant ID to create the app registration in. If not specified, the script
+    The Microsoft Entra tenant ID to create the app registration in. If not specified, the script
     will prompt you to select from available tenants.
 
 .PARAMETER RedirectUri
@@ -38,7 +38,7 @@
     Prerequisites:
     - Azure CLI installed (https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
     - User must be signed in: az login
-    - User must have permissions to create app registrations in Azure AD
+    - User must have permissions to create app registrations in Microsoft Entra
 #>
 
 [CmdletBinding()]
@@ -61,7 +61,7 @@ $ErrorActionPreference = "Continue"
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "  Storingsdienst Azure AD App Setup" -ForegroundColor Cyan
+Write-Host "  Storingsdienst Microsoft Entra App Setup" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -125,7 +125,7 @@ Write-Host "Redirect URIs: $($redirectUris -join ', ')" -ForegroundColor Gray
 Write-Host ""
 
 # Create the app registration with multi-tenant support
-# signInAudience: AzureADMultipleOrgs = multi-tenant (any Azure AD tenant)
+# signInAudience: AzureADMultipleOrgs = multi-tenant (any Microsoft Entra tenant)
 $appManifest = @{
     displayName = $AppName
     signInAudience = "AzureADMultipleOrgs"
@@ -253,7 +253,7 @@ try {
     Write-Host "     }" -ForegroundColor Gray
     Write-Host "   }" -ForegroundColor Gray
     Write-Host ""
-    Write-Host "2. Run the application and test sign-in with any Azure AD account." -ForegroundColor White
+    Write-Host "2. Run the application and test sign-in with any Microsoft Entra account." -ForegroundColor White
     Write-Host ""
     Write-Host "3. Users will be prompted to consent to the following permissions:" -ForegroundColor White
     Write-Host "   - Sign in and read user profile (User.Read)" -ForegroundColor Gray
@@ -269,7 +269,7 @@ catch {
     Write-Host $_.Exception.Message -ForegroundColor Red
     Write-Host ""
     Write-Host "Common issues:" -ForegroundColor Yellow
-    Write-Host "1. Ensure you have permissions to create app registrations in Azure AD" -ForegroundColor Gray
+    Write-Host "1. Ensure you have permissions to create app registrations in Microsoft Entra" -ForegroundColor Gray
     Write-Host "2. Try running: az login --allow-no-subscriptions" -ForegroundColor Gray
     Write-Host "3. Check if an app with the same name already exists" -ForegroundColor Gray
     exit 1

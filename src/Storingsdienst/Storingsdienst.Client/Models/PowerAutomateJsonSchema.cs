@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Storingsdienst.Client.Models;
@@ -22,21 +23,74 @@ public class PowerAutomateEvent
     public string Subject { get; set; } = string.Empty;
 
     [JsonPropertyName("start")]
-    public EventDateTime? Start { get; set; }
+    [JsonConverter(typeof(FlexibleDateTimeConverter))]
+    public string? Start { get; set; }
 
     [JsonPropertyName("end")]
-    public EventDateTime? End { get; set; }
+    [JsonConverter(typeof(FlexibleDateTimeConverter))]
+    public string? End { get; set; }
 
     [JsonPropertyName("isAllDay")]
     public bool IsAllDay { get; set; }
 }
 
-// DateTime with timezone info
-public class EventDateTime
+// Custom converter to handle both string and object date formats
+public class FlexibleDateTimeConverter : JsonConverter<string?>
 {
-    [JsonPropertyName("dateTime")]
-    public string DateTime { get; set; } = string.Empty;  // ISO 8601 format
+    public override string? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        // Handle direct string format: "2025-02-03T08:00:00+00:00"
+        if (reader.TokenType == JsonTokenType.String)
+        {
+            return reader.GetString();
+        }
 
-    [JsonPropertyName("timeZone")]
-    public string TimeZone { get; set; } = string.Empty;   // e.g., "UTC"
+        // Handle object format: { "dateTime": "...", "timeZone": "..." }
+        if (reader.TokenType == JsonTokenType.StartObject)
+        {
+            string? dateTimeValue = null;
+
+            while (reader.Read())
+            {
+                if (reader.TokenType == JsonTokenType.EndObject)
+                {
+                    break;
+                }
+
+                if (reader.TokenType == JsonTokenType.PropertyName)
+                {
+                    var propertyName = reader.GetString();
+                    reader.Read();
+
+                    if (string.Equals(propertyName, "dateTime", StringComparison.OrdinalIgnoreCase))
+                    {
+                        dateTimeValue = reader.GetString();
+                    }
+                    // Skip other properties like "timeZone"
+                }
+            }
+
+            return dateTimeValue;
+        }
+
+        // Handle null
+        if (reader.TokenType == JsonTokenType.Null)
+        {
+            return null;
+        }
+
+        throw new JsonException($"Unexpected token type: {reader.TokenType}");
+    }
+
+    public override void Write(Utf8JsonWriter writer, string? value, JsonSerializerOptions options)
+    {
+        if (value == null)
+        {
+            writer.WriteNullValue();
+        }
+        else
+        {
+            writer.WriteStringValue(value);
+        }
+    }
 }

@@ -26,7 +26,7 @@
                     <MudIcon Icon="@Icons.Custom.Brands.Microsoft" />
                     <MudStack Spacing="0">
                         <MudText Typo="Typo.body1">@L["MicrosoftGraphApi"]</MudText>
-                        <MudText Typo="Typo.caption" Class="mud-text-secondary">
+                        <MudText Typo="Typo.caption" Style="opacity: 0.85;">
                             @L["RequiresAzureAd"]
                         </MudText>
                     </MudStack>
@@ -37,7 +37,7 @@
                     <MudIcon Icon="@Icons.Material.Filled.UploadFile" />
                     <MudStack Spacing="0">
                         <MudText Typo="Typo.body1">@L["JsonFileUpload"]</MudText>
-                        <MudText Typo="Typo.caption" Class="mud-text-secondary">
+                        <MudText Typo="Typo.caption" Style="opacity: 0.85;">
                             @L["GeneratedByPowerAutomate"]
                         </MudText>
                     </MudStack>
@@ -244,6 +244,290 @@
             }
         </MudPaper>
     }
+
+    <MudPaper Class="pa-4 mb-4" Elevation="2">
+        <MudText Typo="Typo.h6" Class="mb-4">@L["AboutThisApp"]</MudText>
+
+        <MudGrid Spacing="3" Class="mb-4">
+            <MudItem xs="12" md="4">
+                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray); height: 100%;">
+                    <MudCardContent>
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
+                            <MudIcon Icon="@Icons.Material.Filled.Speed" Color="Color.Secondary" />
+                            <MudText Typo="Typo.subtitle2">@L["RapidAIBuilding"]</MudText>
+                        </MudStack>
+                        <MudText Typo="Typo.body2" Class="mb-3">
+                            @L["RapidAIBuildingDesc"]
+                        </MudText>
+                        <MudStack Spacing="1">
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["RapidFeature1"]</MudText>
+                            </MudStack>
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["RapidFeature2"]</MudText>
+                            </MudStack>
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["RapidFeature3"]</MudText>
+                            </MudStack>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+
+            <MudItem xs="12" md="4">
+                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray); height: 100%;">
+                    <MudCardContent>
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
+                            <MudIcon Icon="@Icons.Material.Filled.SmartToy" Color="Color.Secondary" />
+                            <MudText Typo="Typo.subtitle2">@L["AgenticWorkflows"]</MudText>
+                        </MudStack>
+                        <MudText Typo="Typo.body2" Class="mb-3">
+                            @L["AgenticWorkflowsDesc"]
+                        </MudText>
+                        <MudStack Spacing="1">
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["AgenticFeature1"]</MudText>
+                            </MudStack>
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["AgenticFeature2"]</MudText>
+                            </MudStack>
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["AgenticFeature3"]</MudText>
+                            </MudStack>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+
+            <MudItem xs="12" md="4">
+                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray); height: 100%;">
+                    <MudCardContent>
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
+                            <MudIcon Icon="@Icons.Material.Filled.Security" Color="Color.Secondary" />
+                            <MudText Typo="Typo.subtitle2">@L["EnterpriseIntegration"]</MudText>
+                        </MudStack>
+                        <MudText Typo="Typo.body2" Class="mb-3">
+                            @L["EnterpriseIntegrationDesc"]
+                        </MudText>
+                        <MudStack Spacing="1">
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["EnterpriseFeature1"]</MudText>
+                            </MudStack>
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["EnterpriseFeature2"]</MudText>
+                            </MudStack>
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["EnterpriseFeature3"]</MudText>
+                            </MudStack>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+
+        <MudDivider Class="my-4" />
+
+        <MudText Typo="Typo.subtitle1" Class="mb-2" Style="font-weight: 600;">@L["HowWeCanHelp"]</MudText>
+        <MudText Typo="Typo.body2" Class="mb-3 mud-text-secondary">
+            @L["HowWeCanHelpDescription"]
+        </MudText>
+
+        <MudGrid Spacing="3" Class="mb-4">
+            <MudItem xs="12" md="4">
+                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray); height: 100%;">
+                    <MudCardContent>
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
+                            <MudIcon Icon="@Icons.Material.Filled.Psychology" Color="Color.Secondary" />
+                            <MudText Typo="Typo.subtitle2">@L["AIAdoption"]</MudText>
+                        </MudStack>
+                        <MudText Typo="Typo.body2" Class="mb-3">
+                            @L["AIAdoptionDesc"]
+                        </MudText>
+                        <MudStack Spacing="1">
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["AIFeature1"]</MudText>
+                            </MudStack>
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["AIFeature2"]</MudText>
+                            </MudStack>
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["AIFeature3"]</MudText>
+                            </MudStack>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+
+            <MudItem xs="12" md="4">
+                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray); height: 100%;">
+                    <MudCardContent>
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
+                            <MudIcon Icon="@Icons.Material.Filled.Web" Color="Color.Secondary" />
+                            <MudText Typo="Typo.subtitle2">@L["M365Portals"]</MudText>
+                        </MudStack>
+                        <MudText Typo="Typo.body2" Class="mb-3">
+                            @L["M365PortalsDesc"]
+                        </MudText>
+                        <MudStack Spacing="1">
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["M365Feature1"]</MudText>
+                            </MudStack>
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["M365Feature2"]</MudText>
+                            </MudStack>
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["M365Feature3"]</MudText>
+                            </MudStack>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+
+            <MudItem xs="12" md="4">
+                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray); height: 100%;">
+                    <MudCardContent>
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
+                            <MudIcon Icon="@Icons.Material.Filled.AccountTree" Color="Color.Secondary" />
+                            <MudText Typo="Typo.subtitle2">@L["ProcessAutomation"]</MudText>
+                        </MudStack>
+                        <MudText Typo="Typo.body2" Class="mb-3">
+                            @L["ProcessAutomationDesc"]
+                        </MudText>
+                        <MudStack Spacing="1">
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["AutomationFeature1"]</MudText>
+                            </MudStack>
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["AutomationFeature2"]</MudText>
+                            </MudStack>
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                                <MudIcon Icon="@Icons.Material.Filled.Check" Size="Size.Small" Color="Color.Success" />
+                                <MudText Typo="Typo.caption">@L["AutomationFeature3"]</MudText>
+                            </MudStack>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+
+        <MudDivider Class="my-4" />
+
+        <MudText Typo="Typo.subtitle1" Class="mb-3" Style="font-weight: 600;">@L["BuiltWith"]</MudText>
+
+        <MudGrid Spacing="3">
+            <MudItem xs="12" md="4">
+                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray);">
+                    <MudCardContent>
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
+                            <MudIcon Icon="@Icons.Material.Filled.Psychology" Color="Color.Secondary" />
+                            <MudText Typo="Typo.subtitle2">@L["AIPoweredDevelopment"]</MudText>
+                        </MudStack>
+                        <MudStack Spacing="2">
+                            <div>
+                                <MudText Typo="Typo.body2" Style="font-weight: 500;">@L["ClaudeCode"]</MudText>
+                                <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["ClaudeCodeDesc"]</MudText>
+                            </div>
+                            <div>
+                                <MudText Typo="Typo.body2" Style="font-weight: 500;">@L["GitHubCopilot"]</MudText>
+                                <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["GitHubCopilotDesc"]</MudText>
+                            </div>
+                            <div>
+                                <MudText Typo="Typo.body2" Style="font-weight: 500;">@L["PlaywrightMCP"]</MudText>
+                                <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["PlaywrightMCPDesc"]</MudText>
+                            </div>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+
+            <MudItem xs="12" md="4">
+                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray);">
+                    <MudCardContent>
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
+                            <MudIcon Icon="@Icons.Material.Filled.Cloud" Color="Color.Secondary" />
+                            <MudText Typo="Typo.subtitle2">@L["DevOpsAndCloud"]</MudText>
+                        </MudStack>
+                        <MudStack Spacing="2">
+                            <div>
+                                <MudText Typo="Typo.body2" Style="font-weight: 500;">@L["GitHubActions"]</MudText>
+                                <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["GitHubActionsDesc"]</MudText>
+                            </div>
+                            <div>
+                                <MudText Typo="Typo.body2" Style="font-weight: 500;">@L["MicrosoftAzure"]</MudText>
+                                <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["MicrosoftAzureDesc"]</MudText>
+                            </div>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+
+            <MudItem xs="12" md="4">
+                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray);">
+                    <MudCardContent>
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
+                            <MudIcon Icon="@Icons.Material.Filled.Code" Color="Color.Secondary" />
+                            <MudText Typo="Typo.subtitle2">@L["TechnologyStack"]</MudText>
+                        </MudStack>
+                        <MudStack Spacing="2">
+                            <div>
+                                <MudText Typo="Typo.body2" Style="font-weight: 500;">@L["BlazorWebAssembly"]</MudText>
+                                <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["BlazorDesc"]</MudText>
+                            </div>
+                            <div>
+                                <MudText Typo="Typo.body2" Style="font-weight: 500;">@L["MicrosoftGraph"]</MudText>
+                                <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["MicrosoftGraphDesc"]</MudText>
+                            </div>
+                            <div>
+                                <MudText Typo="Typo.body2" Style="font-weight: 500;">@L["MudBlazor"]</MudText>
+                                <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["MudBlazorDesc"]</MudText>
+                            </div>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+
+        <MudDivider Class="my-4" />
+
+        <MudStack Spacing="2">
+            <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="flex-wrap">
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">
+                    @L["InterestedInSimilar"]
+                </MudText>
+                <MudButton Variant="Variant.Outlined" Color="Color.Secondary" Size="Size.Small"
+                           Href="mailto:consultancy@jll.io" StartIcon="@Icons.Material.Filled.Email">
+                    @L["ContactUs"]
+                </MudButton>
+            </MudStack>
+            <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="flex-wrap">
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">
+                    @L["ViewSourceOnGitHub"]
+                </MudText>
+                <MudButton Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Small"
+                           Href="https://github.com/JelleBroekhuijsen/storingsdienst" Target="_blank"
+                           StartIcon="@Icons.Custom.Brands.GitHub">
+                    @L["ViewOnGitHub"]
+                </MudButton>
+            </MudStack>
+        </MudStack>
+    </MudPaper>
 </MudContainer>
 
 @code {

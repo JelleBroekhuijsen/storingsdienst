@@ -898,4 +898,294 @@ public class JsonImportServiceTests
         // Assert
         result.Should().BeEmpty();
     }
+
+    #region New Simplified Date Format Tests
+
+    [Fact]
+    public async Task ParseJsonFileAsync_SimplifiedDateFormat_ParsesCorrectly()
+    {
+        // Arrange - New format with direct ISO 8601 date strings
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""Daily Standup - Heneways"",
+                    ""start"": ""2025-02-03T08:00:00+00:00"",
+                    ""end"": ""2025-02-03T08:15:00+00:00"",
+                    ""isAllDay"": false
+                }
+            ]
+        }";
+        var subjectFilter = "";
+        var startDate = new DateTime(2025, 1, 1);
+        var endDate = new DateTime(2025, 12, 31);
+
+        // Act
+        var result = await _sut.ParseJsonFileAsync(jsonContent, subjectFilter, startDate, endDate);
+
+        // Assert
+        result.Should().HaveCount(1);
+        result[0].Subject.Should().Be("Daily Standup - Heneways");
+        // Verify the date is parsed (time may be converted to local timezone)
+        result[0].StartDateTime.Date.Should().Be(new DateTime(2025, 2, 3));
+        result[0].EndDateTime.Date.Should().Be(new DateTime(2025, 2, 3));
+        result[0].IsAllDay.Should().BeFalse();
+    }
+
+    [Fact]
+    public async Task ParseJsonFileAsync_SimplifiedDateFormat_MultipleEvents_ParsesCorrectly()
+    {
+        // Arrange - Multiple events with new format
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""Daily Standup - Heneways"",
+                    ""start"": ""2025-02-03T08:00:00+00:00"",
+                    ""end"": ""2025-02-03T08:15:00+00:00"",
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""[SMC] Daily Standup"",
+                    ""start"": ""2025-05-08T08:30:00+00:00"",
+                    ""end"": ""2025-05-08T08:45:00+00:00"",
+                    ""isAllDay"": false
+                }
+            ],
+            ""exportDate"": ""2026-01-17T13:34:15.9660872Z"",
+            ""subjectFilter"": ""Daily""
+        }";
+        var subjectFilter = "";
+        var startDate = new DateTime(2025, 1, 1);
+        var endDate = new DateTime(2025, 12, 31);
+
+        // Act
+        var result = await _sut.ParseJsonFileAsync(jsonContent, subjectFilter, startDate, endDate);
+
+        // Assert
+        result.Should().HaveCount(2);
+        result[0].Subject.Should().Be("Daily Standup - Heneways");
+        result[1].Subject.Should().Be("[SMC] Daily Standup");
+    }
+
+    [Fact]
+    public async Task ParseJsonFileAsync_SimplifiedDateFormat_WithSubjectFilter_FiltersCorrectly()
+    {
+        // Arrange
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""Daily Standup - Heneways"",
+                    ""start"": ""2025-02-03T08:00:00+00:00"",
+                    ""end"": ""2025-02-03T08:15:00+00:00"",
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""[SMC] Daily Standup"",
+                    ""start"": ""2025-05-08T08:30:00+00:00"",
+                    ""end"": ""2025-05-08T08:45:00+00:00"",
+                    ""isAllDay"": false
+                }
+            ]
+        }";
+        var subjectFilter = "Heneways";
+        var startDate = new DateTime(2025, 1, 1);
+        var endDate = new DateTime(2025, 12, 31);
+
+        // Act
+        var result = await _sut.ParseJsonFileAsync(jsonContent, subjectFilter, startDate, endDate);
+
+        // Assert
+        result.Should().HaveCount(1);
+        result[0].Subject.Should().Be("Daily Standup - Heneways");
+    }
+
+    [Fact]
+    public async Task ParseJsonFileAsync_SimplifiedDateFormat_DateRangeFilter_FiltersCorrectly()
+    {
+        // Arrange
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""Meeting in 2025"",
+                    ""start"": ""2025-02-03T08:00:00+00:00"",
+                    ""end"": ""2025-02-03T08:15:00+00:00"",
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""Meeting in 2026"",
+                    ""start"": ""2026-01-15T08:30:00+00:00"",
+                    ""end"": ""2026-01-15T08:45:00+00:00"",
+                    ""isAllDay"": false
+                }
+            ]
+        }";
+        var subjectFilter = "";
+        var startDate = new DateTime(2025, 1, 1);
+        var endDate = new DateTime(2025, 12, 31);
+
+        // Act
+        var result = await _sut.ParseJsonFileAsync(jsonContent, subjectFilter, startDate, endDate);
+
+        // Assert
+        result.Should().HaveCount(1);
+        result[0].Subject.Should().Be("Meeting in 2025");
+    }
+
+    [Fact]
+    public async Task ParseJsonFileAsync_SimplifiedDateFormat_AllDayEvent_ParsesCorrectly()
+    {
+        // Arrange
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""All Day Event"",
+                    ""start"": ""2025-02-03T00:00:00+00:00"",
+                    ""end"": ""2025-02-03T23:59:59+00:00"",
+                    ""isAllDay"": true
+                }
+            ]
+        }";
+        var subjectFilter = "";
+        var startDate = new DateTime(2025, 1, 1);
+        var endDate = new DateTime(2025, 12, 31);
+
+        // Act
+        var result = await _sut.ParseJsonFileAsync(jsonContent, subjectFilter, startDate, endDate);
+
+        // Assert
+        result.Should().HaveCount(1);
+        result[0].IsAllDay.Should().BeTrue();
+    }
+
+    [Fact]
+    public async Task ParseJsonFileAsync_MixedDateFormats_ParsesBothCorrectly()
+    {
+        // Arrange - Mix of legacy object format and new string format
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""Legacy Format Meeting"",
+                    ""start"": {
+                        ""dateTime"": ""2025-01-15T10:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""end"": {
+                        ""dateTime"": ""2025-01-15T11:00:00"",
+                        ""timeZone"": ""UTC""
+                    },
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""New Format Meeting"",
+                    ""start"": ""2025-02-03T08:00:00+00:00"",
+                    ""end"": ""2025-02-03T08:15:00+00:00"",
+                    ""isAllDay"": false
+                }
+            ]
+        }";
+        var subjectFilter = "";
+        var startDate = new DateTime(2025, 1, 1);
+        var endDate = new DateTime(2025, 12, 31);
+
+        // Act
+        var result = await _sut.ParseJsonFileAsync(jsonContent, subjectFilter, startDate, endDate);
+
+        // Assert
+        result.Should().HaveCount(2);
+        result[0].Subject.Should().Be("Legacy Format Meeting");
+        result[1].Subject.Should().Be("New Format Meeting");
+    }
+
+    [Fact]
+    public async Task GetRecurringSubjectsAsync_SimplifiedDateFormat_FindsRecurringSubjects()
+    {
+        // Arrange
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""Daily Standup"",
+                    ""start"": ""2025-02-03T08:00:00+00:00"",
+                    ""end"": ""2025-02-03T08:15:00+00:00"",
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""Daily Standup"",
+                    ""start"": ""2025-02-04T08:00:00+00:00"",
+                    ""end"": ""2025-02-04T08:15:00+00:00"",
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""One-time Meeting"",
+                    ""start"": ""2025-02-05T10:00:00+00:00"",
+                    ""end"": ""2025-02-05T11:00:00+00:00"",
+                    ""isAllDay"": false
+                }
+            ]
+        }";
+
+        // Act
+        var result = await _sut.GetRecurringSubjectsAsync(jsonContent);
+
+        // Assert
+        result.Should().HaveCount(1);
+        result[0].Should().Be("Daily Standup");
+    }
+
+    [Fact]
+    public async Task ParseJsonFileAsync_SimplifiedDateFormat_MissingStart_SkipsEvent()
+    {
+        // Arrange
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""Invalid Meeting"",
+                    ""end"": ""2025-02-03T08:15:00+00:00"",
+                    ""isAllDay"": false
+                },
+                {
+                    ""subject"": ""Valid Meeting"",
+                    ""start"": ""2025-02-03T08:00:00+00:00"",
+                    ""end"": ""2025-02-03T08:15:00+00:00"",
+                    ""isAllDay"": false
+                }
+            ]
+        }";
+        var subjectFilter = "";
+        var startDate = new DateTime(2025, 1, 1);
+        var endDate = new DateTime(2025, 12, 31);
+
+        // Act
+        var result = await _sut.ParseJsonFileAsync(jsonContent, subjectFilter, startDate, endDate);
+
+        // Assert
+        result.Should().HaveCount(1);
+        result[0].Subject.Should().Be("Valid Meeting");
+    }
+
+    [Fact]
+    public async Task ParseJsonFileAsync_SimplifiedDateFormat_WithTimezoneOffset_ParsesCorrectly()
+    {
+        // Arrange - Date with explicit timezone offset
+        var jsonContent = @"{
+            ""events"": [
+                {
+                    ""subject"": ""Meeting with Offset"",
+                    ""start"": ""2025-02-03T09:00:00+01:00"",
+                    ""end"": ""2025-02-03T10:00:00+01:00"",
+                    ""isAllDay"": false
+                }
+            ]
+        }";
+        var subjectFilter = "";
+        var startDate = new DateTime(2025, 1, 1);
+        var endDate = new DateTime(2025, 12, 31);
+
+        // Act
+        var result = await _sut.ParseJsonFileAsync(jsonContent, subjectFilter, startDate, endDate);
+
+        // Assert
+        result.Should().HaveCount(1);
+        result[0].Subject.Should().Be("Meeting with Offset");
+    }
+
+    #endregion
 }
