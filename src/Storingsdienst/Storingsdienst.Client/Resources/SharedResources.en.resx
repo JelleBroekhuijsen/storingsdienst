@@ -683,4 +683,24 @@
   <data name="Security_CanDelete" xml:space="preserve">
     <value>You can delete JSON files after importing them to the app</value>
   </data>
+
+  <!-- Graph API Subject Selection -->
+  <data name="SelectMeetingSubject" xml:space="preserve">
+    <value>Select Meeting Subject</value>
+  </data>
+  <data name="SelectMeetingSubjectPlaceholder" xml:space="preserve">
+    <value>Select a meeting subject...</value>
+  </data>
+  <data name="ChooseSpecificOrAll" xml:space="preserve">
+    <value>Choose a specific meeting subject or select 'All' to include all matching meetings</value>
+  </data>
+  <data name="FoundMultipleSubjects" xml:space="preserve">
+    <value>Found {0} different meeting subjects. Please select one to analyze.</value>
+  </data>
+  <data name="AnalyzeMeetings" xml:space="preserve">
+    <value>Analyze Meetings</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
 </root>

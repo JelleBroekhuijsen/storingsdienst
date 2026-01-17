@@ -683,4 +683,24 @@
   <data name="Security_CanDelete" xml:space="preserve">
     <value>U kunt JSON-bestanden verwijderen na het importeren in de app</value>
   </data>
+
+  <!-- Graph API Subject Selection -->
+  <data name="SelectMeetingSubject" xml:space="preserve">
+    <value>Selecteer Vergaderonderwerp</value>
+  </data>
+  <data name="SelectMeetingSubjectPlaceholder" xml:space="preserve">
+    <value>Selecteer een vergaderonderwerp...</value>
+  </data>
+  <data name="ChooseSpecificOrAll" xml:space="preserve">
+    <value>Kies een specifiek vergaderonderwerp of selecteer 'Alle' om alle overeenkomende vergaderingen op te nemen</value>
+  </data>
+  <data name="FoundMultipleSubjects" xml:space="preserve">
+    <value>{0} verschillende vergaderonderwerpen gevonden. Selecteer er een om te analyseren.</value>
+  </data>
+  <data name="AnalyzeMeetings" xml:space="preserve">
+    <value>Vergaderingen Analyseren</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alle</value>
+  </data>
 </root>
