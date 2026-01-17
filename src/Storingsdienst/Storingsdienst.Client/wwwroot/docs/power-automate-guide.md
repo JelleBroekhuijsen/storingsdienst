@@ -55,20 +55,8 @@ For organizations that cannot add Microsoft Entra app registrations, you can cre
 3. **From**: Output from Filter array action
 4. Click **"Map"** and add these fields:
    - **subject**: `item()?['subject']`
-   - **start**: Click "Switch to input entire array" and enter:
-     ```
-     {
-       "dateTime": "@{item()?['start']?['dateTime']}",
-       "timeZone": "@{item()?['start']?['timeZone']}"
-     }
-     ```
-   - **end**: Click "Switch to input entire array" and enter:
-     ```
-     {
-       "dateTime": "@{item()?['end']?['dateTime']}",
-       "timeZone": "@{item()?['end']?['timeZone']}"
-     }
-     ```
+   - **start**: `item()?['start']`
+   - **end**: `item()?['end']`
    - **isAllDay**: `item()?['isAllDay']`
 
 ### Step 6: Create JSON Wrapper
@@ -135,14 +123,8 @@ Your flow will generate a JSON file with this structure:
   "events": [
     {
       "subject": "Project Standup",
-      "start": {
-        "dateTime": "2024-01-15T09:00:00",
-        "timeZone": "UTC"
-      },
-      "end": {
-        "dateTime": "2024-01-15T09:30:00",
-        "timeZone": "UTC"
-      },
+      "start": "2024-01-15T09:00:00+00:00",
+      "end": "2024-01-15T09:30:00+00:00",
       "isAllDay": false
     }
   ],
@@ -150,6 +132,8 @@ Your flow will generate a JSON file with this structure:
   "subjectFilter": "Project Standup"
 }
 ```
+
+> **Note:** The application also supports the legacy format where `start` and `end` are objects with `dateTime` and `timeZone` properties.
 
 ## Troubleshooting
 

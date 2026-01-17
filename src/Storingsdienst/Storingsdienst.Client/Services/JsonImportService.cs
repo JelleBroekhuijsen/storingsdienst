@@ -43,7 +43,7 @@ public class JsonImportService
         foreach (var evt in export.Events)
         {
             // Validate required fields
-            if (evt.Start == null || evt.End == null || string.IsNullOrEmpty(evt.Start.DateTime) || string.IsNullOrEmpty(evt.End.DateTime))
+            if (string.IsNullOrEmpty(evt.Start) || string.IsNullOrEmpty(evt.End))
             {
                 continue; // Skip events with missing date/time info
             }
@@ -61,8 +61,8 @@ public class JsonImportService
 
             try
             {
-                startDateTime = DateTime.Parse(evt.Start.DateTime);
-                endDateTime = DateTime.Parse(evt.End.DateTime);
+                startDateTime = DateTime.Parse(evt.Start);
+                endDateTime = DateTime.Parse(evt.End);
             }
             catch (FormatException)
             {
