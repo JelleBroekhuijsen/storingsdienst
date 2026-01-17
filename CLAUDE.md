@@ -26,7 +26,7 @@ Create a single-page Blazor WebAssembly application to:
 
 **1. Dual Data Source Approach**
 - **Decision**: Support both Graph API and JSON import modes
-- **Rationale**: Organizations may not allow Azure AD app registrations, so JSON import provides an alternative
+- **Rationale**: Organizations may not allow Microsoft Entra app registrations, so JSON import provides an alternative
 - **Implementation**:
   - `ICalendarDataService` interface with two implementations
   - `GraphService` for direct M365 integration
@@ -92,7 +92,7 @@ Create a single-page Blazor WebAssembly application to:
 **Configuration**:
 - MSAL authentication setup in `Program.cs`
 - Service registration with dependency injection
-- `appsettings.json` with Azure AD and Graph API configuration
+- `appsettings.json` with Microsoft Entra and Graph API configuration
 
 **Documentation**:
 - Comprehensive Power Automate flow guide

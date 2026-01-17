@@ -40,7 +40,7 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore storingsdienst.sln
 
-      - name: Configure Azure AD Client ID
+      - name: Configure Microsoft Entra Client ID
         shell: pwsh
         run: |
           $configPath = "src/Storingsdienst/Storingsdienst.Client/wwwroot/appsettings.json"

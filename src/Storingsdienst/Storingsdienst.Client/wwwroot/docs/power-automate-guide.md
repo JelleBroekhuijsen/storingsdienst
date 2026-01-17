@@ -2,7 +2,7 @@
 
 ## Overview
 
-For organizations that cannot add Azure AD app registrations, you can create a Power Automate flow to export calendar data to JSON format. This guide will walk you through creating the flow step-by-step.
+For organizations that cannot add Microsoft Entra app registrations, you can create a Power Automate flow to export calendar data to JSON format. This guide will walk you through creating the flow step-by-step.
 
 ## Prerequisites
 

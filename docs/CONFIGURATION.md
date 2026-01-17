@@ -4,13 +4,13 @@
 
 This guide explains how to configure the Storingsdienst application for local development and production environments.
 
-## Azure AD Client ID Configuration
+## Microsoft Entra Client ID Configuration
 
-The application requires an Azure AD Client ID for Microsoft 365 authentication. This value should **never** be hardcoded in version control.
+The application requires an Microsoft Entra Client ID for Microsoft 365 authentication. This value should **never** be hardcoded in version control.
 
 ### For Local Development
 
-1. **Register an Azure AD Application** (if not already done):
+1. **Register an Microsoft Entra Application** (if not already done):
    - Go to [Azure Portal](https://portal.azure.com)
    - Navigate to **Azure Active Directory** → **App registrations**
    - Click **New registration**
@@ -97,7 +97,7 @@ See [docs/DEPLOYMENT.md](./DEPLOYMENT.md) for complete deployment instructions.
 - Use placeholder values in `appsettings.json` committed to version control
 - Store actual Client IDs in `appsettings.Development.json` (gitignored)
 - Use GitHub Secrets for production values
-- Use separate Azure AD app registrations for development and production
+- Use separate Microsoft Entra app registrations for development and production
 - Use multi-tenant app registrations to support users from any organization
 
 ### ❌ DON'T:
@@ -120,7 +120,7 @@ Contains **development-specific overrides**. This file should NOT be committed t
 
 **Location**: `src/Storingsdienst/Storingsdienst.Client/wwwroot/appsettings.Development.json`
 
-**Purpose**: Override settings for local development environment, including your personal Azure AD Client ID.
+**Purpose**: Override settings for local development environment, including your personal Microsoft Entra Client ID.
 
 ### `appsettings.example.json` (Committed to Git)
 Contains **example configuration** showing the required structure.
@@ -148,7 +148,7 @@ During local development with `dotnet run`, the environment is automatically set
 
 ### "AADSTS50011: Reply URL mismatch"
 
-**Cause**: The redirect URI in your Azure AD app registration doesn't match your application URL.
+**Cause**: The redirect URI in your Microsoft Entra app registration doesn't match your application URL.
 
 **Solution**: 
 1. Note your application URL (e.g., `https://localhost:7123`)
@@ -157,7 +157,7 @@ During local development with `dotnet run`, the environment is automatically set
 
 ### Authentication works locally but fails in production
 
-**Cause**: Production redirect URI not configured in Azure AD app registration.
+**Cause**: Production redirect URI not configured in Microsoft Entra app registration.
 
 **Solution**:
 1. Go to Azure Portal → App registrations → Your multi-tenant app → Authentication
@@ -176,7 +176,7 @@ The application requires these Microsoft Graph API permissions:
 - `Calendars.Read`: Read user's calendar events
 
 These are configured in:
-- Azure AD app registration (API permissions)
+- Microsoft Entra app registration (API permissions)
 - `appsettings.json` (MicrosoftGraph.Scopes)
 
 ### Logging Configuration

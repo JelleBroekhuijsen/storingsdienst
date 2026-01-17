@@ -36,8 +36,11 @@
         <NavMenu />
     </MudDrawer>
 
-    <MudMainContent Class="pa-4">
-        @Body
+    <MudMainContent Style="display: flex; flex-direction: column; min-height: calc(100vh - 48px);">
+        <div class="pa-4" style="flex: 1;">
+            @Body
+        </div>
+        <Footer />
     </MudMainContent>
 </MudLayout>
 
