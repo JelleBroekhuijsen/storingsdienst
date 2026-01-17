@@ -215,7 +215,7 @@
     "EnterpriseIntegration":  "Geïntegreerd met Microsoft 365",
     "EnterpriseIntegrationDesc":  "Snelheid is niets zonder veiligheid en schaalbaarheid. Deze app bewijst dat AI-gebouwde oplossingen zware enterprise API's zoals Microsoft Graph aankunnen, en veilige, productieklare tools leveren voor de moderne werkplek.",
     "EnterpriseFeature1":  "Naadloze Microsoft 365 datastromen",
-    "EnterpriseFeature2":  "Veilige OAuth \u0026 Azure AD authenticatie",
+    "EnterpriseFeature2":  "Veilige OAuth \u0026 Microsoft Entra authenticatie",
     "EnterpriseFeature3":  "Schaalbare infrastructuur voor wereldwijde teams",
     "BuiltWith":  "Gebouwd met",
     "AIPoweredDevelopment":  "AI-aangedreven ontwikkeling",

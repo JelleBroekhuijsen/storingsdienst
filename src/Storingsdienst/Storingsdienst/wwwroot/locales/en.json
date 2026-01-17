@@ -215,7 +215,7 @@
     "EnterpriseIntegration":  "Integrated with Microsoft 365",
     "EnterpriseIntegrationDesc":  "Speed is nothing without security and scale. This app proves that AI-built solutions can handle heavy-duty enterprise APIs like Microsoft Graph, delivering secure, production-ready tools for the modern workplace.",
     "EnterpriseFeature1":  "Seamless Microsoft 365 data flow",
-    "EnterpriseFeature2":  "Secure OAuth \u0026 Azure AD authentication",
+    "EnterpriseFeature2":  "Secure OAuth \u0026 Microsoft Entra authentication",
     "EnterpriseFeature3":  "Scalable infrastructure for global teams",
     "BuiltWith":  "Built With",
     "AIPoweredDevelopment":  "AI-Powered Development",
