@@ -202,17 +202,17 @@
     "Contact":  "Contact",
     "AllRightsReserved":  "All rights reserved.",
     "AboutThisApp":  "About This App",
-    "RapidAIBuilding":  "Rapid AI-Assisted Building",
+    "RapidAIBuilding":  "Developed by AI",
     "RapidAIBuildingDesc":  "Stop waiting months for a MVP. We use AI-assisted coding to bridge the gap between idea and execution, slashing development timelines without sacrificing quality.",
     "RapidFeature1":  "Lightning-fast prototyping",
     "RapidFeature2":  "Reduced time-to-market",
     "RapidFeature3":  "Agile, AI-driven iteration cycles",
-    "AgenticWorkflows":  "Agentic Development Workflows",
+    "AgenticWorkflows":  "Managed by AI Agents",
     "AgenticWorkflowsDesc":  "We don't just use AI to write lines of code; we deploy autonomous agentic workflows that manage complex tasks, solve bugs, and optimize logic. It's like having a senior developer working at the speed of thought.",
     "AgenticFeature1":  "Self-correcting code cycles",
     "AgenticFeature2":  "Autonomous task management",
     "AgenticFeature3":  "Smarter, more resilient architectures",
-    "EnterpriseIntegration":  "Enterprise-Ready Integration",
+    "EnterpriseIntegration":  "Integrated with Microsoft 365",
     "EnterpriseIntegrationDesc":  "Speed is nothing without security and scale. This app proves that AI-built solutions can handle heavy-duty enterprise APIs like Microsoft Graph, delivering secure, production-ready tools for the modern workplace.",
     "EnterpriseFeature1":  "Seamless Microsoft 365 data flow",
     "EnterpriseFeature2":  "Secure OAuth \u0026 Azure AD authentication",
@@ -257,5 +257,6 @@
     "AutomationFeature2":  "Custom approval chains",
     "AutomationFeature3":  "Real-time notifications and alerts",
     "ViewSourceOnGitHub":  "View the source code on GitHub",
-    "ViewOnGitHub":  "View on GitHub"
+    "ViewOnGitHub":  "View on GitHub",
+    "CopiedToClipboard":  "Copied to clipboard"
 }
