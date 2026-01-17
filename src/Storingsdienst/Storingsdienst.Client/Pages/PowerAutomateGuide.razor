@@ -41,26 +41,35 @@
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
-                        <MudList T="string" Dense="true">
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep1_GoTo"] <MudLink Href="https://make.powerautomate.com" Target="_blank">make.powerautomate.com</MudLink>
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep1_ClickCreate"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep1_EnterName"] <CopyableCode Value="@L["GuideStep1_FlowName"]" OnCopy="ShowCopyConfirmation" />
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep1_SelectTrigger"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep1_ClickCreateBtn"]
-                            </MudListItem>
-                        </MudList>
-                        <MudAlert Severity="Severity.Info" Class="mt-3" Dense="true">
-                            <strong>@L["GuideStep1_Tip"]</strong>
-                        </MudAlert>
+                        <MudGrid>
+                            <MudItem xs="12" lg="6">
+                                <MudList T="string" Dense="true">
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep1_GoTo"] <MudLink Href="https://make.powerautomate.com" Target="_blank">make.powerautomate.com</MudLink>
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep1_ClickCreate"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep1_EnterName"] <CopyableCode Value="@L["GuideStep1_FlowName"]" OnCopy="ShowCopyConfirmation" />
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep1_SelectTrigger"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep1_ClickCreateBtn"]
+                                    </MudListItem>
+                                </MudList>
+                                <MudAlert Severity="Severity.Info" Class="mt-3" Dense="true">
+                                    <strong>@L["GuideStep1_Tip"]</strong>
+                                </MudAlert>
+                            </MudItem>
+                            <MudItem xs="12" lg="6" Class="d-flex align-center justify-center">
+                                <MudImage Src="/screen_1.png" Alt="Create instant cloud flow dialog"
+                                          Class="screenshot-image" Elevation="2"
+                                          ObjectFit="ObjectFit.Contain" />
+                            </MudItem>
+                        </MudGrid>
                     </MudCardContent>
                 </MudCard>
             </ItemContent>
@@ -86,20 +95,29 @@
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
-                        <MudList T="string" Dense="true">
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep2_AddInput"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep2_SelectText"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep2_InputName"] <CopyableCode Value="@L["GuideStep2_SubjectFilter"]" OnCopy="ShowCopyConfirmation" />
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep2_MarkRequired"]
-                            </MudListItem>
-                        </MudList>
+                        <MudGrid>
+                            <MudItem xs="12" lg="6">
+                                <MudList T="string" Dense="true">
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep2_AddInput"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep2_SelectText"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep2_InputName"] <CopyableCode Value="@L["GuideStep2_SubjectFilter"]" OnCopy="ShowCopyConfirmation" />
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep2_MarkRequired"]
+                                    </MudListItem>
+                                </MudList>
+                            </MudItem>
+                            <MudItem xs="12" lg="6" Class="d-flex align-center justify-center">
+                                <MudImage Src="/screen_2.png" Alt="Add Subject Filter text input parameter"
+                                          Class="screenshot-image" Elevation="2"
+                                          ObjectFit="ObjectFit.Contain" />
+                            </MudItem>
+                        </MudGrid>
                     </MudCardContent>
                 </MudCard>
             </ItemContent>
@@ -125,52 +143,61 @@
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
-                        <MudList T="string" Dense="true">
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep3_NewStep"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep3_SearchAction"] <CopyableCode Value="Get calendar view of events (V3)" OnCopy="ShowCopyConfirmation" />
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep3_SignInPrompt"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                <MudText Typo="Typo.body2"><strong>@L["GuideStep3_ConfigureParams"]</strong></MudText>
-                            </MudListItem>
-                            <MudList T="string" Dense="true" Class="param-list">
-                                <MudListItem Class="param-item">
-                                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
-                                        <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep3_CalendarId"]</MudText>
-                                        <CopyableCode Value="Calendar" OnCopy="ShowCopyConfirmation" />
-                                    </MudStack>
-                                </MudListItem>
-                                <MudListItem Class="param-item">
-                                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
-                                        <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep3_StartTime"]</MudText>
-                                        <CopyableCode Value="@("@addDays(utcNow(), -365)")" OnCopy="ShowCopyConfirmation" />
-                                    </MudStack>
-                                </MudListItem>
-                                <MudListItem Class="param-item">
-                                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
-                                        <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep3_EndTime"]</MudText>
-                                        <CopyableCode Value="@("@utcNow()")" OnCopy="ShowCopyConfirmation" />
-                                    </MudStack>
-                                </MudListItem>
-                                <MudListItem Class="param-item">
-                                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
-                                        <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep3_TopCount"]</MudText>
-                                        <CopyableCode Value="1000" OnCopy="ShowCopyConfirmation" />
-                                    </MudStack>
-                                </MudListItem>
-                                <MudListItem Class="param-item">
-                                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
-                                        <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep3_Search"]</MudText>
-                                        <CopyableCode Value="@("@triggerBody()?['text']")" OnCopy="ShowCopyConfirmation" />
-                                    </MudStack>
-                                </MudListItem>
-                            </MudList>
-                        </MudList>
+                        <MudGrid>
+                            <MudItem xs="12" lg="6">
+                                <MudList T="string" Dense="true">
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep3_NewStep"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep3_SearchAction"] <CopyableCode Value="Get calendar view of events (V3)" OnCopy="ShowCopyConfirmation" />
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep3_SignInPrompt"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        <MudText Typo="Typo.body2"><strong>@L["GuideStep3_ConfigureParams"]</strong></MudText>
+                                    </MudListItem>
+                                    <MudList T="string" Dense="true" Class="param-list">
+                                        <MudListItem Class="param-item">
+                                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                                <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep3_CalendarId"]</MudText>
+                                                <CopyableCode Value="Calendar" OnCopy="ShowCopyConfirmation" />
+                                            </MudStack>
+                                        </MudListItem>
+                                        <MudListItem Class="param-item">
+                                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                                <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep3_StartTime"]</MudText>
+                                                <CopyableCode Value="@("@addDays(utcNow(), -365)")" OnCopy="ShowCopyConfirmation" />
+                                            </MudStack>
+                                        </MudListItem>
+                                        <MudListItem Class="param-item">
+                                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                                <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep3_EndTime"]</MudText>
+                                                <CopyableCode Value="@("@utcNow()")" OnCopy="ShowCopyConfirmation" />
+                                            </MudStack>
+                                        </MudListItem>
+                                        <MudListItem Class="param-item">
+                                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                                <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep3_TopCount"]</MudText>
+                                                <CopyableCode Value="1000" OnCopy="ShowCopyConfirmation" />
+                                            </MudStack>
+                                        </MudListItem>
+                                        <MudListItem Class="param-item">
+                                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                                <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep3_Search"]</MudText>
+                                                <CopyableCode Value="@("@triggerBody()?['text']")" OnCopy="ShowCopyConfirmation" />
+                                            </MudStack>
+                                        </MudListItem>
+                                    </MudList>
+                                </MudList>
+                            </MudItem>
+                            <MudItem xs="12" lg="6" Class="d-flex align-center justify-center">
+                                <MudImage Src="/screen_3.png" Alt="Get calendar view of events configuration"
+                                          Class="screenshot-image" Elevation="2"
+                                          ObjectFit="ObjectFit.Contain" />
+                            </MudItem>
+                        </MudGrid>
                     </MudCardContent>
                 </MudCard>
             </ItemContent>
@@ -196,53 +223,62 @@
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
-                        <MudList T="string" Dense="true">
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep3_NewStep"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep4_SearchAction"] <CopyableCode Value="Select" OnCopy="ShowCopyConfirmation" /> @L["GuideStep4_DataOperation"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep4_From"] <CopyableCode Value="@("@outputs('Get_calendar_view_of_events_(V3)')?['body/value']")" OnCopy="ShowCopyConfirmation" />
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep4_ClickMap"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                <MudText Typo="Typo.body2"><strong>@L["GuideStep4_FieldMappings"]</strong></MudText>
-                            </MudListItem>
-                            <MudList T="string" Dense="true" Class="param-list">
-                                <MudListItem Class="param-item">
-                                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
-                                        <CopyableCode Value="subject" OnCopy="ShowCopyConfirmation" />
-                                        <MudText Typo="Typo.body2">→</MudText>
-                                        <CopyableCode Value="@("@item()?['subject']")" OnCopy="ShowCopyConfirmation" />
-                                    </MudStack>
-                                </MudListItem>
-                                <MudListItem Class="param-item">
-                                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
-                                        <CopyableCode Value="start" OnCopy="ShowCopyConfirmation" />
-                                        <MudText Typo="Typo.body2">→</MudText>
-                                        <CopyableCode Value="@("@item()?['startWithTimeZone']")" OnCopy="ShowCopyConfirmation" />
-                                    </MudStack>
-                                </MudListItem>
-                                <MudListItem Class="param-item">
-                                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
-                                        <CopyableCode Value="end" OnCopy="ShowCopyConfirmation" />
-                                        <MudText Typo="Typo.body2">→</MudText>
-                                        <CopyableCode Value="@("@item()?['endWithTimeZone']")" OnCopy="ShowCopyConfirmation" />
-                                    </MudStack>
-                                </MudListItem>
-                                <MudListItem Class="param-item">
-                                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
-                                        <CopyableCode Value="isAllDay" OnCopy="ShowCopyConfirmation" />
-                                        <MudText Typo="Typo.body2">→</MudText>
-                                        <CopyableCode Value="@("@item()?['isAllDay']")" OnCopy="ShowCopyConfirmation" />
-                                    </MudStack>
-                                </MudListItem>
-                            </MudList>
-                        </MudList>
+                        <MudGrid>
+                            <MudItem xs="12" lg="6">
+                                <MudList T="string" Dense="true">
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep3_NewStep"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep4_SearchAction"] <CopyableCode Value="Select" OnCopy="ShowCopyConfirmation" /> @L["GuideStep4_DataOperation"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep4_From"] <CopyableCode Value="@("@outputs('Get_calendar_view_of_events_(V3)')?['body/value']")" OnCopy="ShowCopyConfirmation" />
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep4_ClickMap"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        <MudText Typo="Typo.body2"><strong>@L["GuideStep4_FieldMappings"]</strong></MudText>
+                                    </MudListItem>
+                                    <MudList T="string" Dense="true" Class="param-list">
+                                        <MudListItem Class="param-item">
+                                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                                <CopyableCode Value="subject" OnCopy="ShowCopyConfirmation" />
+                                                <MudText Typo="Typo.body2">→</MudText>
+                                                <CopyableCode Value="@("@item()?['subject']")" OnCopy="ShowCopyConfirmation" />
+                                            </MudStack>
+                                        </MudListItem>
+                                        <MudListItem Class="param-item">
+                                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                                <CopyableCode Value="start" OnCopy="ShowCopyConfirmation" />
+                                                <MudText Typo="Typo.body2">→</MudText>
+                                                <CopyableCode Value="@("@item()?['startWithTimeZone']")" OnCopy="ShowCopyConfirmation" />
+                                            </MudStack>
+                                        </MudListItem>
+                                        <MudListItem Class="param-item">
+                                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                                <CopyableCode Value="end" OnCopy="ShowCopyConfirmation" />
+                                                <MudText Typo="Typo.body2">→</MudText>
+                                                <CopyableCode Value="@("@item()?['endWithTimeZone']")" OnCopy="ShowCopyConfirmation" />
+                                            </MudStack>
+                                        </MudListItem>
+                                        <MudListItem Class="param-item">
+                                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                                <CopyableCode Value="isAllDay" OnCopy="ShowCopyConfirmation" />
+                                                <MudText Typo="Typo.body2">→</MudText>
+                                                <CopyableCode Value="@("@item()?['isAllDay']")" OnCopy="ShowCopyConfirmation" />
+                                            </MudStack>
+                                        </MudListItem>
+                                    </MudList>
+                                </MudList>
+                            </MudItem>
+                            <MudItem xs="12" lg="6" Class="d-flex align-center justify-center">
+                                <MudImage Src="/screen_4.png" Alt="Select action with field mapping"
+                                          Class="screenshot-image" Elevation="2"
+                                          ObjectFit="ObjectFit.Contain" />
+                            </MudItem>
+                        </MudGrid>
                     </MudCardContent>
                 </MudCard>
             </ItemContent>
@@ -268,22 +304,31 @@
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
-                        <MudList T="string" Dense="true">
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep3_NewStep"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep5_SearchAction"] <CopyableCode Value="Compose" OnCopy="ShowCopyConfirmation" /> @L["GuideStep5_DataOperation"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep5_InputsField"]
-                            </MudListItem>
-                            <MudList T="string" Dense="true" Class="param-list">
-                                <MudListItem Class="param-item">
-                                    <CopyableCode Value="@JsonWrapperCode" OnCopy="ShowCopyConfirmation" IsBlock="true" />
-                                </MudListItem>
-                            </MudList>
-                        </MudList>
+                        <MudGrid>
+                            <MudItem xs="12" lg="6">
+                                <MudList T="string" Dense="true">
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep3_NewStep"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep5_SearchAction"] <CopyableCode Value="Compose" OnCopy="ShowCopyConfirmation" /> @L["GuideStep5_DataOperation"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep5_InputsField"]
+                                    </MudListItem>
+                                    <MudList T="string" Dense="true" Class="param-list">
+                                        <MudListItem Class="param-item">
+                                            <CopyableCode Value="@JsonWrapperCode" OnCopy="ShowCopyConfirmation" IsBlock="true" />
+                                        </MudListItem>
+                                    </MudList>
+                                </MudList>
+                            </MudItem>
+                            <MudItem xs="12" lg="6" Class="d-flex align-center justify-center">
+                                <MudImage Src="/screen_5.png" Alt="Compose action for JSON wrapper"
+                                          Class="screenshot-image" Elevation="2"
+                                          ObjectFit="ObjectFit.Contain" />
+                            </MudItem>
+                        </MudGrid>
                     </MudCardContent>
                 </MudCard>
             </ItemContent>
@@ -309,41 +354,49 @@
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent>
-                        <MudList T="string" Dense="true">
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep3_NewStep"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep6_SearchAction"] <CopyableCode Value="Create file" OnCopy="ShowCopyConfirmation" /> @L["GuideStep6_OneDriveBusiness"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                @L["GuideStep3_SignInPrompt"]
-                            </MudListItem>
-                            <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
-                                <MudText Typo="Typo.body2"><strong>@L["GuideStep6_ConfigureFile"]</strong></MudText>
-                            </MudListItem>
-                            <MudList T="string" Dense="true" Class="param-list">
-                                <MudListItem Class="param-item">
-                                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
-                                        <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep6_FolderPath"]</MudText>
-                                        <CopyableCode Value="/Documents/CalendarExports" OnCopy="ShowCopyConfirmation" />
-                                    </MudStack>
-                                </MudListItem>
-                                <MudListItem Class="param-item">
-                                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
-                                        <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep6_FileName"]</MudText>
-                                        <CopyableCode Value="@("calendar_export_@{formatDateTime(utcNow(), 'yyyyMMdd_HHmmss')}.json")" OnCopy="ShowCopyConfirmation" />
-                                    </MudStack>
-                                </MudListItem>
-                                <MudListItem Class="param-item">
-                                    <MudText Typo="Typo.body2">@L["GuideStep6_FileContent"]</MudText>
-                                </MudListItem>
-                            </MudList>
-                        </MudList>
-
-                        <MudAlert Severity="Severity.Info" Class="mt-3" Dense="true">
-                            <strong>@L["GuideStep6_SharePointAlt"]</strong>
-                        </MudAlert>
+                        <MudGrid>
+                            <MudItem xs="12" lg="6">
+                                <MudList T="string" Dense="true">
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep3_NewStep"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep6_SearchAction"] <CopyableCode Value="Create file" OnCopy="ShowCopyConfirmation" /> @L["GuideStep6_OneDriveBusiness"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        @L["GuideStep3_SignInPrompt"]
+                                    </MudListItem>
+                                    <MudListItem Icon="@Icons.Material.Filled.ChevronRight">
+                                        <MudText Typo="Typo.body2"><strong>@L["GuideStep6_ConfigureFile"]</strong></MudText>
+                                    </MudListItem>
+                                    <MudList T="string" Dense="true" Class="param-list">
+                                        <MudListItem Class="param-item">
+                                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                                <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep6_FolderPath"]</MudText>
+                                                <CopyableCode Value="/Documents/CalendarExports" OnCopy="ShowCopyConfirmation" />
+                                            </MudStack>
+                                        </MudListItem>
+                                        <MudListItem Class="param-item">
+                                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                                <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep6_FileName"]</MudText>
+                                                <CopyableCode Value="@("calendar_export_@{formatDateTime(utcNow(), 'yyyyMMdd_HHmmss')}.json")" OnCopy="ShowCopyConfirmation" />
+                                            </MudStack>
+                                        </MudListItem>
+                                        <MudListItem Class="param-item">
+                                            <MudText Typo="Typo.body2">@L["GuideStep6_FileContent"]</MudText>
+                                        </MudListItem>
+                                    </MudList>
+                                </MudList>
+                                <MudAlert Severity="Severity.Info" Class="mt-3" Dense="true">
+                                    <strong>@L["GuideStep6_SharePointAlt"]</strong>
+                                </MudAlert>
+                            </MudItem>
+                            <MudItem xs="12" lg="6" Class="d-flex align-center justify-center">
+                                <MudImage Src="/screen_6.png" Alt="Create file in OneDrive configuration"
+                                          Class="screenshot-image" Elevation="2"
+                                          ObjectFit="ObjectFit.Contain" />
+                            </MudItem>
+                        </MudGrid>
                     </MudCardContent>
                 </MudCard>
             </ItemContent>
@@ -630,5 +683,14 @@
         white-space: pre-wrap;
         word-break: break-word;
         color: var(--mud-palette-text-primary);
+    }
+
+    /* Screenshot styling */
+    .screenshot-image {
+        max-width: 100%;
+        width: 100%;
+        max-height: 500px;
+        border: 1px solid var(--mud-palette-lines-default);
+        border-radius: 8px;
     }
 </style>

@@ -26,7 +26,12 @@
       "mcp__playwright__browser_run_code",
       "mcp__playwright__browser_close",
       "Bash(dotnet test:*)",
-      "Bash(if not exist \"c:\\\\Repos\\\\jll.io Consultancy\\\\storingsdienst\\\\src\\\\Storingsdienst\\\\Storingsdienst\\\\wwwroot\\\\locales\" mkdir \"c:\\\\Repos\\\\jll.io Consultancy\\\\storingsdienst\\\\src\\\\Storingsdienst\\\\Storingsdienst\\\\wwwroot\\\\locales\")"
+      "Bash(if not exist \"c:\\\\Repos\\\\jll.io Consultancy\\\\storingsdienst\\\\src\\\\Storingsdienst\\\\Storingsdienst\\\\wwwroot\\\\locales\" mkdir \"c:\\\\Repos\\\\jll.io Consultancy\\\\storingsdienst\\\\src\\\\Storingsdienst\\\\Storingsdienst\\\\wwwroot\\\\locales\")",
+      "Bash(dir \"c:\\\\Repos\\\\jll.io Consultancy\\\\storingsdienst\\\\src\\\\Storingsdienst\\\\Storingsdienst.Client\\\\wwwroot\" /b)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Repos\\\\jll.io Consultancy\\\\storingsdienst\\\\src\\\\Storingsdienst\\\\Storingsdienst.Client\\\\wwwroot\" -Recurse -Include *.png,*.jpg,*.jpeg,*.gif)",
+      "Bash(Select-Object FullName, Length)",
+      "Bash(cmd.exe /c:*)",
+      "mcp__playwright__browser_resize"
     ],
     "additionalDirectories": [
       "c:\\Repos\\jll.io Consultancy\\storingsdienst"
