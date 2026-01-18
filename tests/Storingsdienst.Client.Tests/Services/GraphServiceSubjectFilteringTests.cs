@@ -6,7 +6,7 @@ namespace Storingsdienst.Client.Tests.Services;
 /// <summary>
 /// Tests for subject filtering logic used in Graph API mode
 /// </summary>
-public class GraphServiceSubjectFilteringTests
+public class SubjectFilteringLogicTests
 {
     [Fact]
     public void ExtractDistinctSubjects_MultipleSubjects_ReturnsDistinctSubjects()
