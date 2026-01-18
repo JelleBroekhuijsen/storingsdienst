@@ -225,6 +225,8 @@
     "GitHubActionsDesc":  "CI/CD pipelines voor geautomatiseerd testen en deployment",
     "MicrosoftAzure":  "Microsoft Azure",
     "MicrosoftAzureDesc":  "Cloud hosting met Azure App Service",
+    "InfrastructureAsCode":  "Infrastructure-as-code",
+    "InfrastructureAsCodeDesc":  "Geautomatiseerde infrastructuurprovisioning met Bicep of Terraform",
     "TechnologyStack":  "Technologie Stack",
     "BlazorWebAssembly":  "Blazor WebAssembly",
     "BlazorDesc":  "Modern SPA-framework met C# en .NET 8",

@@ -248,7 +248,7 @@
     <MudPaper Class="pa-4 mb-4" Elevation="2">
         <MudText Typo="Typo.h6" Class="mb-4">@L["AboutThisApp"]</MudText>
 
-        <MudGrid Spacing="3" Class="mb-4">
+        <MudGrid Spacing="3" Class="mb-4 equal-height-cards">
             <MudItem xs="12" md="4">
                 <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray); height: 100%;">
                     <MudCardContent>
@@ -341,7 +341,7 @@
             @L["HowWeCanHelpDescription"]
         </MudText>
 
-        <MudGrid Spacing="3" Class="mb-4">
+        <MudGrid Spacing="3" Class="mb-4 equal-height-cards">
             <MudItem xs="12" md="4">
                 <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray); height: 100%;">
                     <MudCardContent>
@@ -431,9 +431,9 @@
 
         <MudText Typo="Typo.subtitle1" Class="mb-3" Style="font-weight: 600;">@L["BuiltWith"]</MudText>
 
-        <MudGrid Spacing="3">
+        <MudGrid Spacing="3" Class="equal-height-cards">
             <MudItem xs="12" md="4">
-                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray);">
+                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray); height: 100%;">
                     <MudCardContent>
                         <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
                             <MudIcon Icon="@Icons.Material.Filled.Psychology" Color="Color.Secondary" />
@@ -458,7 +458,7 @@
             </MudItem>
 
             <MudItem xs="12" md="4">
-                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray);">
+                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray); height: 100%;">
                     <MudCardContent>
                         <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
                             <MudIcon Icon="@Icons.Material.Filled.Cloud" Color="Color.Secondary" />
@@ -473,13 +473,17 @@
                                 <MudText Typo="Typo.body2" Style="font-weight: 500;">@L["MicrosoftAzure"]</MudText>
                                 <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["MicrosoftAzureDesc"]</MudText>
                             </div>
+                            <div>
+                                <MudText Typo="Typo.body2" Style="font-weight: 500;">@L["InfrastructureAsCode"]</MudText>
+                                <MudText Typo="Typo.caption" Class="mud-text-secondary">@L["InfrastructureAsCodeDesc"]</MudText>
+                            </div>
                         </MudStack>
                     </MudCardContent>
                 </MudCard>
             </MudItem>
 
             <MudItem xs="12" md="4">
-                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray);">
+                <MudCard Elevation="0" Style="background-color: var(--mud-palette-background-gray); height: 100%;">
                     <MudCardContent>
                         <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-2">
                             <MudIcon Icon="@Icons.Material.Filled.Code" Color="Color.Secondary" />
