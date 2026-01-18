@@ -20,8 +20,9 @@
 
     <MudPaper Class="pa-4 mb-4" Elevation="2">
         <MudText Typo="Typo.h6" Class="mb-3">@L["Step1SelectDataSource"]</MudText>
-        <MudToggleGroup T="DataSourceMode" @bind-Value="_selectedMode" Color="Color.Primary"
-                        SelectionMode="SelectionMode.SingleSelection" CheckMark="true">
+        <MudToggleGroup T="DataSourceMode" Value="_selectedMode" Color="Color.Primary"
+                        SelectionMode="SelectionMode.SingleSelection" CheckMark="true"
+                        ValueChanged="OnDataSourceModeChanged">
             <MudToggleItem Value="DataSourceMode.GraphApi">
                 <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
                     <MudIcon Icon="@Icons.Custom.Brands.Microsoft" />
@@ -95,7 +96,7 @@
                         </MudSelect>
 
                         <MudButton Variant="Variant.Filled" Color="Color.Primary"
-                                   OnClick="AnalyzeSelectedSubjectAsync"
+                                   OnClick="AnalyzeSelectedSubject"
                                    Disabled="@(_isLoading || string.IsNullOrWhiteSpace(_selectedSubject))"
                                    StartIcon="@(_isLoading ? null : Icons.Material.Filled.Analytics)">
                             @if (_isLoading)
@@ -602,6 +603,19 @@
         L.OnLanguageChanged -= OnLanguageChanged;
     }
 
+    private void OnDataSourceModeChanged(DataSourceMode newMode)
+    {
+        _selectedMode = newMode;
+        ClearGraphApiState();
+    }
+
+    private void ClearGraphApiState()
+    {
+        _graphApiEvents = null;
+        _graphApiSubjects = null;
+        _selectedSubject = null;
+    }
+
     private void AddVerificationComponent()
     {
         _verificationComponentIds.Add(Guid.NewGuid().ToString());
@@ -785,7 +799,7 @@
         }
     }
 
-    private async Task AnalyzeSelectedSubjectAsync()
+    private void AnalyzeSelectedSubject()
     {
         if (_graphApiEvents == null || string.IsNullOrWhiteSpace(_selectedSubject))
         {
