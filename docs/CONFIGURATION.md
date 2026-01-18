@@ -6,7 +6,19 @@ This guide explains how to configure the Storingsdienst application for local de
 
 ## Microsoft Entra Client ID Configuration
 
-The application requires an Microsoft Entra Client ID for Microsoft 365 authentication. This value should **never** be hardcoded in version control.
+The application requires an Microsoft Entra Client ID for Microsoft 365 authentication.
+
+### Configuration Pattern
+
+The repository uses a tiered configuration approach:
+
+1. **`appsettings.json`** (committed to Git): Contains a default development/demo ClientId (`23ab765f-261f-4d10-8cc1-a4ca34a0ad38`). This shared value allows developers to quickly test the application without immediate configuration.
+
+2. **`appsettings.Development.json`** (gitignored): Developers should create this file locally with their personal ClientId to override the default during development.
+
+3. **Production deployment**: The deployment workflow automatically replaces the ClientId with the production value from GitHub Secrets (`AZURE_CLIENT_ID`) before building and deploying.
+
+**Important**: While `appsettings.json` contains a default ClientId for development convenience, production secrets should **never** be committed to version control. Always use GitHub Secrets for production values.
 
 ### For Local Development
 
@@ -24,37 +36,11 @@ The application requires an Microsoft Entra Client ID for Microsoft 365 authenti
      - Microsoft Graph → Delegated permissions → `Calendars.Read`
    - Copy the **Application (client) ID** from the Overview page
 
-2. **Configure your local appsettings.json**:
+2. **Use appsettings.Development.json** (Recommended):
    
-   Open `src/Storingsdienst/Storingsdienst.Client/wwwroot/appsettings.json` and replace the placeholder:
+   Create a development-specific configuration file with your personal ClientId. This file is gitignored and won't be committed:
    
-   ```json
-   {
-     "AzureAd": {
-       "Authority": "https://login.microsoftonline.com/common",
-       "ClientId": "YOUR_AZURE_AD_CLIENT_ID_HERE",  ← Replace this
-       "ValidateAuthority": true
-     }
-   }
-   ```
-   
-   With your actual Client ID:
-   
-   ```json
-   {
-     "AzureAd": {
-       "Authority": "https://login.microsoftonline.com/common",
-       "ClientId": "12345678-1234-1234-1234-123456789abc",  ← Your actual ID
-       "ValidateAuthority": true
-     }
-   }
-   ```
-
-3. **Alternative: Use appsettings.Development.json** (Recommended):
-   
-   Instead of modifying `appsettings.json`, create a development-specific configuration that won't be committed:
-   
-   Create or update `src/Storingsdienst/Storingsdienst.Client/wwwroot/appsettings.Development.json`:
+   Create `src/Storingsdienst/Storingsdienst.Client/wwwroot/appsettings.Development.json`:
    
    ```json
    {
@@ -70,7 +56,9 @@ The application requires an Microsoft Entra Client ID for Microsoft 365 authenti
    }
    ```
    
-   This file will override the values from `appsettings.json` during local development.
+   This file will override the default development ClientId from `appsettings.json` during local development.
+   
+   **Note**: You can also use the default development ClientId already in `appsettings.json` for quick testing, but it's recommended to use your own ClientId for actual development work.
 
 ### For Production Deployment
 
@@ -94,40 +82,40 @@ See [docs/DEPLOYMENT.md](./DEPLOYMENT.md) for complete deployment instructions.
 ## Security Best Practices
 
 ### ✅ DO:
-- Use placeholder values in `appsettings.json` committed to version control
-- Store actual Client IDs in `appsettings.Development.json` (gitignored)
+- Use default/demo ClientId values in `appsettings.json` for shared development convenience
+- Store personal development Client IDs in `appsettings.Development.json` (gitignored)
 - Use GitHub Secrets for production values
 - Use separate Microsoft Entra app registrations for development and production
 - Use multi-tenant app registrations to support users from any organization
 
 ### ❌ DON'T:
-- Commit actual Client IDs to Git
-- Share Client IDs in public documentation
+- Commit production Client IDs to Git
+- Share production Client IDs in public documentation
 - Use production Client IDs for local development
-- Hardcode sensitive configuration in source code
+- Hardcode production secrets in source code
 
 ## Configuration Files
 
 ### `appsettings.json` (Committed to Git)
-Contains **default configuration with placeholders**. This file is committed to version control.
+Contains **default configuration with a shared development ClientId**. This file is committed to version control and contains a demo/development ClientId that allows developers to quickly test the application.
 
 **Location**: `src/Storingsdienst/Storingsdienst.Client/wwwroot/appsettings.json`
 
-**Purpose**: Provides base configuration structure and default values.
+**Purpose**: Provides base configuration structure and a default development ClientId. The deployment workflow replaces this value with the production ClientId during deployment.
 
-### `appsettings.Development.json` (Not committed)
-Contains **development-specific overrides**. This file should NOT be committed to version control.
+### `appsettings.Development.json` (Gitignored)
+Contains **development-specific overrides**. This file is automatically excluded from version control via `.gitignore`.
 
 **Location**: `src/Storingsdienst/Storingsdienst.Client/wwwroot/appsettings.Development.json`
 
-**Purpose**: Override settings for local development environment, including your personal Microsoft Entra Client ID.
+**Purpose**: Override the default development ClientId with your personal Microsoft Entra Client ID for actual development work. Optional if you're just testing with the default ClientId.
 
 ### `appsettings.example.json` (Committed to Git)
-Contains **example configuration** showing the required structure.
+Contains **example configuration** showing the required structure. Currently identical to `appsettings.json`.
 
 **Location**: `src/Storingsdienst/Storingsdienst.Client/wwwroot/appsettings.example.json`
 
-**Purpose**: Documentation and reference for developers.
+**Purpose**: Documentation and reference for developers to understand the expected configuration format.
 
 ## Configuration Hierarchy
 
@@ -140,11 +128,11 @@ During local development with `dotnet run`, the environment is automatically set
 
 ## Troubleshooting
 
-### "AADSTS700016: Application with identifier 'YOUR_AZURE_AD_CLIENT_ID_HERE' was not found"
+### "AADSTS700016: Application with identifier '23ab765f-261f-4d10-8cc1-a4ca34a0ad38' was not found"
 
-**Cause**: You haven't configured your Client ID yet.
+**Cause**: The default development ClientId in `appsettings.json` doesn't have the necessary Microsoft Entra app registration permissions, or you need to use your own ClientId.
 
-**Solution**: Follow the "For Local Development" steps above to configure your appsettings.
+**Solution**: Create `appsettings.Development.json` with your personal Microsoft Entra Client ID following the "For Local Development" steps above.
 
 ### "AADSTS50011: Reply URL mismatch"
 

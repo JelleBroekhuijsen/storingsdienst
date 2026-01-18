@@ -485,3 +485,8 @@ $RECYCLE.BIN/
 FINAL-TEST-RESULTS.md
 .claude/settings.local.json
 nul
+
+# Blazor WebAssembly configuration overrides - ignore all environment-specific config files
+src/Storingsdienst/Storingsdienst.Client/wwwroot/appsettings.Development.json
+src/Storingsdienst/Storingsdienst.Client/wwwroot/appsettings.Staging.json
+src/Storingsdienst/Storingsdienst.Client/wwwroot/appsettings.Production.json
