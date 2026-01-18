@@ -157,7 +157,7 @@
     "GuideStep6_ConfigureFile":  "Configure File Settings:",
     "GuideStep6_FolderPath":  "Folder Path:",
     "GuideStep6_FileName":  "File Name:",
-    "GuideStep6_FileContent":  "File Content: Select \"Outputs\" from the Compose step",
+    "GuideStep6_FileContent":  "File Content:",
     "GuideStep6_CreateFolder":  "Note: Create the folder /Documents/CalendarExports in OneDrive before running the flow.",
     "GuideStep6_SharePointAlt":  "Alternative: You can use SharePoint instead of OneDrive by selecting \"SharePoint\" - \"Create file\" and choosing your site.",
     "GuideStep7Title":  "Step 7: Test \u0026 Export Your Flow",
@@ -225,6 +225,8 @@
     "GitHubActionsDesc":  "CI/CD pipelines for automated testing and deployment",
     "MicrosoftAzure":  "Microsoft Azure",
     "MicrosoftAzureDesc":  "Cloud hosting with Azure App Service",
+    "InfrastructureAsCode":  "Infrastructure-as-code",
+    "InfrastructureAsCodeDesc":  "Automated infrastructure provisioning with Bicep or Terraform",
     "TechnologyStack":  "Technology Stack",
     "BlazorWebAssembly":  "Blazor WebAssembly",
     "BlazorDesc":  "Modern SPA framework with C# and .NET 8",
@@ -253,5 +255,11 @@
     "AutomationFeature3":  "Real-time notifications and alerts",
     "ViewSourceOnGitHub":  "View the source code on GitHub",
     "ViewOnGitHub":  "View on GitHub",
-    "CopiedToClipboard":  "Copied to clipboard"
+    "CopiedToClipboard":  "Copied to clipboard",
+    "SelectMeetingSubject":  "Select Meeting Subject",
+    "SelectMeetingSubjectPlaceholder":  "Select a meeting subject...",
+    "ChooseSpecificOrAll":  "Choose a specific meeting subject or select 'All' to include all matching meetings",
+    "FoundMultipleSubjects":  "Found {0} different meeting subjects. Please select one to analyze.",
+    "AnalyzeMeetings":  "Analyze Meetings",
+    "All":  "All"
 }

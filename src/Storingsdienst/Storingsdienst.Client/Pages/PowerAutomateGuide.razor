@@ -383,7 +383,10 @@
                                             </MudStack>
                                         </MudListItem>
                                         <MudListItem Class="param-item">
-                                            <MudText Typo="Typo.body2">@L["GuideStep6_FileContent"]</MudText>
+                                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                                <MudText Typo="Typo.body2" Class="param-label">@L["GuideStep6_FileContent"]</MudText>
+                                                <CopyableCode Value="@("@outputs('Compose')")" OnCopy="ShowCopyConfirmation" />
+                                            </MudStack>
                                         </MudListItem>
                                     </MudList>
                                 </MudList>
@@ -456,8 +459,8 @@
   "events": [
     {
       "subject": "Project Standup",
-      "start": { "dateTime": "2024-01-15T09:00:00", "timeZone": "UTC" },
-      "end": { "dateTime": "2024-01-15T09:30:00", "timeZone": "UTC" },
+      "start": "2025-01-15T09:00:00+00:00",
+      "end": "2025-01-15T09:30:00+00:00",
       "isAllDay": false
     }
   ],
