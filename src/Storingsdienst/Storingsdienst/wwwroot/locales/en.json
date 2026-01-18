@@ -157,7 +157,7 @@
     "GuideStep6_ConfigureFile":  "Configure File Settings:",
     "GuideStep6_FolderPath":  "Folder Path:",
     "GuideStep6_FileName":  "File Name:",
-    "GuideStep6_FileContent":  "File Content: Select \"Outputs\" from the Compose step",
+    "GuideStep6_FileContent":  "File Content:",
     "GuideStep6_CreateFolder":  "Note: Create the folder /Documents/CalendarExports in OneDrive before running the flow.",
     "GuideStep6_SharePointAlt":  "Alternative: You can use SharePoint instead of OneDrive by selecting \"SharePoint\" - \"Create file\" and choosing your site.",
     "GuideStep7Title":  "Step 7: Test \u0026 Export Your Flow",
