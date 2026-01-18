@@ -82,16 +82,20 @@ public class LocalizationService : ILocalizationService
             Console.WriteLine($"[LocalizationService] savedCulture from localStorage: '{savedCulture}'");
             Console.WriteLine($"[LocalizationService] _currentCulture before: '{_currentCulture}'");
 
+            bool cultureChanged = false;
             if (!string.IsNullOrEmpty(savedCulture) &&
                 (savedCulture == "nl" || savedCulture == "en"))
             {
                 Console.WriteLine($"[LocalizationService] Setting language to: '{savedCulture}'");
+                var previousCulture = _currentCulture;
                 await SetLanguageInternalAsync(savedCulture, persist: false);
+                cultureChanged = previousCulture != _currentCulture;
             }
-            else if (justLoaded)
+            
+            // Notify subscribers when translations are just loaded AND culture didn't change
+            // (if culture changed, SetLanguageInternalAsync already fired the event)
+            if (justLoaded && !cultureChanged)
             {
-                // If translations just loaded but culture didn't change,
-                // still notify subscribers so they can re-render with translations
                 Console.WriteLine("[LocalizationService] Translations loaded, notifying subscribers");
                 OnLanguageChanged?.Invoke();
             }

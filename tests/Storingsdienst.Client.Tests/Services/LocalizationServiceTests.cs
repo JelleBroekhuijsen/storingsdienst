@@ -331,4 +331,73 @@ public class LocalizationServiceTests : IDisposable
         // Assert
         handlerCalled.Should().BeFalse();
     }
+
+    [Fact]
+    public async Task InitializeAsync_WithSavedCultureMatchingDefault_FiresOnLanguageChanged()
+    {
+        // This test reproduces the bug: when saved culture is "nl" (the default),
+        // InitializeAsync should still fire OnLanguageChanged because translations were just loaded
+        
+        // Arrange
+        _mockJsRuntime.Setup(js => js.InvokeAsync<string?>(
+            "localStorage.getItem",
+            It.IsAny<object[]>()))
+            .ReturnsAsync("nl"); // Saved culture matches the default
+
+        var eventFired = false;
+        _sut.OnLanguageChanged += () => eventFired = true;
+
+        // Act
+        await _sut.InitializeAsync();
+
+        // Assert
+        eventFired.Should().BeTrue("translations were just loaded and subscribers need to be notified to re-render");
+    }
+
+    [Fact]
+    public async Task InitializeAsync_WithSavedCultureDifferentFromDefault_FiresOnLanguageChangedOnce()
+    {
+        // When saved culture differs from default (e.g., "en" when default is "nl"),
+        // InitializeAsync should fire OnLanguageChanged exactly once (via SetLanguageInternalAsync),
+        // not twice (once from SetLanguageInternalAsync and once from justLoaded check)
+        
+        // Arrange
+        _mockJsRuntime.Setup(js => js.InvokeAsync<string?>(
+            "localStorage.getItem",
+            It.IsAny<object[]>()))
+            .ReturnsAsync("en"); // Saved culture differs from default "nl"
+
+        var eventCount = 0;
+        _sut.OnLanguageChanged += () => eventCount++;
+
+        // Act
+        await _sut.InitializeAsync();
+
+        // Assert
+        eventCount.Should().Be(1, "event should fire exactly once when culture changes during initialization");
+        _sut.CurrentCulture.Should().Be("en", "culture should have been changed to the saved value");
+    }
+
+    [Fact]
+    public async Task InitializeAsync_CalledTwiceWithSameCulture_OnlyFiresEventOnce()
+    {
+        // This test ensures that calling InitializeAsync a second time doesn't fire the event
+        // if translations are already loaded and culture hasn't changed
+        
+        // Arrange
+        _mockJsRuntime.Setup(js => js.InvokeAsync<string?>(
+            "localStorage.getItem",
+            It.IsAny<object[]>()))
+            .ReturnsAsync("nl");
+
+        var eventCount = 0;
+        _sut.OnLanguageChanged += () => eventCount++;
+
+        // Act
+        await _sut.InitializeAsync(); // First call - should fire event
+        await _sut.InitializeAsync(); // Second call - should NOT fire event
+
+        // Assert
+        eventCount.Should().Be(1, "event should only fire when translations are first loaded");
+    }
 }
