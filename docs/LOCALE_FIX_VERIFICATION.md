@@ -28,20 +28,41 @@ Default locale file not loaded on initial app load, causing translation keys to 
 3. Refresh the page (F5 or Ctrl+R)
 4. **Expected Result**: Text should still appear in the selected language immediately
 5. Open browser DevTools → Console
-6. **Expected Log Output** (with "nl" saved):
-   ```
-   [LocalizationService] InitializeAsync called
-   [LocalizationService] Loading translations from JSON files...
-   [LocalizationService] Loaded XXX Dutch translations
-   [LocalizationService] Loaded XXX English translations
-   [LocalizationService] savedCulture from localStorage: 'nl'
-   [LocalizationService] _currentCulture before: 'nl'
-   [LocalizationService] Setting language to: 'nl'
-   [LocalizationService] SetLanguageInternalAsync called with culture='nl', persist=False
-   [LocalizationService] Culture already set to 'nl', returning early
-   [LocalizationService] Translations loaded, notifying subscribers  ← KEY LINE!
-   [LocalizationService] _currentCulture after: 'nl'
-   ```
+
+#### Scenario 2a: Saved preference matches default (nl)
+**Expected Log Output**:
+```
+[LocalizationService] InitializeAsync called
+[LocalizationService] Loading translations from JSON files...
+[LocalizationService] Loaded XXX Dutch translations
+[LocalizationService] Loaded XXX English translations
+[LocalizationService] savedCulture from localStorage: 'nl'
+[LocalizationService] _currentCulture before: 'nl'
+[LocalizationService] Setting language to: 'nl'
+[LocalizationService] SetLanguageInternalAsync called with culture='nl', persist=False
+[LocalizationService] Culture already set to 'nl', returning early
+[LocalizationService] Translations loaded, notifying subscribers  ← KEY LINE!
+[LocalizationService] _currentCulture after: 'nl'
+```
+
+#### Scenario 2b: Saved preference differs from default (en)
+**Expected Log Output**:
+```
+[LocalizationService] InitializeAsync called
+[LocalizationService] Loading translations from JSON files...
+[LocalizationService] Loaded XXX Dutch translations
+[LocalizationService] Loaded XXX English translations
+[LocalizationService] savedCulture from localStorage: 'en'
+[LocalizationService] _currentCulture before: 'nl'
+[LocalizationService] Setting language to: 'en'
+[LocalizationService] SetLanguageInternalAsync called with culture='en', persist=False
+[LocalizationService] Changing culture from 'nl' to 'en'
+[LocalizationService] Set DefaultThreadCurrentUICulture to 'en'
+[LocalizationService] Invoking OnLanguageChanged event  ← Event fires here
+[LocalizationService] OnLanguageChanged event completed
+[LocalizationService] _currentCulture after: 'en'
+```
+**Note**: When culture differs from default, `SetLanguageInternalAsync` fires the event, so the "Translations loaded, notifying subscribers" log does NOT appear (preventing duplicate event firing).
 
 ### Test Scenario 3: Language Switching
 1. Visit the app
@@ -68,7 +89,7 @@ Default locale file not loaded on initial app load, causing translation keys to 
 4. Skip `else if (justLoaded)` block because first `if` was true
 5. Components never notified to re-render
 
-**Fix**: Changed logic to **always** fire the `OnLanguageChanged` event when translations are just loaded, regardless of whether the culture changed.
+**Fix**: Changed logic to fire the `OnLanguageChanged` event when translations are just loaded **only if** the culture didn't change (preventing duplicate event firing when culture changes).
 
 ## Code Change Summary
 
@@ -87,16 +108,20 @@ else if (justLoaded)  // ← Only fires if savedCulture is empty/invalid
 }
 ```
 
-**After** (lines 85-98):
+**After** (lines 85-103):
 ```csharp
+bool cultureChanged = false;
 if (!string.IsNullOrEmpty(savedCulture) &&
     (savedCulture == "nl" || savedCulture == "en"))
 {
+    var previousCulture = _currentCulture;
     await SetLanguageInternalAsync(savedCulture, persist: false);
+    cultureChanged = previousCulture != _currentCulture;
 }
 
-// Always notify subscribers when translations are just loaded
-if (justLoaded)  // ← Always fires when translations loaded
+// Notify subscribers when translations are just loaded AND culture didn't change
+// (if culture changed, SetLanguageInternalAsync already fired the event)
+if (justLoaded && !cultureChanged)  // ← Prevents duplicate event firing
 {
     OnLanguageChanged?.Invoke();
 }
@@ -105,5 +130,5 @@ if (justLoaded)  // ← Always fires when translations loaded
 ## Impact
 - **Users affected**: Anyone revisiting the app with Dutch (default) language preference saved
 - **Severity**: High (broken UI, confusing UX)
-- **Fix complexity**: Low (2-line change)
-- **Risk**: Very low (comprehensive test coverage, backward compatible)
+- **Fix complexity**: Low (minimal code change with culture change detection)
+- **Risk**: Very low (well-tested locale loading logic with comprehensive test coverage, backward compatible)
