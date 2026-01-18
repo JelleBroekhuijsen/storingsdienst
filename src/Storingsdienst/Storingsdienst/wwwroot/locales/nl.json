@@ -157,7 +157,7 @@
     "GuideStep6_ConfigureFile":  "Bestandsinstellingen configureren:",
     "GuideStep6_FolderPath":  "Mappad:",
     "GuideStep6_FileName":  "Bestandsnaam:",
-    "GuideStep6_FileContent":  "Bestandsinhoud: Selecteer \"Uitvoer\" van de Opstellen stap",
+    "GuideStep6_FileContent":  "Bestandsinhoud:",
     "GuideStep6_CreateFolder":  "Let op: Maak de map /Documents/CalendarExports aan in OneDrive voordat u de flow uitvoert.",
     "GuideStep6_SharePointAlt":  "Alternatief: U kunt ook SharePoint gebruiken in plaats van OneDrive door \"SharePoint\" - \"Bestand maken\" te selecteren.",
     "GuideStep7Title":  "Stap 7: Testen \u0026 Exporteren",
