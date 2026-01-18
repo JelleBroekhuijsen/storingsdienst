@@ -255,5 +255,11 @@
     "AutomationFeature3":  "Real-time notificaties en waarschuwingen",
     "ViewSourceOnGitHub":  "Bekijk de broncode op GitHub",
     "ViewOnGitHub":  "Bekijk op GitHub",
-    "CopiedToClipboard":  "Gekopieerd naar klembord"
+    "CopiedToClipboard":  "Gekopieerd naar klembord",
+    "SelectMeetingSubject":  "Selecteer Vergaderonderwerp",
+    "SelectMeetingSubjectPlaceholder":  "Selecteer een vergaderonderwerp...",
+    "ChooseSpecificOrAll":  "Kies een specifiek vergaderonderwerp of selecteer 'Alle' om alle overeenkomende vergaderingen op te nemen",
+    "FoundMultipleSubjects":  "{0} verschillende vergaderonderwerpen gevonden. Selecteer er een om te analyseren.",
+    "AnalyzeMeetings":  "Vergaderingen Analyseren",
+    "All":  "Alle"
 }
