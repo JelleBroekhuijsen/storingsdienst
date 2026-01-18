@@ -1,5 +1,6 @@
 @page "/"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Storingsdienst.Client.Models
 @inject IMeetingAnalysisService MeetingAnalysisService
 @inject IExcelExportService ExcelExportService
 @inject JsonImportService JsonImportService
@@ -19,8 +20,9 @@
 
     <MudPaper Class="pa-4 mb-4" Elevation="2">
         <MudText Typo="Typo.h6" Class="mb-3">@L["Step1SelectDataSource"]</MudText>
-        <MudToggleGroup T="DataSourceMode" @bind-Value="_selectedMode" Color="Color.Primary"
-                        SelectionMode="SelectionMode.SingleSelection" CheckMark="true">
+        <MudToggleGroup T="DataSourceMode" Value="_selectedMode" Color="Color.Primary"
+                        SelectionMode="SelectionMode.SingleSelection" CheckMark="true"
+                        ValueChanged="OnDataSourceModeChanged">
             <MudToggleItem Value="DataSourceMode.GraphApi">
                 <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
                     <MudIcon Icon="@Icons.Custom.Brands.Microsoft" />
@@ -78,6 +80,36 @@
                             <span>@L["SearchMeetings"]</span>
                         }
                     </MudButton>
+
+                    @if (_graphApiSubjects != null && _graphApiSubjects.Any())
+                    {
+                        <MudSelect T="string" @bind-Value="_selectedSubject" Label="@L["SelectMeetingSubject"]"
+                                   Variant="Variant.Outlined" Class="mt-3 mb-3"
+                                   Disabled="_isLoading"
+                                   HelperText="@L["ChooseSpecificOrAll"]"
+                                   Placeholder="@L["SelectMeetingSubjectPlaceholder"]">
+                            <MudSelectItem Value="@("All")">@L["All"]</MudSelectItem>
+                            @foreach (var subject in _graphApiSubjects)
+                            {
+                                <MudSelectItem Value="@subject">@subject</MudSelectItem>
+                            }
+                        </MudSelect>
+
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary"
+                                   OnClick="AnalyzeSelectedSubject"
+                                   Disabled="@(_isLoading || string.IsNullOrWhiteSpace(_selectedSubject))"
+                                   StartIcon="@(_isLoading ? null : Icons.Material.Filled.Analytics)">
+                            @if (_isLoading)
+                            {
+                                <MudProgressCircular Size="Size.Small" Indeterminate="true" Class="mr-2" />
+                                <span>@L["Processing"]</span>
+                            }
+                            else
+                            {
+                                <span>@L["AnalyzeMeetings"]</span>
+                            }
+                        </MudButton>
+                    }
                 </Authorized>
                 <NotAuthorized>
                     <MudText Typo="Typo.body1" Class="mud-text-secondary mb-3">
@@ -550,6 +582,11 @@
     private string? _jsonContent;
     private List<string>? _recurringSubjects;
     private List<string> _verificationComponentIds = new List<string> { Guid.NewGuid().ToString() };
+    
+    // Graph API specific state
+    private List<CalendarEventDto>? _graphApiEvents;
+    private List<string>? _graphApiSubjects;
+    private string? _selectedSubject;
 
     protected override void OnInitialized()
     {
@@ -564,6 +601,19 @@
     public void Dispose()
     {
         L.OnLanguageChanged -= OnLanguageChanged;
+    }
+
+    private void OnDataSourceModeChanged(DataSourceMode newMode)
+    {
+        _selectedMode = newMode;
+        ClearGraphApiState();
+    }
+
+    private void ClearGraphApiState()
+    {
+        _graphApiEvents = null;
+        _graphApiSubjects = null;
+        _selectedSubject = null;
     }
 
     private void AddVerificationComponent()
@@ -680,6 +730,9 @@
     {
         _isLoading = true;
         _monthlyResults = null;
+        _graphApiEvents = null;
+        _graphApiSubjects = null;
+        _selectedSubject = null;
 
         try
         {
@@ -695,7 +748,24 @@
                 return;
             }
 
-            // Analyze the meetings
+            // Extract distinct subjects from the results
+            var distinctSubjects = events
+                .Select(e => e.Subject)
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Distinct()
+                .OrderBy(s => s)
+                .ToList();
+
+            // If multiple subjects found, show dropdown for selection
+            if (distinctSubjects.Count > 1)
+            {
+                _graphApiEvents = events;
+                _graphApiSubjects = distinctSubjects;
+                Snackbar.Add(string.Format(L["FoundMultipleSubjects"], distinctSubjects.Count), Severity.Info);
+                return;
+            }
+
+            // If only one subject or no subject filtering needed, proceed with analysis
             _monthlyResults = MeetingAnalysisService.AnalyzeMeetings(events);
 
             if (!_monthlyResults.Any())
@@ -718,6 +788,50 @@
         catch (InvalidOperationException ex)
         {
             Snackbar.Add(ex.Message, Severity.Error);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(string.Format(L["ErrorSearchingMeetings"], ex.Message), Severity.Error);
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+
+    private void AnalyzeSelectedSubject()
+    {
+        if (_graphApiEvents == null || string.IsNullOrWhiteSpace(_selectedSubject))
+        {
+            return;
+        }
+
+        _isLoading = true;
+        _monthlyResults = null;
+
+        try
+        {
+            // Filter events by selected subject
+            var filteredEvents = _selectedSubject == "All"
+                ? _graphApiEvents
+                : _graphApiEvents.Where(e => e.Subject == _selectedSubject).ToList();
+
+            if (!filteredEvents.Any())
+            {
+                Snackbar.Add(L["NoMeetingDaysFoundAfterAnalysis"], Severity.Warning);
+                return;
+            }
+
+            // Analyze the filtered meetings
+            _monthlyResults = MeetingAnalysisService.AnalyzeMeetings(filteredEvents);
+
+            if (!_monthlyResults.Any())
+            {
+                Snackbar.Add(L["NoMeetingDaysFoundAfterAnalysis"], Severity.Warning);
+                return;
+            }
+
+            Snackbar.Add(string.Format(L["SuccessfullyFoundEvents"], filteredEvents.Count, _monthlyResults.Sum(m => m.TotalMeetingDays)), Severity.Success);
         }
         catch (Exception ex)
         {

@@ -255,5 +255,11 @@
     "AutomationFeature3":  "Real-time notifications and alerts",
     "ViewSourceOnGitHub":  "View the source code on GitHub",
     "ViewOnGitHub":  "View on GitHub",
-    "CopiedToClipboard":  "Copied to clipboard"
+    "CopiedToClipboard":  "Copied to clipboard",
+    "SelectMeetingSubject":  "Select Meeting Subject",
+    "SelectMeetingSubjectPlaceholder":  "Select a meeting subject...",
+    "ChooseSpecificOrAll":  "Choose a specific meeting subject or select 'All' to include all matching meetings",
+    "FoundMultipleSubjects":  "Found {0} different meeting subjects. Please select one to analyze.",
+    "AnalyzeMeetings":  "Analyze Meetings",
+    "All":  "All"
 }
